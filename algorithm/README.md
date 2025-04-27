@@ -1,2 +1,1 @@
-# algorithm
-算法题
+# Algorithm 算法
