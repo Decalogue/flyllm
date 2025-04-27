@@ -20,15 +20,5 @@
 | Tag | Title | Arxiv | Github | QA |
 |-----|-------|-------|--------|------|
 | 强化学习 | GRPO | [arxiv](https://arxiv.org/pdf/2402.03300) | [github](https://github.com/deepseek-ai/DeepSeek-Math) |  |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-
+| 量化压缩 | DFloat11 | [arxiv](https://arxiv.org/abs/2504.11651) | [github](https://github.com/LeanModels/DFloat11) |  |
+|  |  |  |  |  |
