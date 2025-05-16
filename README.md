@@ -21,4 +21,5 @@
 |:-----|:-----|:-----|:-----|:-----|
 | 强化学习 | GRPO | [arxiv](https://arxiv.org/pdf/2402.03300) | [github](https://github.com/deepseek-ai/DeepSeek-Math) | [qa](https://github.com/Decalogue/flyllm/blob/main/qa/强化学习.csv) |
 | 量化压缩 | DFloat11 | [arxiv](https://arxiv.org/abs/2504.11651) | [github](https://github.com/LeanModels/DFloat11) | [qa](https://github.com/Decalogue/flyllm/blob/main/qa/量化压缩.csv) |
+| 多模态 | BLIP3-o | [arxiv](https://arxiv.org/abs/2505.09568) | [github](https://github.com/JiuhaiChen/BLIP3o) | [qa](https://github.com/Decalogue/flyllm/blob/main/qa/多模态.csv) |
 |  |  |  |  |  |
