@@ -1,1 +1,1 @@
-# AI Competition AI比赛
+# AI Competition AI 比赛
