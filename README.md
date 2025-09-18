@@ -1,4 +1,4 @@
-# flyllm: LLM 从基础到深入
+# flyllm 持续更新：LLM 从基础到深入，包括相关的数学、算法、模型、比赛，以及经历分享
 
 ## 标签说明 Tag Introduction
 
