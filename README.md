@@ -1,7 +1,7 @@
 # flyllm 持续更新：LLM 从基础到深入，包括相关的数学、算法、模型、比赛，以及经历分享
 
-## 标签说明 Tag Introduction
 
+## 标签说明 Tag Introduction
 | Tag | Items |
 |:-----|:-----|
 | 智能体 | Agent(智能体), 智能体架构, 智能体行为, 智能体交互, 智能体学习, 智能体规划, 智能体决策, 智能体协作 |
@@ -17,9 +17,14 @@
 | 评估基准 | 基准测试, 人类评估, 自动评估, 质量评估, 安全性评估, 性能评估, 效率评估, 鲁棒性评估, 公平性评估 |
 | 应用部署 | 推理框架, 模型部署, 部署优化, 模型服务, 服务架构, 成本控制, 负载均衡, 监控告警, 服务扩展, 服务高可用性 |
 
-| Tag | Title | Arxiv | Github | FAQ |
-|:-----|:-----|:-----|:-----|:-----|
-| 强化学习 | GRPO | [arxiv](https://arxiv.org/pdf/2402.03300) | [github](https://github.com/deepseek-ai/DeepSeek-Math) | [faq](https://github.com/Decalogue/flyllm/blob/main/faq/强化学习.csv) |
-| 模型架构 | DeepSeek-R1 | [arxiv](https://arxiv.org/pdf/2501.12948) | [github](https://github.com/deepseek-ai/DeepSeek-R1) | [faq](https://github.com/Decalogue/flyllm/blob/main/faq/模型架构.csv) |
-| 多模态 | Qwen2.5-Omni | [arxiv](https://arxiv.org/abs/2503.20215) | [github](https://github.com/QwenLM/Qwen2.5-Omni) | [faq](https://github.com/Decalogue/flyllm/blob/main/faq/多模态.csv) |
-| 量化压缩 | DFloat11 | [arxiv](https://arxiv.org/abs/2504.11651) | [github](https://github.com/LeanModels/DFloat11) | [faq](https://github.com/Decalogue/flyllm/blob/main/faq/量化压缩.csv) |
+
+## LLM
+[LLM](https://github.com/Decalogue/flyllm/blob/main/llm/README.md)
+
+## 比赛
+
+
+## 数学
+
+
+## 算法
