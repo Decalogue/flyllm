@@ -7,7 +7,9 @@
 
 ### 1.专题-DeepSeek
 [DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-R1.md)
+
 [DeepSeek-V3 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-V3.md)
+
 [DeepSeek 是怎么训练 MoE 模型的？](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek.md)
 
 ### 2.专题-RL
