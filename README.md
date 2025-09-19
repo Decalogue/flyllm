@@ -13,7 +13,7 @@
 
 
 ## 二、比赛
-[第四届琶洲算法大赛国际AI赛 | 跨语言多模态可解释的情感识别](https://github.com/Decalogue/flyllm/blob/main/llm/PaZhou.md)
+[第四届琶洲算法大赛国际AI赛 | 跨语言多模态可解释的情感识别](https://github.com/Decalogue/flyllm/blob/main/competition/PaZhou.md)
 
 ### 专题-Kaggle
 
