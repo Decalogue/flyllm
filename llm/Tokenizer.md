@@ -21,6 +21,7 @@ class WordpieceTokenizer:
             while start < len(chars):
                 end = len(chars)
                 cur_substr = None
+                # 从后往前遍历，找到最长的子串
                 while start < end:
                     substr = ''.join(chars[start:end])
                     if start > 0:
@@ -29,6 +30,7 @@ class WordpieceTokenizer:
                         cur_substr = substr
                         break
                     end -= 1
+                # 如果找不到子串，则认为是一个坏的token
                 if cur_substr is None:
                     is_bad = True
                     break
