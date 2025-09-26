@@ -4,6 +4,7 @@
 
 ## 一、基础
 [Paper With Code](https://github.com/Decalogue/flyllm/blob/main/llm/PaperWithCode.md)
+[Tokenizer](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
 
 ### 1.专题-DeepSeek
 [DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-R1.md)
