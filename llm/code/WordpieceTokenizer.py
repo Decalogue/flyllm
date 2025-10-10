@@ -33,6 +33,7 @@ class WordpieceTokenizer:
                     break
                 sub_tokens.append(cur_substr)
                 start = end
+
             if is_bad:
                 output_tokens.append(self.unk_token)
             else:

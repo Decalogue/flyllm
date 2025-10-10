@@ -9,7 +9,7 @@ class ListNode:
 
 
 class Solution:
-    def merge_k_lists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
         """
         合并K个有序链表
         时间复杂度: O(N log K)，其中N是所有链表中的节点总数，K是链表个数
