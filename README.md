@@ -10,6 +10,10 @@
 
 [Tokenizer](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
 
+[Transformer](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer.md)
+
+[Bert](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
+
 ### 1.专题-DeepSeek
 [DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-R1.md)
 
@@ -19,6 +23,17 @@
 
 ### 2.专题-RL
 [GRPO](https://github.com/Decalogue/flyllm/blob/main/llm/GRPO.md)
+
+[DAPO](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO.md)
+
+[DAPO 相比 GRPO 改进了什么](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO_vs_GRPO.md)
+
+[GRPO 和 PPO 什么区别？](https://github.com/Decalogue/flyllm/blob/main/llm/PPO.md)
+
+### TODO 面经题目收集整理
+
+算训练/推理显存占用、kvcache和并发分析
+
 
 
 ## 二、实战竞赛
