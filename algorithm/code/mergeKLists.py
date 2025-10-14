@@ -79,7 +79,7 @@ def test_merge_k_lists():
     
     # 合并链表
     solution = Solution()
-    merged_list = solution.merge_k_lists([list1, list2, list3])
+    merged_list = solution.mergeKLists([list1, list2, list3])
     
     # 打印合并后的链表
     print("\n合并后的链表:")
