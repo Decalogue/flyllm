@@ -10,7 +10,9 @@
 
 [Tokenizer](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
 
-[Transformer](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer.md)
+[Transformer 上篇：起源与革命](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_1.md)
+[Transformer 中篇：架构与实践](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_2.md)
+[Transformer 下篇：扩张与未来](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_3.md)
 
 [Bert](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
 
