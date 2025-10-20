@@ -8,13 +8,15 @@
 
 [Paper With Code](https://github.com/Decalogue/flyllm/blob/main/llm/PaperWithCode.md)
 
-[Tokenizer](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
+[Tokenizer 完全指南](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
 
 [Transformer 上篇：起源与革命](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_1.md)
 
 [Transformer 中篇：架构与实践](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_2.md)
 
 [Transformer 下篇：扩张与未来](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_3.md)
+
+[为什么现代大模型都采用因果解码器（Decoder-only）架构？](https://github.com/Decalogue/flyllm/blob/main/llm/Causal.md)
 
 [Bert](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
 
@@ -26,6 +28,8 @@
 [DeepSeek 是怎么训练 MoE 模型的？](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek.md)
 
 ### 2.专题-RL
+[系统梳理8种主流LLM强化学习算法](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
+
 [GRPO](https://github.com/Decalogue/flyllm/blob/main/llm/GRPO.md)
 
 [DAPO](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO.md)
