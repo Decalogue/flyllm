@@ -414,18 +414,13 @@ $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 ## 附录B：关键论文
 
 1. **Attention Is All You Need** (Vaswani et al., 2017)
-   - 原始Transformer论文
    - arXiv:1706.03762
 
 2. **BERT** (Devlin et al., 2018)
-   - 预训练语言模型
    - arXiv:1810.04805
 
-3. **Language Models are Few-Shot Learners** (Brown et al., 2020)
-   - GPT-3论文
+3. **Language Models are Few-Shot Learners (GPT3)** (Brown et al., 2020)
    - arXiv:2005.14165
-
----
 
 ## 附录C：关键术语中英对照
 
@@ -436,14 +431,9 @@ $$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$
 | 查询 | Query | Q |
 | 键 | Key | K |
 | 值 | Value | V |
-| 编码器 | Encoder | - |
-| 解码器 | Decoder | - |
 | 位置编码 | Positional Encoding | PE |
 | 前馈网络 | Feed-Forward Network | FFN |
-| 残差连接 | Residual Connection | - |
 | 层归一化 | Layer Normalization | LayerNorm |
-| 交叉注意力 | Cross-Attention | - |
-| 掩码注意力 | Masked Attention | - |
 
 ---
 
