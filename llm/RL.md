@@ -1,7 +1,16 @@
-# 🎓 大模型强化学习方法对比
+# 🎓 AI面经·强化学习
 
-> 系统梳理8种主流LLM强化学习算法
-DPO | PPO | GRPO | DAPO | GTPO | GRPO-S | GSPO | Tree-GRPO
+> **从DPO到DAPO，系统拆解8种主流LLM强化学习算法**  
+> 覆盖DeepSeek-R1、ByteDance-DAPO等前沿技术，适合面试突击、技术选型、深度学习
+
+**本文特色：**
+- 🎯 **一句话说清原理** - 每种方法核心机制、优劣势、适用场景一目了然
+- 📊 **横向对比分析** - 6大维度系统对比，快速定位最适合的方法
+- 🔥 **前沿技术解析** - DeepSeek GRPO、ByteDance DAPO、MoE专用GSPO
+- 💡 **实战落地指南** - 选择指南、超参配置、常见陷阱，拿来即用
+- 📈 **演进脉络清晰** - 从粗粒度到细粒度，技术发展一脉相承
+
+**涵盖算法：** DPO | PPO | GRPO | DAPO | GTPO | GRPO-S | GSPO | Tree-GRPO
 
 ## 📑 快速导航
 
