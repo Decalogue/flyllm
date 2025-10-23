@@ -2,9 +2,12 @@
 > 从理论到实践，从入门到精通的完整学习路径
 > 四大主线：基础理论、实战竞赛、求职面试、数学基础
 
+## 前沿
+[🔥 DeepSeek-OCR爆火！把万字长文压缩成一张图，AI长文本瓶颈被这样颠覆](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-OCR.md)
+
 
 ## 一、基础理论
-> Paper 解读、专题分享、代码解析，不止于八股
+> Paper 解读、专题分享、代码解析、爱求甚解
 
 [Paper With Code](https://github.com/Decalogue/flyllm/blob/main/llm/PaperWithCode.md)
 
@@ -17,6 +20,8 @@
 [Transformer 下篇：扩张与未来](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_3.md)
 
 [为什么现代大模型都采用因果解码器（Decoder-only）架构？](https://github.com/Decalogue/flyllm/blob/main/llm/Causal.md)
+
+[为什么LoRA能用极少参数微调大模型？](https://github.com/Decalogue/flyllm/blob/main/llm/LoRA.md)
 
 [Bert](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
 
