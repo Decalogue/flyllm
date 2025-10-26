@@ -35,17 +35,13 @@
 ### 2.专题-RL
 [系统梳理8种主流LLM强化学习算法](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
 
+[PPO](https://github.com/Decalogue/flyllm/blob/main/llm/PPO.md)
+
 [GRPO](https://github.com/Decalogue/flyllm/blob/main/llm/GRPO.md)
 
 [DAPO](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO.md)
 
-[DAPO 相比 GRPO 改进了什么](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO_vs_GRPO.md)
-
-[GRPO 和 PPO 什么区别？](https://github.com/Decalogue/flyllm/blob/main/llm/PPO.md)
-
-### TODO 面经题目收集整理
-
-算训练/推理显存占用、kvcache和并发分析
+[DAPO 相比 GRPO 改进了什么](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
 
 
 ## 二、实战竞赛
