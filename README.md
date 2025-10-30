@@ -7,9 +7,7 @@
 
 
 ## 一、基础理论
-> Paper 解读、专题分享、代码解析、爱求甚解
-
-[Paper With Code](https://github.com/Decalogue/flyllm/blob/main/llm/PaperWithCode.md)
+> 大模型架构、专题分享、代码解析
 
 [Tokenizer 完全指南](https://github.com/Decalogue/flyllm/blob/main/llm/Tokenizer.md)
 
@@ -19,11 +17,13 @@
 
 [Transformer 下篇：扩张与未来](https://github.com/Decalogue/flyllm/blob/main/llm/Transformer_3.md)
 
+[大模型时代，BERT还有价值吗？](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
+
 [为什么现代大模型都采用因果解码器（Decoder-only）架构？](https://github.com/Decalogue/flyllm/blob/main/llm/Causal.md)
 
 [为什么LoRA能用极少参数微调大模型？](https://github.com/Decalogue/flyllm/blob/main/llm/LoRA.md)
 
-[Bert](https://github.com/Decalogue/flyllm/blob/main/llm/Bert.md)
+[为什么QLoRA能在消费级GPU上微调65B大模型？](https://github.com/Decalogue/flyllm/blob/main/llm/QLoRA.md)
 
 ### 1.专题-DeepSeek
 [DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-R1.md)
