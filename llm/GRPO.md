@@ -111,7 +111,7 @@ Critic模型显存 = 模型参数 + 梯度 + 优化器状态
 
 ### 4️⃣ GRPO vs. 其他方法（1分钟）
 
-#### 📊 架构对比（详见 Figure 4）
+#### 📊 架构对比
 
 **关键差异：**
 1. **PPO**：Policy + **Value Model** (训练) + Reference + Reward → 使用GAE计算优势

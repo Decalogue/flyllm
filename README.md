@@ -45,6 +45,8 @@
 
 [DAPO 相比 GRPO 改进了什么](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
 
+[为什么 Negative Sample Reinforcement 只罚错就能提升推理？](https://github.com/Decalogue/flyllm/blob/main/llm/NegativeRL.md)
+
 
 ## 二、实战竞赛
 > AI比赛深度复盘、topk 方案对比分析、比赛经验分享

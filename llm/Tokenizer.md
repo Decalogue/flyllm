@@ -71,7 +71,7 @@ tokens = ["token", "##ization"]  # 平衡词汇表和表达能力
 | **BPE** | GPT系列 | 字节对编码，频繁合并 | 简单高效 | 贪心算法 |
 | **WordPiece** | BERT | 最大似然估计 | 考虑概率 | 训练慢 |
 | **Unigram** | T5 | 概率模型 | 理论完善 | 实现复杂 |
-| **SentencePiece** | LLaMA | 直接处理原始文本 | 语言无关 | - |
+| **SentencePiece** | LLaMA | 直接处理原始文本 | 语言无关 | 输出不保留空格/词界，分词结果不直观 |
 
 ---
 
