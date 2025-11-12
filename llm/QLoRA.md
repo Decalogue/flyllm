@@ -202,12 +202,12 @@ model.save_pretrained("./qlora_adapter")
 
 ## ⏱️ 1分钟回答
 
-**"QLoRA = 4bit NF4量化 + BF16 LoRA：**
+**QLoRA = 4bit NF4量化 + BF16 LoRA：**
 
 - **显存**：65B从145GB→48GB（单A100-40G可训练）
 - **性能**：99.3% vs 全量FP16（MMLU）
 - **成本**：降低67%（ vs LoRA）、93%（ vs 全量）
-- **核心**：冻结权重用4bit，可训练LoRA保持16bit"
+- **核心**：冻结权重用4bit，可训练LoRA保持16bit
 
 ---
 

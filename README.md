@@ -27,14 +27,14 @@
 
 [为什么QLoRA能在消费级GPU上微调65B大模型？](https://github.com/Decalogue/flyllm/blob/main/llm/QLoRA.md)
 
-### 1.专题-DeepSeek
-[DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-R1.md)
+### 专题-DeepSeek
+[DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/deepseek/DeepSeek-R1.md)
 
-[DeepSeek-V3 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek-V3.md)
+[DeepSeek-V3 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/deepseek/DeepSeek-V3.md)
 
-[DeepSeek 是怎么训练 MoE 模型的？](https://github.com/Decalogue/flyllm/blob/main/llm/DeepSeek.md)
+[DeepSeek 是怎么训练 MoE 模型的？](https://github.com/Decalogue/flyllm/blob/main/llm/deepseek/DeepSeek.md)
 
-### 2.专题-RL
+### 专题-RL
 [系统梳理8种主流LLM强化学习算法](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
 
 [PPO](https://github.com/Decalogue/flyllm/blob/main/llm/PPO.md)
@@ -43,9 +43,9 @@
 
 [DAPO](https://github.com/Decalogue/flyllm/blob/main/llm/DAPO.md)
 
-[DAPO 相比 GRPO 改进了什么](https://github.com/Decalogue/flyllm/blob/main/llm/RL.md)
+[2-GRPO](https://github.com/Decalogue/flyllm/blob/main/llm/2-GRPO.md)
 
-[为什么 Negative Sample Reinforcement 只罚错就能提升推理？](https://github.com/Decalogue/flyllm/blob/main/llm/NegativeRL.md)
+[为什么 Negative Reinforcement 只罚错就能提升推理？](https://github.com/Decalogue/flyllm/blob/main/llm/NegativeRL.md)
 
 
 ## 二、实战竞赛
