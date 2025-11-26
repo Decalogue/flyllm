@@ -1,8 +1,8 @@
-# <span style="color:#3498db">Transformer</span>：改变AI世界的<span style="color:#e74c3c">革命史诗</span>
+# Transformer：改变AI世界的革命史诗
 
-> *<span style="color:#2c3e50">"Attention Is All You Need"</span>* —— 一句宣言，一个时代
+> *"Attention Is All You Need"* —— 一句宣言，一个时代
 
-<span style="color:#9b59b6">**【上篇：起源与革命】**</span>
+**【上篇：起源与革命】**
 
 ---
 
@@ -10,29 +10,29 @@
 
 2017年6月12日清晨，Mountain View的Google总部。一篇论文即将上传到arXiv。
 
-没有新闻发布会，没有产品演示，甚至没有一封邮件通知。当世界各地的AI研究者像往常一样打开论文库时，没有人意识到，<span style="color:#e74c3c">一场静悄悄的革命已经降临</span>。
+没有新闻发布会，没有产品演示，甚至没有一封邮件通知。当世界各地的AI研究者像往常一样打开论文库时，没有人意识到，一场静悄悄的革命已经降临。
 
-那篇仅仅15页的论文，标题简洁得近乎傲慢：<span style="color:#2c3e50">《Attention Is All You Need》</span>。
+那篇仅仅15页的论文，标题简洁得近乎傲慢：《Attention Is All You Need》。
 
 5个单词，没有任何修饰。没有"Improving"、"Enhancing"或"Novel"这类学术论文惯用的谦逊表达。它就像一个武林高手推开门，平静地说："我来了。"
 
 论文的八位作者来自Google Brain和Google Research：Ashish Vaswani、Noam Shazeer、Niki Parmar、Jakob Uszkoreit、Llion Jones、Aidan N. Gomez、Łukasz Kaiser、Illia Polosukhin——这些名字日后将被载入AI史册，如同物理学中的费曼、图灵，生物学中的沃森、克里克。
 
-他们提出的架构，名为<span style="color:#3498db">Transformer</span>。
+他们提出的架构，名为Transformer。
 
 那时没有人知道，这个词将在短短几年内：
 - 催生ChatGPT，让30亿人与AI对话
 - 驱动DALL-E，让艺术创作进入新纪元
 - 支撑AlphaFold，破解生命的密码
-- 成为整个<span style="color:#f39c12">AI时代最关键的基础设施</span>
+- 成为整个AI时代最关键的基础设施
 
-<span style="color:#9b59b6">这是一个关于如何用一个简单想法改变世界的故事。</span>
+这是一个关于如何用一个简单想法改变世界的故事。
 
 ![transformer架构](../image/transformer/1.png)
 
 ---
 
-## 第一章：<span style="color:#95a5a6">旧王朝的黄昏</span>
+## 第一章：旧王朝的黄昏
 
 ### 循环神经网络的统治与困境
 
@@ -40,7 +40,7 @@
 
 这个王朝建立于1980年代，历经Rumelhart、Hochreiter、Schmidhuber等一代代研究者的雕琢，统治了NLP领域近30年。它的设计哲学看似无懈可击：
 
-<span style="color:#3498db">**语言是时间的产物，理解语言就应该模仿人类——从左到右，逐字处理，在心中保持一个不断更新的"记忆状态"。**</span>
+**语言是时间的产物，理解语言就应该模仿人类——从左到右，逐字处理，在心中保持一个不断更新的"记忆状态"。**
 
 想象一个戴着眼镜的学者，坐在烛光下的书桌前，用手指逐字指读《红楼梦》：
 
@@ -54,11 +54,11 @@
 
 这种方式符合直觉，也确实有效——在1990年代到2010年代，RNN家族在语音识别、机器翻译、文本生成等任务上取得了一个又一个突破。
 
-<span style="color:#9b59b6">但到了2015年前后，研究者们发现：这座王朝的根基，正在被三个致命缺陷侵蚀。</span>
+但到了2015年前后，研究者们发现：这座王朝的根基，正在被三个致命缺陷侵蚀。
 
-这不是小问题，而是<span style="color:#e74c3c">架构级的、无法通过优化修补的根本性矛盾</span>——
+这不是小问题，而是架构级的、无法通过优化修补的根本性矛盾——
 
-<span style="color:#e74c3c">**第一重枷锁：串行的诅咒**</span>
+**第一重枷锁：串行的诅咒**
 
 RNN就像一条单行道，所有车辆必须严格排队通过。
 
@@ -70,36 +70,36 @@ RNN就像一条单行道，所有车辆必须严格排队通过。
 时刻 t=100: h100 = f(x100, h99) ← 等待99个时刻
 ```
 
-这在2010年前还可以忍受。但到了2017年，<span style="color:#3498db">NVIDIA刚发布了拥有5120个CUDA核心的Tesla V100</span>——这颗芯片可以<span style="color:#27ae60">同时</span>进行数千个浮点运算，理论性能达到<span style="color:#f39c12">15 TFLOPS</span>。
+这在2010年前还可以忍受。但到了2017年，NVIDIA刚发布了拥有5120个CUDA核心的Tesla V100——这颗芯片可以同时进行数千个浮点运算，理论性能达到15 TFLOPS。
 
-然而RNN的串行本质，让这数千个核心<span style="color:#e74c3c">大部分时间在空转等待</span>。这就像给一支现代化集团军配备了最先进的装备，却命令他们排成一列纵队，一个接一个地穿过独木桥。
+然而RNN的串行本质，让这数千个核心大部分时间在空转等待。这就像给一支现代化集团军配备了最先进的装备，却命令他们排成一列纵队，一个接一个地穿过独木桥。
 
 **硬件在呐喊"并行！"，而算法在坚持"串行！"——这是一场时代错位的悲剧。**
 
-<span style="color:#e74c3c">**第二重枷锁：遗忘的魔咒**</span>
+**第二重枷锁：遗忘的魔咒**
 
-当句子变长时，RNN就像一个记忆力衰退的老人，信息在层层传递中不可避免地<span style="color:#e74c3c">衰减、失真、遗忘</span>。
+当句子变长时，RNN就像一个记忆力衰退的老人，信息在层层传递中不可避免地衰减、失真、遗忘。
 
 考虑这个真实的翻译场景：
 
 > *原文（德语，50词）："Der Mann, der gestern in dem alten, von seinem Großvater geerbten Haus am Rande der Stadt, die für ihre historischen Gebäude bekannt ist, wohnte, ist heute weggezogen."*
 
-当RNN处理到句末的"weggezogen"（搬走了）时，句首的主语"Der Mann"（那个男人）的信息已经<span style="color:#e74c3c">在40多个时间步的传递中衰减到几乎为零</span>。
+当RNN处理到句末的"weggezogen"（搬走了）时，句首的主语"Der Mann"（那个男人）的信息已经在40多个时间步的传递中衰减到几乎为零。
 
 LSTM的设计者Hochreiter和Schmidhuber在1997年引入了"门控机制"——遗忘门、输入门、输出门——试图让模型学会"选择性记忆"。这确实延缓了遗忘，让模型能够记住20-30个时间步的信息。
 
-但<span style="color:#9b59b6">延缓不等于解决</span>。在数学上，信息仍然要经过$O(n)$次矩阵乘法才能从位置1传到位置n。每次传递都会：
+但延缓不等于解决。在数学上，信息仍然要经过$O(n)$次矩阵乘法才能从位置1传到位置n。每次传递都会：
 - 损失精度（浮点运算误差累积）
 - 丢失细节（维度压缩的必然代价）
 - 受到门控的"审查"（遗忘门的选择性过滤）
 
-这就是"<span style="color:#e74c3c">长程依赖问题</span>"（Long-Range Dependency）的本质——<span style="color:#e74c3c">不是一个bug，而是架构的宿命</span>。
+这就是"长程依赖问题"（Long-Range Dependency）的本质——不是一个bug，而是架构的宿命。
 
-<span style="color:#e74c3c">**第三重枷锁：训练的炼狱**</span>
+**第三重枷锁：训练的炼狱**
 
 训练一个深层RNN模型，就像在雷雨交加的夜晚，在悬崖边走钢丝，手里还端着一碗水。
 
-问题出在"<span style="color:#e74c3c">梯度反向传播</span>"上。想象误差信号要从时刻t=100逆流而上，回到t=1：
+问题出在"梯度反向传播"上。想象误差信号要从时刻t=100逆流而上，回到t=1：
 
 ```
 ∂L/∂h1 = ∂L/∂h100 × ∂h100/∂h99 × ∂h99/∂h98 × ... × ∂h2/∂h1
@@ -107,8 +107,8 @@ LSTM的设计者Hochreiter和Schmidhuber在1997年引入了"门控机制"——�
                    连乘100个矩阵的雅可比行列式
 ```
 
-如果每个雅可比矩阵的最大特征值 > 1，连乘100次会<span style="color:#e74c3c">指数爆炸</span>（梯度爆炸）；  
-如果 < 1，连乘100次会<span style="color:#e74c3c">指数衰减</span>（梯度消失）。
+如果每个雅可比矩阵的最大特征值 > 1，连乘100次会指数爆炸（梯度爆炸）；  
+如果 < 1，连乘100次会指数衰减（梯度消失）。
 
 2015-2016年，无数研究者在深夜的实验室里，盯着TensorBoard上的曲线：
 - 学习率=0.01 → 训练10小时后，loss突然变成NaN（梯度爆炸）
@@ -116,43 +116,43 @@ LSTM的设计者Hochreiter和Schmidhuber在1997年引入了"门控机制"——�
 - 梯度裁剪、权重初始化、批归一化……各种技巧轮番上阵
 - 最终勉强收敛，却在验证集上表现平平
 
-<span style="color:#9b59b6">**这不是研究者的问题，而是架构本身在反抗。**</span>
+**这不是研究者的问题，而是架构本身在反抗。**
 
 ### 注意力机制的萌芽
 
-但在黑暗中，<span style="color:#27ae60">曙光从一个意外的方向照射进来</span>。
+但在黑暗中，曙光从一个意外的方向照射进来。
 
 **2014年，蒙特利尔大学。**
 
 Dzmitry Bahdanau、Kyunghyun Cho和Yoshua Bengio（是的，就是那位深度学习三巨头之一）在研究机器翻译时，遇到了一个顽固的问题：
 
-当翻译长句子时，传统的Seq2Seq模型表现糟糕。原因很简单——编码器要把整个源语言句子（可能有50个词）<span style="color:#e74c3c">压缩成一个512维的向量</span>，然后解码器从这个向量生成翻译。
+当翻译长句子时，传统的Seq2Seq模型表现糟糕。原因很简单——编码器要把整个源语言句子（可能有50个词）压缩成一个512维的向量，然后解码器从这个向量生成翻译。
 
 这就像要求一个人：
 1. 读完一整段话
 2. 闭上眼睛
 3. 把刚才读的内容用另一种语言复述出来
-4. <span style="color:#e74c3c">**而且不允许回头看原文**</span>
+4. **而且不允许回头看原文**
 
 正常人都做不到，为什么要求机器做到？
 
-于是他们提出了一个看似简单却无比深刻的改进：<span style="color:#3498db">**让解码器在生成每个词时，都能"回头看"源句子的所有位置。**</span>
+于是他们提出了一个看似简单却无比深刻的改进：**让解码器在生成每个词时，都能"回头看"源句子的所有位置。**
 
-这就是<span style="color:#3498db">Attention Mechanism（注意力机制）</span>的诞生时刻。
+这就是Attention Mechanism（注意力机制）的诞生时刻。
 
-在论文《Neural Machine Translation by Jointly Learning to Align and Translate》中，他们展示了一个迷人的现象——模型学会了自动对齐源语言和目标语言的词对应关系，就像人类翻译时的<span style="color:#27ae60">"眼光来回扫视"</span>。
+在论文《Neural Machine Translation by Jointly Learning to Align and Translate》中，他们展示了一个迷人的现象——模型学会了自动对齐源语言和目标语言的词对应关系，就像人类翻译时的"眼光来回扫视"。
 
-这个想法的本质是<span style="color:#27ae60">**颠覆性的**</span>：
+这个想法的本质是**颠覆性的**：
 
-> <span style="color:#9b59b6">**为什么要强迫模型把所有信息压缩成一个向量？  
+> **为什么要强迫模型把所有信息压缩成一个向量？  
 > 为什么不让它自由地访问、查询、提取需要的信息？  
-> 为什么不把"记忆"从"单一隐状态"变成"整个序列"？**</span>
+> 为什么不把"记忆"从"单一隐状态"变成"整个序列"？**
 
-Attention机制让翻译质量立刻提升了5-10个BLEU点——在机器翻译领域，这是<span style="color:#f39c12">地震级的进步</span>。
+Attention机制让翻译质量立刻提升了5-10个BLEU点——在机器翻译领域，这是地震级的进步。
 
-但在2014-2016年间，学术界和工业界仍然把Attention当作RNN/LSTM的"<span style="color:#95a5a6">辅助增强</span>"——一个有用的补丁，一个巧妙的技巧，仅此而已。循环结构仍然是"正统"，Attention只是"配角"。
+但在2014-2016年间，学术界和工业界仍然把Attention当作RNN/LSTM的"辅助增强"——一个有用的补丁，一个巧妙的技巧，仅此而已。循环结构仍然是"正统"，Attention只是"配角"。
 
-<span style="color:#e74c3c">**没有人敢想象：如果把配角变成主角，会发生什么？**</span>
+**没有人敢想象：如果把配角变成主角，会发生什么？**
 
 ---
 
@@ -162,7 +162,7 @@ Attention机制让翻译质量立刻提升了5-10个BLEU点——在机器翻译
 
 有人提出了一个疯狂的想法：
 
-<span style="color:#9b59b6">"如果我们<span style="color:#e74c3c">完全</span>抛弃RNN，<span style="color:#e74c3c">只用</span>Attention，会怎么样？"</span>
+"如果我们完全抛弃RNN，只用Attention，会怎么样？"
 
 安静了几秒。
 
@@ -174,19 +174,19 @@ Attention机制让翻译质量立刻提升了5-10个BLEU点——在机器翻译
 
 但Ashish Vaswani（论文第一作者）在白板上写下了一行字：
 
-**<span style="color:#f39c12">"Attention Is All You Need"</span>**
+**"Attention Is All You Need"**
 
-当时没有人知道，这5个单词将成为<span style="color:#27ae60">AI历史上最著名的口号之一</span>。
+当时没有人知道，这5个单词将成为AI历史上最著名的口号之一。
 
 ---
 
-## 第二章：<span style="color:#27ae60">革命的降临</span>
+## 第二章：革命的降临
 
-### <span style="color:#3498db">Self-Attention</span>：一场<span style="color:#27ae60">认知革命</span>
+### Self-Attention：一场认知革命
 
-Transformer的核心是一个看似简单却无比深刻的想法：<span style="color:#3498db">Self-Attention（自注意力机制）</span>。
+Transformer的核心是一个看似简单却无比深刻的想法：Self-Attention（自注意力机制）。
 
-这不是对RNN的"改进"，而是<span style="color:#e74c3c">对序列建模范式的彻底重构</span>。
+这不是对RNN的"改进"，而是对序列建模范式的彻底重构。
 
 #### 从"流水账"到"上帝视角"
 
@@ -205,7 +205,7 @@ Transformer的核心是一个看似简单却无比深刻的想法：<span style=
 - 读到"银行"→ 更新...但前面的"身高"信息已经有点模糊了
 - 读到最后"黑色帽子"→ 想确认这和开头的帽子是不是同一个？但笔记已经很乱了
 
-<span style="color:#e74c3c">**关键问题：你只能向前看，不能回头确认。**</span>
+**关键问题：你只能向前看，不能回头确认。**
 
 **场景二：Self-Attention的方式（全局的上帝视角）**
 
@@ -217,15 +217,15 @@ Transformer的核心是一个看似简单却无比深刻的想法：<span style=
 - 跳到开头，确认"他"指的是那个175cm的嫌疑人
 - 同时注意两次提到的"黑色帽子"，推断这是重要线索
 
-<span style="color:#27ae60">**核心优势：你可以自由地在所有信息间建立联系，每个词都能"看到"所有其他词。**</span>
+**核心优势：你可以自由地在所有信息间建立联系，每个词都能"看到"所有其他词。**
 
-这就是Self-Attention的本质——<span style="color:#f39c12">**把"逐字处理"变成"全局协商"**</span>。
+这就是Self-Attention的本质——**把"逐字处理"变成"全局协商"**。
 
 #### 一个经典的歧义消解案例
 
 考虑这个句子：
 
-> *"<span style="color:#3498db">银行</span>账户里的钱不多了，我走到河<span style="color:#e74c3c">岸</span>边散心，决定明天去<span style="color:#3498db">银行</span>取钱。"*
+> *"银行账户里的钱不多了，我走到河岸边散心，决定明天去银行取钱。"*
 
 **人类是怎么理解的？**
 
@@ -245,13 +245,13 @@ Transformer的核心是一个看似简单却无比深刻的想法：<span style=
 
 每个词会询问所有其他词："你和我有什么关系？"然后根据相关性强弱，汲取对应的信息。
 
-这种"<span style="color:#27ae60">全局理解能力</span>"，是RNN的串行处理<span style="color:#e74c3c">原理上无法达到</span>的——不是做得不够好，而是<span style="color:#e74c3c">方向就错了</span>。
+这种"全局理解能力"，是RNN的串行处理原理上无法达到的——不是做得不够好，而是方向就错了。
 
-#### 技术实现：<span style="color:#3498db">Query、Key、Value</span>的三重奏
+#### 技术实现：Query、Key、Value的三重奏
 
 现在问题来了：这种"全局协商"在数学上如何实现？
 
-Vaswani等人借鉴了信息检索领域的经典思想——<span style="color:#3498db">**键值对存储（Key-Value Store）**</span>——并加以创造性地改造。
+Vaswani等人借鉴了信息检索领域的经典思想——**键值对存储（Key-Value Store）**——并加以创造性地改造。
 
 想象一个图书馆：
 - 你带着一个**问题**（Query）来到图书馆
@@ -265,26 +265,26 @@ Vaswani等人借鉴了信息检索领域的经典思想——<span style="color:
 
 Self-Attention完全是这个过程的数学化！每个词（向量）被投影成三个角色：
 
-**1. <span style="color:#3498db">Query（查询，Q）</span>："我想了解什么？"**
+**1. Query（查询，Q）："我想了解什么？"**
    - 像一个搜索引擎的查询词
    - 数学上：$Q_i = x_i W^Q$，其中$x_i$是词i的嵌入，$W^Q$是可学习的投影矩阵
    
-**2. <span style="color:#3498db">Key（键，K）</span>："我是谁？我代表什么信息？"**
+**2. Key（键，K）："我是谁？我代表什么信息？"**
    - 像数据库中的索引键
    - 数学上：$K_j = x_j W^K$
    
-**3. <span style="color:#3498db">Value（值，V）</span>："我能提供的实际内容是什么？"**
+**3. Value（值，V）："我能提供的实际内容是什么？"**
    - 像数据库中的值
    - 数学上：$V_j = x_j W^V$
 
-<span style="color:#9b59b6">**关键洞察：Query、Key、Value不是输入的固有属性，而是通过学习得到的"视角"。**</span>
+**关键洞察：Query、Key、Value不是输入的固有属性，而是通过学习得到的"视角"。**
 
 同一个词"银行"，在不同的上下文中：
 - 它的Query可能问："我周围有金融相关的词吗？"
 - 它的Key可能宣告："我是一个可能与金融或地理相关的多义词"
 - 它的Value携带："这是一个名词，可能有多重含义"
 
-这三个投影矩阵$W^Q, W^K, W^V$会在训练中学习，让模型掌握<span style="color:#27ae60">"如何提问"、"如何应答"、"提供什么信息"</span>。
+这三个投影矩阵$W^Q, W^K, W^V$会在训练中学习，让模型掌握"如何提问"、"如何应答"、"提供什么信息"。
 
 计算过程如同一场精心编排的三幕舞蹈：
 
@@ -329,7 +329,7 @@ Self-Attention完全是这个过程的数学化！每个词（向量）被投影
   output_银行 = 0.30×V_账户 + 0.25×V_钱 + 0.15×V_取钱 + 0.10×V_银行本身 + ...
 ```
 
-用数学语言表达，这三幕舞蹈浓缩成那个<span style="color:#f39c12">改变AI历史的公式</span>：
+用数学语言表达，这三幕舞蹈浓缩成那个改变AI历史的公式：
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
@@ -339,14 +339,14 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 - $\text{softmax}$：归一化，转换为概率分布
 - 最后乘以$V$：加权聚合信息
 
-<span style="color:#9b59b6">**时间复杂度：$O(n^2 \cdot d)$，其中n是序列长度，d是维度**</span>  
-看起来是$O(n^2)$，但关键是<span style="color:#27ae60">**可以完全并行计算**</span>——这是与RNN的$O(n)$串行步骤的根本区别。
+**时间复杂度：$O(n^2 \cdot d)$，其中n是序列长度，d是维度**  
+看起来是$O(n^2)$，但关键是**可以完全并行计算**——这是与RNN的$O(n)$串行步骤的根本区别。
 
 ![Self-Attention计算过程](../image/transformer/5.png)
 
-#### 为什么要除以√d_k？——<span style="color:#f39c12">一个看似微小却至关重要的细节</span>
+#### 为什么要除以√d_k？——一个看似微小却至关重要的细节
 
-这个缩放因子$\frac{1}{\sqrt{d_k}}$，乍看平淡无奇，实则是<span style="color:#27ae60">**训练稳定性的关键**</span>。
+这个缩放因子$\frac{1}{\sqrt{d_k}}$，乍看平淡无奇，实则是**训练稳定性的关键**。
 
 让我们做一个数学推导。假设Query和Key的每个元素都是独立的随机变量，均值为0，方差为1：
 
@@ -356,7 +356,7 @@ $$Q_i[k], K_j[k] \sim \mathcal{N}(0, 1)$$
 
 $$\text{score}_{ij} = Q_i \cdot K_j = \sum_{k=1}^{d_k} Q_i[k] \times K_j[k]$$
 
-根据概率论，这个和的<span style="color:#e74c3c">**方差会随维度线性增长**</span>：
+根据概率论，这个和的**方差会随维度线性增长**：
 
 $$\text{Var}(\text{score}_{ij}) = d_k$$
 
@@ -368,7 +368,7 @@ $$\text{Var}(\text{score}_{ij}) = d_k$$
 
 $$\text{softmax}([20, 23]) = \left[\frac{e^{20}}{e^{20}+e^{23}}, \frac{e^{23}}{e^{20}+e^{23}}\right] \approx [0.047, 0.953]$$
 
-注意到了吗？即使两个分数只相差3，softmax之后一个接近0，另一个接近1——这叫做<span style="color:#e74c3c">**"饱和"（saturation）**</span>。
+注意到了吗？即使两个分数只相差3，softmax之后一个接近0，另一个接近1——这叫做**"饱和"（saturation）**。
 
 **饱和的危害：**
 1. **注意力分布过于尖锐**：模型几乎只关注一个位置，失去了"软注意力"的优势
@@ -383,7 +383,7 @@ $$\text{scaled\_score}_{ij} = \frac{Q_i \cdot K_j}{\sqrt{d_k}}$$
 
 $$\text{Var}(\text{scaled\_score}_{ij}) = \frac{d_k}{d_k} = 1$$
 
-<span style="color:#27ae60">**无论维度多大，缩放后的方差始终稳定在1附近！**</span>
+**无论维度多大，缩放后的方差始终稳定在1附近！**
 
 这样，softmax的输入分布保持温和，注意力权重不会过于极端，梯度可以健康地流动。
 
@@ -394,39 +394,39 @@ $$\text{Var}(\text{scaled\_score}_{ij}) = \frac{d_k}{d_k} = 1$$
 - 除以$d_k$：过度平滑，性能也不好 ❌
 - 除以$\sqrt{d_k}$：完美平衡，训练稳定，性能最佳 ✅
 
-<span style="color:#9b59b6">**这种对数学细节的深刻理解和精心打磨，正是顶级研究的标志。**</span>
+**这种对数学细节的深刻理解和精心打磨，正是顶级研究的标志。**
 
-<span style="color:#3498db">Transformer</span>论文中充满了这样的细节——不是偶然的幸运，而是<span style="color:#9b59b6">对每个设计选择背后原理的透彻把握</span>。
+Transformer论文中充满了这样的细节——不是偶然的幸运，而是对每个设计选择背后原理的透彻把握。
 
-### <span style="color:#3498db">Multi-Head Attention</span>：<span style="color:#f39c12">复眼的智慧</span>
+### Multi-Head Attention：复眼的智慧
 
 单个注意力头就像用一只眼睛看世界——你只能获得一个视角。
 
 想象你是一个美术老师，要评价一幅画：
 - 如果你只从"色彩"的角度看，可能会错过构图的精妙
 - 如果你只关注"笔触"，可能会忽略整体意境
-- <span style="color:#27ae60">**最好的方式是从多个维度同时审视**</span>
+- **最好的方式是从多个维度同时审视**
 
-Transformer使用<span style="color:#3498db">Multi-Head Attention（多头注意力）</span>，就像<span style="color:#f39c12">昆虫的复眼</span>，从多个角度同时观察世界。
+Transformer使用Multi-Head Attention（多头注意力），就像昆虫的复眼，从多个角度同时观察世界。
 
 #### 设计哲学：并行的多视角
 
 原始Transformer使用**8个注意力头**，每个头都有独立的$W^Q, W^K, W^V$投影矩阵。这意味着：
 
-每个头会学习关注<span style="color:#27ae60">**不同类型的语言模式**</span>：
+每个头会学习关注**不同类型的语言模式**：
 
 **实际案例分析：**（来自论文中的可视化）
 
 考虑句子："The animal didn't cross the street because **it** was too tired."
 
-- **Head 1** 可能高度关注：<span style="color:#3498db">it → animal</span>（指代关系）
-- **Head 2** 可能关注：<span style="color:#f39c12">cross → street</span>（动作-对象）
-- **Head 3** 可能关注：<span style="color:#9b59b6">didn't → cross</span>（否定关系）
-- **Head 4** 可能关注：<span style="color:#27ae60">tired → didn't cross</span>（因果关系）
-- **Head 5** 可能关注：<span style="color:#e74c3c">相邻词的局部搭配</span>
+- **Head 1** 可能高度关注：it → animal（指代关系）
+- **Head 2** 可能关注：cross → street（动作-对象）
+- **Head 3** 可能关注：didn't → cross（否定关系）
+- **Head 4** 可能关注：tired → didn't cross（因果关系）
+- **Head 5** 可能关注：相邻词的局部搭配
 - ...
 
-<span style="color:#9b59b6">**没有人告诉模型"应该关注指代关系"或"应该学语法"——这些模式是模型在训练中自发涌现出来的！**</span>
+**没有人告诉模型"应该关注指代关系"或"应该学语法"——这些模式是模型在训练中自发涌现出来的！**
 
 #### 数学实现：投影、计算、拼接
 
@@ -451,15 +451,15 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 - 单个头在512维空间：$O(n^2 \cdot 512)$
 - 8个头各在64维空间：$8 \times O(n^2 \cdot 64) = O(n^2 \cdot 512)$
 
-<span style="color:#27ae60">**总计算量相同，但获得了8种不同的表征！**</span>
+**总计算量相同，但获得了8种不同的表征！**
 
-这是一个精妙的设计——通过<span style="color:#f39c12">"分而治之"</span>，在不增加计算成本的情况下，大幅提升了模型的表达能力。
+这是一个精妙的设计——通过"分而治之"，在不增加计算成本的情况下，大幅提升了模型的表达能力。
 
 ![Multi-Head Attention](../image/transformer/4.png)
 
 #### 为什么多头有效？——表示子空间的多样性
 
-从线性代数的角度，每个头在学习<span style="color:#3498db">**不同的表示子空间（Representation Subspace）**</span>。
+从线性代数的角度，每个头在学习**不同的表示子空间（Representation Subspace）**。
 
 想象512维空间被分成8个64维的子空间，每个子空间可以独立优化，捕捉不同的语义关系：
 - 子空间1：语法结构（主谓宾、定状补）
@@ -469,11 +469,11 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 - 子空间5：情感极性
 - ...
 
-这种"<span style="color:#9b59b6">并行的专业化</span>"，让模型能够同时从多个维度理解语言——就像人类阅读时，大脑的不同区域并行处理语法、语义、情感等信息。
+这种"并行的专业化"，让模型能够同时从多个维度理解语言——就像人类阅读时，大脑的不同区域并行处理语法、语义、情感等信息。
 
-### <span style="color:#27ae60">并行的力量</span>：从串行到并行的飞跃
+### 并行的力量：从串行到并行的飞跃
 
-现在让我们从<span style="color:#f39c12">**计算效率**</span>的角度，理解为什么<span style="color:#3498db">Transformer</span>能引发革命。
+现在让我们从**计算效率**的角度，理解为什么Transformer能引发革命。
 
 #### 复杂度对比：不只是Big-O，更是并行度
 
@@ -481,16 +481,16 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 |------|----------|------------------------------|
 | **每层计算复杂度** | $O(n \cdot d^2)$ | $O(n^2 \cdot d)$ |
 | **最长依赖路径** | $O(n)$ | $O(1)$ |
-| **并行计算步数** | $O(n)$ <span style="color:#e74c3c">（串行）</span> | $O(1)$ <span style="color:#27ae60">（并行）</span> |
+| **并行计算步数** | $O(n)$ （串行） | $O(1)$ （并行） |
 | **GPU利用率** | 10-30% | 80-95% |
 
 第一眼看，似乎Transformer更慢（$O(n^2)$ vs $O(n)$）？
 
-<span style="color:#e74c3c">**这是算法分析中最常见的误区！**</span>
+**这是算法分析中最常见的误区！**
 
 #### 为什么O(n²)在GPU上比O(n)更快？
 
-关键在于<span style="color:#f39c12">**现代硬件的并行特性**</span>。
+关键在于**现代硬件的并行特性**。
 
 **场景1：RNN的串行地狱**
 
@@ -504,7 +504,7 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 时刻100:              [计算h100] ← 第100个时间步才算完
 ```
 
-总时间 = 100 × 每步时间（<span style="color:#e74c3c">**完全串行，无法加速**</span>）
+总时间 = 100 × 每步时间（**完全串行，无法加速**）
 
 **场景2：Transformer的并行盛宴**
 
@@ -521,7 +521,7 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
        [100×100] × [100×64] = [100×64]
 ```
 
-总时间 ≈ 3 × 矩阵乘法时间（<span style="color:#27ae60">**与序列长度无关！**</span>）
+总时间 ≈ 3 × 矩阵乘法时间（**与序列长度无关！**）
 
 #### 实战数据：NVIDIA V100上的实测
 
@@ -535,7 +535,7 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 注意：
 - 序列长度翻倍，RNN时间接近翻倍（线性增长）
 - Transformer时间增长更慢（子二次增长，因为有常数开销）
-- <span style="color:#27ae60">**在所有长度上，Transformer都更快！**</span>
+- **在所有长度上，Transformer都更快！**
 
 #### 长距离依赖：O(1) vs O(n)的本质差异
 
@@ -546,7 +546,7 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
             必须经过99次传递，每次都有损耗
 ```
 
-信息衰减：第1个词的信息到达第100个词时，<span style="color:#e74c3c">已经经过99次矩阵乘法和非线性变换</span>，衰减严重。
+信息衰减：第1个词的信息到达第100个词时，已经经过99次矩阵乘法和非线性变换，衰减严重。
 
 **Transformer的直接连接：**
 
@@ -555,7 +555,7 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
             只需1步，O(1)路径长度
 ```
 
-位置1和位置100之间的注意力权重，<span style="color:#27ae60">直接由$Q_{100} \cdot K_1$决定</span>，不经过任何中间传递！
+位置1和位置100之间的注意力权重，直接由$Q_{100} \cdot K_1$决定，不经过任何中间传递！
 
 #### 工程意义：从天到小时
 
@@ -565,21 +565,21 @@ $$d_k = d_v = \frac{d_{model}}{h} = \frac{512}{8} = 64$$
 - 批量大小受限于串行依赖（通常≤32）
 
 **2017年后（Transformer时代）：**
-- 训练同样规模的模型：<span style="color:#27ae60">3.5天</span>
+- 训练同样规模的模型：3.5天
 - 同样的8块P100 GPU
 - 批量大小可以做到128甚至更大
-- <span style="color:#f39c12">**训练速度提升约10-20倍！**</span>
+- **训练速度提升约10-20倍！**
 
-这不仅是"快一点"，而是<span style="color:#9b59b6">**从"不可能"变成"可行"**</span>：
+这不仅是"快一点"，而是**从"不可能"变成"可行"**：
 - 以前需要几周的实验，现在几天就能完成
 - 研究者可以尝试更多想法
 - 模型可以做得更大（更大的批量→更稳定的训练）
 
-<span style="color:#f39c12">**这是计算范式的革命，是硬件和算法的完美契合。**</span>
+**这是计算范式的革命，是硬件和算法的完美契合。**
 
 ---
 
-<span style="color:#9b59b6">**【未完待续，敬请期待中篇：架构与实践】**</span>
+**【未完待续，敬请期待中篇：架构与实践】**
 
 *作者注：这是一个仍在演进的故事，期待与你一起见证它的未来。*
 

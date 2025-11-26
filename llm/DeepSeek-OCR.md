@@ -116,7 +116,9 @@ DeepSeek-3B (MoE-A570M) - 混合专家架构
 
 ### Fox基准测试（压缩性能）
 
-![压缩性能](../image/deepseek-ocr/5.png)
+![压缩性能-1](../image/deepseek-ocr/5.png)
+
+![压缩性能-2](../image/deepseek-ocr/3.png)
 
 **关键发现：**
 - <span style="color:#F77F00">**10倍压缩比下精度高达97%**</span>，足够满足大多数精确信息需求
@@ -327,7 +329,7 @@ Gundam-M (1853 Token) → 最高精度要求
 
 **GitHub仓库：**
 - [deepseek-ai/DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)
-- Stars: 3.3K+ | Issues: 活跃讨论中
+- Stars: 20.3K+ | Issues: 活跃讨论中
 
 **基准测试：**
 - OmniDocBench：行业公认文档解析基准

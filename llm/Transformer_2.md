@@ -1,16 +1,16 @@
-# <span style="color:#3498db">Transformer</span>：改变AI世界的<span style="color:#e74c3c">革命史诗</span>
+# Transformer：改变AI世界的革命史诗
 
-> *<span style="color:#2c3e50">"Attention Is All You Need"</span>* —— 一句宣言，一个时代
+> *"Attention Is All You Need"* —— 一句宣言，一个时代
 
-<span style="color:#9b59b6">**【中篇：架构与实践】**</span>
+**【中篇：架构与实践】**
 
 ---
 
-## 第三章：<span style="color:#9b59b6">架构的奥秘</span>
+## 第三章：架构的奥秘
 
-### <span style="color:#3498db">Encoder-Decoder</span>：<span style="color:#f39c12">双塔的协奏曲</span>
+### Encoder-Decoder：双塔的协奏曲
 
-完整的Transformer架构由两座"塔"组成：<span style="color:#3498db">Encoder（编码器）</span>和<span style="color:#3498db">Decoder（解码器）</span>。
+完整的Transformer架构由两座"塔"组成：Encoder（编码器）和Decoder（解码器）。
 
 ![Transformer完整架构-1](../image/transformer/2.jpg)
 ![Transformer完整架构-2](../image/transformer/3.jpg)
@@ -50,9 +50,9 @@ Decoder负责生成输出，它比Encoder多了一个子层：
 
 同样堆叠**6层Decoder**。
 
-#### <span style="color:#3498db">Residual Connection</span>：<span style="color:#f39c12">安全绳机制</span>
+#### Residual Connection：安全绳机制
 
-每个子层都使用<span style="color:#3498db">残差连接（Residual Connection）</span>：
+每个子层都使用残差连接（Residual Connection）：
 
 $$\text{output} = \text{LayerNorm}(x + \text{Sublayer}(x))$$
 
@@ -62,7 +62,7 @@ $$\text{output} = \text{LayerNorm}(x + \text{Sublayer}(x))$$
 - **训练稳定**：相当于在网络中建立了"快捷通道"
 - **恒等映射**：如果某层学不到有用特征，可以选择"什么也不做"（输出≈输入）
 
-想象在攀登一座高山，残差连接就像是在山体上安装的<span style="color:#f39c12">安全绳和扶手</span>，让攀登者（梯度）能更安全地到达顶峰（模型收敛）。
+想象在攀登一座高山，残差连接就像是在山体上安装的安全绳和扶手，让攀登者（梯度）能更安全地到达顶峰（模型收敛）。
 
 #### Layer Normalization：稳定器
 
@@ -77,30 +77,30 @@ Layer Norm的作用是：
 - 加速训练收敛
 - 减少对学习率的敏感度
 
-### <span style="color:#3498db">Positional Encoding</span>：<span style="color:#f39c12">时间的印记</span>
+### Positional Encoding：时间的印记
 
-等一下！我们刚才说Self-Attention允许"每个词都能看到所有词"，而且是<span style="color:#27ae60">并行计算</span>的。
+等一下！我们刚才说Self-Attention允许"每个词都能看到所有词"，而且是并行计算的。
 
 这时一个严重的问题浮现出来：
 
-<span style="color:#e74c3c">**模型怎么知道词的顺序？**</span>
+**模型怎么知道词的顺序？**
 
 对Self-Attention来说，这三个句子完全一样：
 - "我 爱 你"
 - "你 爱 我"
 - "爱 你 我"
 
-因为它只看到了词之间的关系，而<span style="color:#e74c3c">**丢失了时间序列信息**</span>！
+因为它只看到了词之间的关系，而**丢失了时间序列信息**！
 
-这是<span style="color:#3498db">Transformer</span>的"阿喀琉斯之踵"——它的<span style="color:#27ae60">最大优势</span>（并行计算），也带来了<span style="color:#e74c3c">最大劣势</span>（没有顺序感）。
+这是Transformer的"阿喀琉斯之踵"——它的最大优势（并行计算），也带来了最大劣势（没有顺序感）。
 
 #### 问题的本质：置换不变性
 
-Self-Attention的计算是<span style="color:#e74c3c">**置换不变的（Permutation Invariant）**</span>：
+Self-Attention的计算是**置换不变的（Permutation Invariant）**：
 
 如果你把输入序列的顺序打乱，Attention的计算结果会随之打乱，但每个位置的输出本质是相同的。这就像把一副扑克牌洗牌——牌之间的关系不变，但失去了原本的顺序。
 
-RNN不需要担心这个问题，因为它天生就是按顺序处理的。但<span style="color:#3498db">Transformer</span>必须<span style="color:#f39c12">**显式地**</span>告诉模型：位置0在位置1之前，位置1在位置2之前……
+RNN不需要担心这个问题，因为它天生就是按顺序处理的。但Transformer必须**显式地**告诉模型：位置0在位置1之前，位置1在位置2之前……
 
 #### 设计约束：位置编码的四个要求
 
@@ -113,15 +113,15 @@ RNN不需要担心这个问题，因为它天生就是按顺序处理的。但<s
 
 最直观的方案是什么？用整数索引：0, 1, 2, 3, ...
 
-<span style="color:#e74c3c">❌ 问题：无界性</span>——序列越长，编码值越大，导致梯度不稳定
+❌ 问题：无界性——序列越长，编码值越大，导致梯度不稳定
 
 那归一化到[0,1]？位置$pos$编码为$pos/n$（n是序列长度）
 
-<span style="color:#e74c3c">❌ 问题：不同长度的序列，同一个相对位置的编码不同</span>——模型无法泛化
+❌ 问题：不同长度的序列，同一个相对位置的编码不同——模型无法泛化
 
-#### <span style="color:#3498db">Transformer</span>的优雅解决：正弦位置编码
+#### Transformer的优雅解决：正弦位置编码
 
-Vaswani等人选择了一个看似奇特、实则精妙的方案——<span style="color:#27ae60">**正弦和余弦函数**</span>：
+Vaswani等人选择了一个看似奇特、实则精妙的方案——**正弦和余弦函数**：
 
 $$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
 
@@ -149,7 +149,7 @@ $$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
 $$PE_{(pos+k)} = A \cdot PE_{(pos)} + B \cdot PE'_{(pos)}$$
 
 可以证明，位置$pos+k$的编码可以表示为位置$pos$的编码的线性组合。这意味着：
-- <span style="color:#27ae60">**模型可以学习到"向前/向后k步"的概念**</span>
+- **模型可以学习到"向前/向后k步"的概念**
 - 不需要显式训练每个绝对位置，而是学习相对关系
 
 **3. 天然的外推能力**
@@ -158,7 +158,7 @@ $$PE_{(pos+k)} = A \cdot PE_{(pos)} + B \cdot PE'_{(pos)}$$
 
 #### 实现细节：加性融合
 
-位置编码会直接<span style="color:#27ae60">**加到**</span>词嵌入上：
+位置编码会直接**加到**词嵌入上：
 
 $$\text{Input} = \text{TokenEmbedding} + \text{PositionalEncoding}$$
 
@@ -167,7 +167,7 @@ $$\text{Input} = \text{TokenEmbedding} + \text{PositionalEncoding}$$
 - **信息融合**：位置信息和语义信息在同一空间混合
 - **简洁优雅**：没有额外的投影层
 
-这个设计有个有趣的哲学：<span style="color:#9b59b6">**词的意义 = 内容 + 位置**</span>。"银行"这个词的表征，同时编码了"我是银行"和"我在句子的第5个位置"。
+这个设计有个有趣的哲学：**词的意义 = 内容 + 位置**。"银行"这个词的表征，同时编码了"我是银行"和"我在句子的第5个位置"。
 
 #### 后续改进：可学习位置编码 vs 相对位置编码
 
@@ -181,11 +181,11 @@ Transformer的固定正弦编码是一个起点，后续研究提出了改进：
   - 优点：更好的泛化性和外推能力
   - 在长序列任务上表现更好
 
-但原始的正弦编码，仍然是<span style="color:#f39c12">**理解<span style="color:#3498db">Transformer</span>的关键**</span>——它体现了<span style="color:#9b59b6">对问题本质的深刻理解</span>，用最简单的方式解决了最根本的问题。
+但原始的正弦编码，仍然是**理解Transformer的关键**——它体现了对问题本质的深刻理解，用最简单的方式解决了最根本的问题。
 
 ---
 
-## 第四章：<span style="color:#9b59b6">涌现的智慧</span>
+## 第四章：涌现的智慧
 
 ### 训练的艺术
 
@@ -212,29 +212,29 @@ $$lrate = d_{model}^{-0.5} \cdot \min(step^{-0.5}, step \cdot warmup\_steps^{-1.
 
 在注意力权重、残差连接、词嵌入等多处使用Dropout（率0.1），防止过拟合。
 
-### 实验结果：<span style="color:#27ae60">横扫榜单</span>
+### 实验结果：横扫榜单
 
 论文在机器翻译任务（WMT 2014）上测试了Transformer：
 
 **英德翻译：**
-- Transformer (big): <span style="color:#f39c12">28.4 BLEU</span>
+- Transformer (big): 28.4 BLEU
 - 之前最佳（集成模型）: 26.4 BLEU
-- 提升：<span style="color:#27ae60">2.0 BLEU</span>（相当巨大）
+- 提升：2.0 BLEU（相当巨大）
 
 **英法翻译：**
-- Transformer (big): <span style="color:#f39c12">41.8 BLEU</span>（单模型新纪录）
+- Transformer (big): 41.8 BLEU（单模型新纪录）
 
 更重要的是训练成本：
-- Transformer训练<span style="color:#27ae60">3.5天</span>（8块P100 GPU）
-- 之前最佳模型需要<span style="color:#e74c3c">几周时间</span>
+- Transformer训练3.5天（8块P100 GPU）
+- 之前最佳模型需要几周时间
 
-这不仅是性能的胜利，更是<span style="color:#27ae60">效率的革命</span>。
+这不仅是性能的胜利，更是效率的革命。
 
 
 
 ---
 
-<span style="color:#9b59b6">**【未完待续，敬请期待下篇：扩张与未来】**</span>
+**【未完待续，敬请期待下篇：扩张与未来】**
 
 *作者注：这是一个仍在演进的故事，期待与你一起见证它的未来。*
 
