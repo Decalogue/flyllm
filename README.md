@@ -61,7 +61,7 @@
 ## 三、求职面试
 > 算法题解、面试技巧、简历优化
 
-[LeetCode](https://github.com/Decalogue/flyllm/blob/main/algorithm/README.md)
+[LeetCode](https://github.com/Decalogue/flyllm/blob/main/leetcode/README.md)
 
 
 ## 四、数学基础
