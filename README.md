@@ -29,6 +29,14 @@
 
 [为什么QLoRA能在消费级GPU上微调65B大模型？](https://github.com/Decalogue/flyllm/blob/main/llm/QLoRA.md)
 
+[KV Cache](https://github.com/Decalogue/flyllm/blob/main/llm/KVCache.md)
+
+[系统梳理LLM归一化方法](https://github.com/Decalogue/flyllm/blob/main/llm/Norm.md)
+
+[RAG：检索增强生成全栈面试题总结（基础篇）](https://github.com/Decalogue/flyllm/blob/main/llm/RAG_1.md)
+
+[RAG：检索增强生成全栈面试题总结（进阶篇）](https://github.com/Decalogue/flyllm/blob/main/llm/RAG_2.md)
+
 ### 专题-DeepSeek
 [DeepSeek-R1 训练细节](https://github.com/Decalogue/flyllm/blob/main/llm/deepseek/DeepSeek-R1.md)
 
