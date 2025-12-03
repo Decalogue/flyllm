@@ -62,9 +62,9 @@
 
 ## 三、智能体 Agent
 
-[ReAct]
+[ReAct](https://github.com/Decalogue/flyllm/blob/main/agent/ReAct.md)
 
-[ReCAP]
+[ReCAP](https://github.com/Decalogue/flyllm/blob/main/agent/ReCAP.md)
 
 ---
 
