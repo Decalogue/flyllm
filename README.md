@@ -4,6 +4,7 @@
 
 > 三大主线（大模型，强化学习，智能体）+ 求职面试（Leetcode，面试技巧，简历优化）
 
+---
 
 ## 一、大模型 LLM
 
@@ -41,6 +42,7 @@
 
 [🔥 DeepSeek-OCR爆火！把万字长文压缩成一张图，AI长文本瓶颈被这样颠覆](https://github.com/Decalogue/flyllm/blob/main/llm/deepseek/DeepSeek-OCR.md)
 
+---
 
 ## 二、强化学习 RL
 
@@ -56,6 +58,7 @@
 
 [为什么 Negative Reinforcement 只罚错就能提升推理？](https://github.com/Decalogue/flyllm/blob/main/llm/NegativeRL.md)
 
+---
 
 ## 三、智能体 Agent
 
@@ -63,7 +66,10 @@
 
 [ReCAP]
 
+---
 
 ## 四、求职面试
 
 [LeetCode](https://github.com/Decalogue/flyllm/blob/main/leetcode/README.md)
+
+---
