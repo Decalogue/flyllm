@@ -27,17 +27,17 @@
    - 考察点：何时推理、何时行动、如何避免过度推理
 
 7. **如何设计 ReAct 的停止条件？**
-   - 考察点：任务完成判断、最大步数限制、错误重试机制
+    - 考察点：任务完成判断、最大步数限制、错误重试机制
 
 ---
 
 ## 三、Tool Calling / Function Calling（极高概率）
 
 8. **Tool Calling 如何让模型学会使用工具？工具描述怎么设计？**
-   - 考察点：工具描述格式、JSON Schema 设计、训练方法
+    - 考察点：工具描述格式、JSON Schema 设计、训练方法
 
 9. **Function Calling 的格式是什么？JSON Schema 如何定义？**
-   - 考察点：OpenAI Function Calling、工具描述规范
+    - 考察点：OpenAI Function Calling、工具描述规范
 
 10. **Function Call 的多轮对话如何处理？为什么这是最难的部分？**
     - 考察点：状态机设计、流程调度逻辑、三种对话结构（信息补全型、工具链式、混合型）、何时追问何时调用工具、数据生成方法、模型稳定性保证
