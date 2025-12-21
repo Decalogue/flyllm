@@ -220,7 +220,7 @@ class FusedMultiHeadAttention(nn.Module):
 
 ### 背景
 
-RoPE 是 Meta 在 LLaMA 中提出的位置编码方法，通过旋转矩阵将位置信息编码到注意力计算中。
+RoPE（Rotary Position Embedding）最初在 RoFormer 论文中提出（2021年），通过旋转矩阵将位置信息编码到注意力计算中。LLaMA 采用了 RoPE 作为其位置编码方法。
 
 ```python
 def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None):
