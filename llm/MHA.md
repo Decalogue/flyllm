@@ -15,10 +15,10 @@ Attention(Q, K, V) = softmax(QK^T / √dₖ)V
 ### 完整实现
 
 ```python
+import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import math
 
 
 class MultiHeadAttention(nn.Module):
@@ -50,7 +50,7 @@ class MultiHeadAttention(nn.Module):
         
         self.dropout = nn.Dropout(dropout)
         
-    def forward(self, query, key, value, mask=None, return_attention=False):
+    def forward(self, query, key, value, mask=None, return_attention=False, kv_cache=None):
         """
         Args:
             query: [batch_size, seq_len_q, d_model]
@@ -58,6 +58,8 @@ class MultiHeadAttention(nn.Module):
             value: [batch_size, seq_len_k, d_model]
             mask: [batch_size, seq_len_q, seq_len_k] 或 [batch_size, 1, seq_len_k]
             return_attention: 是否返回注意力权重
+            kv_cache: dict，包含 'k' 和 'v'，形状为 [batch_size, num_heads, cached_len, d_k]
+                     用于自回归生成时缓存历史 K/V，将复杂度从 O(t²) 降到 O(t)
         
         Returns:
             output: [batch_size, seq_len_q, d_model]
@@ -78,6 +80,19 @@ class MultiHeadAttention(nn.Module):
         K = K.transpose(1, 2)
         V = V.transpose(1, 2)
         
+        # 2.5. KV Cache 处理（关键：在 seq_len 维度拼接）
+        if kv_cache is not None:
+            if 'k' in kv_cache and 'v' in kv_cache and kv_cache['k'] is not None:
+                # 拼接缓存的 K/V 和当前的 K/V（在 dim=2，即 seq_len 维度）
+                K = torch.cat([kv_cache['k'], K], dim=2)  # [batch_size, num_heads, cached_len + seq_len_k, d_k]
+                V = torch.cat([kv_cache['v'], V], dim=2)
+            
+            # 更新缓存（存储完整的 K/V，包括新计算的）
+            kv_cache['k'] = K
+            kv_cache['v'] = V
+            # 更新 seq_len_k 为拼接后的长度
+            seq_len_k = K.shape[2]
+        
         # 3. 计算注意力分数
         # [batch_size, num_heads, seq_len_q, d_k] @ [batch_size, num_heads, d_k, seq_len_k]
         # -> [batch_size, num_heads, seq_len_q, seq_len_k]
@@ -86,9 +101,10 @@ class MultiHeadAttention(nn.Module):
         # 4. 应用 mask（如果有）
         if mask is not None:
             # mask: [batch_size, seq_len_q, seq_len_k] 或 [batch_size, 1, seq_len_k]
+            # mask 中 1 表示有效位置，0 表示需要屏蔽的位置（padding mask 约定）
             if mask.dim() == 3:
                 mask = mask.unsqueeze(1)  # [batch_size, 1, seq_len_q, seq_len_k]
-            # mask 中 True/1 表示需要屏蔽的位置
+            # 将需要屏蔽的位置（mask == 0）的分数设为 -inf，softmax 后变为 0
             scores = scores.masked_fill(mask == 0, float('-inf'))
         
         # 5. Softmax 归一化
@@ -195,6 +211,7 @@ class FusedMultiHeadAttention(nn.Module):
         scores = torch.matmul(q, k.transpose(-2, -1)) * self.scale
         
         if mask is not None:
+            # mask 中 1 表示有效位置，0 表示需要屏蔽的位置
             if mask.dim() == 3:
                 mask = mask.unsqueeze(1)
             scores = scores.masked_fill(mask == 0, float('-inf'))
@@ -218,9 +235,7 @@ class FusedMultiHeadAttention(nn.Module):
 
 ## 三、旋转位置编码（RoPE - Rotary Position Embedding）
 
-### 背景
-
-RoPE（Rotary Position Embedding）最初在 RoFormer 论文中提出（2021年），通过旋转矩阵将位置信息编码到注意力计算中。LLaMA 采用了 RoPE 作为其位置编码方法。
+RoPE（Rotary Position Embedding）通过旋转矩阵将位置信息编码到注意力计算中。
 
 ```python
 def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None):
@@ -229,8 +244,10 @@ def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None):
     
     Args:
         q, k: [batch_size, num_heads, seq_len, d_k]
-        cos, sin: [seq_len, d_k // 2] 或 [batch_size, seq_len, d_k // 2]
-        position_ids: [batch_size, seq_len] 位置索引（可选，如果 cos/sin 已经根据 position_ids 选择则可为 None）
+        cos, sin: [seq_len, d_k // 2] 或 [batch_size, seq_len, d_k // 2] 或 [batch_size, num_heads, seq_len, d_k // 2]
+        position_ids: [batch_size, seq_len] 位置索引（可选，通常 cos/sin 已经根据 position_ids 选择，此参数保留用于未来扩展）
+    
+    注意：position_ids 参数在当前实现中未使用，因为 cos/sin 已经在调用前根据 position_ids 索引过了
     """
     def rotate_half(x):
         """将 x 的后半部分取负并交换前后部分"""
@@ -238,12 +255,15 @@ def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None):
         return torch.cat([-x2, x1], dim=-1)
     
     # 调整 cos/sin 的维度以匹配 q, k
+    # q, k 的形状是 [batch_size, num_heads, seq_len, d_k]
+    # 需要将 cos/sin 扩展到 [batch_size, num_heads, seq_len, d_k//2]
     if cos.dim() == 2:  # [seq_len, d_k//2]
         cos = cos.unsqueeze(0).unsqueeze(0)  # [1, 1, seq_len, d_k//2]
-        sin = sin.unsqueeze(0).unsqueeze(0)
+        sin = sin.unsqueeze(0).unsqueeze(0)  # [1, 1, seq_len, d_k//2]
     elif cos.dim() == 3:  # [batch_size, seq_len, d_k//2]
         cos = cos.unsqueeze(1)  # [batch_size, 1, seq_len, d_k//2]
-        sin = sin.unsqueeze(1)
+        sin = sin.unsqueeze(1)  # [batch_size, 1, seq_len, d_k//2]
+    # 如果已经是 4 维，假设形状已经是 [batch_size, num_heads, seq_len, d_k//2] 或类似
     
     # 应用旋转：q_rot = q * cos + rotate_half(q) * sin
     q_embed = (q * cos) + (rotate_half(q) * sin)
@@ -251,8 +271,6 @@ def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None):
     
     return q_embed, k_embed
 ```
-
----
 
 ## 四、完整示例：结合 MHA + RoPE
 
@@ -280,29 +298,30 @@ class RoPEMultiHeadAttention(nn.Module):
         
         # 延迟构建 RoPE 缓存（在第一次 forward 时根据设备构建）
         self.max_seq_len = max_seq_len
-        self.register_buffer('cos_cached', None)
-        self.register_buffer('sin_cached', None)
+        self.cos_cached = None
+        self.sin_cached = None
         
-    def _build_rope_cache(self, max_seq_len, device=None):
+    def _build_rope_cache(self, max_seq_len, device):
         """构建 RoPE 缓存"""
-        # 注意：这个方法应该在 forward 中调用，以确保使用正确的设备
-        # 如果 cos_cached 已存在，使用其设备；否则使用传入的 device 或 CPU
-        if device is None:
-            if self.cos_cached is not None:
-                device = self.cos_cached.device
-            else:
-                device = torch.device('cpu')
-        
         inv_freq = 1.0 / (10000 ** (torch.arange(0, self.d_k, 2, device=device).float() / self.d_k))
         t = torch.arange(max_seq_len, device=device, dtype=inv_freq.dtype)
         freqs = torch.outer(t, inv_freq)  # [max_seq_len, d_k//2]
         
         # 缓存 cos 和 sin（形状：[max_seq_len, d_k//2]）
-        # 注意：由于已在 __init__ 中用 register_buffer 注册，这里直接赋值即可
-        self.cos_cached = freqs.cos()  # [max_seq_len, d_k//2]
-        self.sin_cached = freqs.sin()  # [max_seq_len, d_k//2]
+        # 使用 register_buffer 注册，确保能正确移动到设备
+        self.register_buffer('cos_cached', freqs.cos())
+        self.register_buffer('sin_cached', freqs.sin())
         
-    def forward(self, x, mask=None, position_ids=None, return_attention=False):
+    def forward(self, x, mask=None, position_ids=None, return_attention=False, kv_cache=None):
+        """
+        Args:
+            x: [batch_size, seq_len, d_model]
+            mask: [batch_size, seq_len, seq_len] 或 [batch_size, 1, seq_len]
+            position_ids: [batch_size, seq_len] 位置索引（可选）
+            return_attention: 是否返回注意力权重
+            kv_cache: dict，包含 'k' 和 'v'，形状为 [batch_size, num_heads, cached_len, d_k]
+                     用于自回归生成时缓存历史 K/V
+        """
         batch_size, seq_len, _ = x.shape
         
         # 延迟构建 RoPE 缓存（如果尚未构建或设备不匹配）
@@ -315,26 +334,58 @@ class RoPEMultiHeadAttention(nn.Module):
         V = self.W_v(x).view(batch_size, seq_len, self.num_heads, self.d_k).transpose(1, 2)
         
         # 2. 应用 RoPE
-        # 根据实际序列长度和 position_ids 选择对应的 cos/sin
+        # 注意：使用 KV Cache 时，只对当前 token 的 Q/K 应用 RoPE，缓存的 K 已经应用过 RoPE
         if position_ids is not None:
+            # 如果提供了 position_ids，使用它来索引 cos/sin
+            # position_ids: [batch_size, seq_len] -> cos/sin: [batch_size, seq_len, d_k//2]
             cos = self.cos_cached[position_ids]  # [batch_size, seq_len, d_k//2]
-            sin = self.sin_cached[position_ids]
+            sin = self.sin_cached[position_ids]  # [batch_size, seq_len, d_k//2]
         else:
-            cos = self.cos_cached[:seq_len]  # [seq_len, d_k//2]
-            sin = self.sin_cached[:seq_len]
+            # 如果没有提供 position_ids，根据是否有 KV Cache 来决定起始位置
+            if kv_cache is not None and kv_cache.get('k') is not None:
+                # 有 KV Cache：从缓存长度开始的位置
+                cached_len = kv_cache['k'].shape[2]
+                pos_start = cached_len
+                cos = self.cos_cached[pos_start:pos_start + seq_len]  # [seq_len, d_k//2]
+                sin = self.sin_cached[pos_start:pos_start + seq_len]  # [seq_len, d_k//2]
+            else:
+                # 无 KV Cache：从 0 开始的连续位置
+                cos = self.cos_cached[:seq_len]  # [seq_len, d_k//2]
+                sin = self.sin_cached[:seq_len]  # [seq_len, d_k//2]
         Q, K = apply_rotary_pos_emb(Q, K, cos, sin, position_ids)
         
+        # 2.5. KV Cache 处理（在应用 RoPE 之后）
+        if kv_cache is not None:
+            if 'k' in kv_cache and 'v' in kv_cache and kv_cache['k'] is not None:
+                # 拼接缓存的 K/V 和当前的 K/V（在 dim=2，即 seq_len 维度）
+                K = torch.cat([kv_cache['k'], K], dim=2)  # [batch_size, num_heads, cached_len + seq_len, d_k]
+                V = torch.cat([kv_cache['v'], V], dim=2)
+            
+            # 更新缓存（存储完整的 K/V，包括新计算的）
+            kv_cache['k'] = K
+            kv_cache['v'] = V
+            # 更新 seq_len 为拼接后的长度（用于后续计算）
+            seq_len_k = K.shape[2]
+        else:
+            seq_len_k = seq_len
+        
         # 3. 计算注意力
-        scores = torch.matmul(Q, K.transpose(-2, -1)) * self.scale
+        # 注意：使用 KV Cache 时，Q 的 seq_len 可能小于 K/V 的 seq_len（自回归生成）
+        scores = torch.matmul(Q, K.transpose(-2, -1)) * self.scale  # [batch_size, num_heads, seq_len, seq_len_k]
         
         if mask is not None:
+            # mask 中 1 表示有效位置，0 表示需要屏蔽的位置
             if mask.dim() == 3:
                 mask = mask.unsqueeze(1)
             scores = scores.masked_fill(mask == 0, float('-inf'))
+        elif kv_cache is not None:
+            # 使用 KV Cache 时，通常不需要额外的 mask（causal mask 已通过缓存长度保证）
+            # 但如果有 padding，仍需要 mask
+            pass
         
         attention_weights = F.softmax(scores, dim=-1)
         attention_weights = self.dropout(attention_weights)
-        context = torch.matmul(attention_weights, V)
+        context = torch.matmul(attention_weights, V)  # [batch_size, num_heads, seq_len, d_k]
         
         # 4. 输出
         context = context.transpose(1, 2).contiguous()
@@ -348,7 +399,51 @@ class RoPEMultiHeadAttention(nn.Module):
 
 ---
 
-## 五、面试要点总结
+## 五、KV Cache 支持（推理加速）
+
+### 核心原理
+
+KV Cache 将自回归生成的复杂度从 **O(t²) 降到 O(t)**：
+- **Prefill 阶段**：计算 prompt 所有 token 的 K/V，O(n)
+- **生成阶段**：每步只计算当前 token 的 K/V，O(1)
+- **总复杂度**：O(n) + O(t) = O(t)
+
+### 实现要点
+
+1. **只缓存 K/V，不缓存 Q**：Q 每次生成都不同，K/V 历史不变
+2. **在 seq_len 维度拼接**：`torch.cat([kv_cache['k'], K], dim=2)`
+3. **自回归生成**：每次只传入最后一个 token（`seq_len=1`）
+
+### 使用示例
+
+```python
+# Prefill 阶段：计算 prompt 的 KV Cache
+prompt = torch.randn(1, 10, d_model)  # [batch_size, prompt_len, d_model]
+kv_cache = {'k': None, 'v': None}
+_ = rope_mha(prompt, kv_cache=kv_cache)  # 初始化缓存
+
+# 生成阶段：每次只传入最后一个 token
+for step in range(max_new_tokens):
+    current_token = torch.randn(1, 1, d_model)  # [batch_size, 1, d_model]
+    output = rope_mha(current_token, kv_cache=kv_cache)  # 复用缓存的 K/V
+    # ... 采样新 token ...
+```
+
+### 显存占用计算
+
+```
+KV Cache 显存 = n_layers × batch_size × seq_len × n_heads × d_head × 2 × bytes_per_element
+```
+
+**示例（LLaMA-7B，FP16）：**
+- 24 层，32 头，d_head=128，seq_len=2048
+- `24 × 1 × 2048 × 32 × 128 × 2 × 2B = 805MB`
+
+详细内容请参考 `KVCache.md`。
+
+---
+
+## 六、面试要点总结
 
 ### 1. 核心公式
 - **注意力分数**：`QK^T / √d_k`
@@ -372,7 +467,7 @@ class RoPEMultiHeadAttention(nn.Module):
 
 ---
 
-## 六、与 Flash Attention 的区别
+## 七、与 Flash Attention 的区别
 
 **标准实现**：需要存储完整的注意力矩阵 `[batch, heads, seq_len, seq_len]`
 
@@ -390,7 +485,7 @@ class RoPEMultiHeadAttention(nn.Module):
 
 ---
 
-## 七、测试代码
+## 八、测试代码
 
 ```python
 def test_mha():
@@ -417,9 +512,36 @@ def test_rope():
     assert output.shape == (batch_size, seq_len, d_model)
     print("✓ RoPE MHA 测试通过")
 
+def test_kv_cache():
+    """测试 KV Cache"""
+    d_model, num_heads = 768, 12
+    batch_size = 1
+    
+    rope_mha = RoPEMultiHeadAttention(d_model, num_heads)
+    
+    # Prefill 阶段：计算 prompt 的 KV Cache
+    prompt_len = 10
+    prompt = torch.randn(batch_size, prompt_len, d_model)
+    kv_cache = {'k': None, 'v': None}
+    output_prefill = rope_mha(prompt, kv_cache=kv_cache)
+    assert output_prefill.shape == (batch_size, prompt_len, d_model)
+    assert kv_cache['k'] is not None
+    assert kv_cache['k'].shape[2] == prompt_len  # 缓存长度 = prompt_len
+    
+    # 生成阶段：每次只传入最后一个 token
+    for step in range(3):
+        current_token = torch.randn(batch_size, 1, d_model)
+        output = rope_mha(current_token, kv_cache=kv_cache)
+        assert output.shape == (batch_size, 1, d_model)
+        # 缓存长度应该递增
+        assert kv_cache['k'].shape[2] == prompt_len + step + 1
+    
+    print("✓ KV Cache 测试通过")
+
 if __name__ == "__main__":
     test_mha()
     test_rope()
+    test_kv_cache()
     print("\n所有测试通过！")
 ```
 
