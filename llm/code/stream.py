@@ -2,7 +2,7 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://ark.cn-beijing.volces.com/api/v3",
-    api_key="93a67648-c2cd-4a51-99ba-c51114b537ee",
+    api_key="your_api_key",
 )
 
 
@@ -19,7 +19,7 @@ def llm_stream(messages, max_new_tokens=8192, buffer_size=10):
         str: 累积的文本块
     """
     response = client.chat.completions.create(
-        model="ep-20251209150604-gxb42",
+        model="your_model_name",
         messages=messages,
         stream=True,
         max_tokens=max_new_tokens,

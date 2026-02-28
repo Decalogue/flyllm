@@ -1,4 +1,3 @@
-```python
 import torch
 import torch.nn as nn
 from torch.nn import BCEWithLogitsLoss, MSELoss
@@ -131,5 +130,3 @@ LOSS_MAPPING = {
     "ForAudioClassification": ForSequenceClassificationLoss,
     "ForTokenClassification": ForTokenClassification,
 }
-
-```
