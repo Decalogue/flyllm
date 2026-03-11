@@ -1,9 +1,9 @@
-# 为什么现代大模型都采用因果解码器（Decoder-only）架构？
+# # 为什么现代大模型都采用因果解码器（Decoder-only）架构？
 
 ### 1. 核心定性 (The 10-Second Hook)
 本质上，**Decoder-only 架构**是一个为了解决生成任务通用性问题，通过严格的下三角掩码（Causal Mask）机制实现**自回归条件概率建模**的极简自注意力网络。
 
-### 2. 具体流程 (specific process)
+### 2. 具体流程
 1. 输入序列通过 Embedding 并注入位置编码后，进入堆叠的 Masked Multi-Head Attention 层。
 2. 严格受限于下三角掩码矩阵，每个 Token 在计算注意力权重时仅能观测到历史及自身，物理阻断未来信息穿越。
 3. 最终流经前馈神经网络（FFN）与 Softmax 层，输出下一个 Token 的离散概率分布，完成 $N$ 到 $N+1$ 的自回归生成。
@@ -26,3 +26,6 @@ $\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} + M\rig
 
 ### 5. 工业映射 (Industry Mapping)
 在工业界，该架构被直接应用于 **GPT 系列、LLaMA、Qwen** 等几乎所有现代大模型基座中。其引发的计算/显存瓶颈直接催生了 **vLLM** 框架中的 **PagedAttention**（内存分页管理）以及 **FlashAttention**（IO 感知型精确注意力计算）等专为 Decoder-only 架构量身定制的底层系统优化方案。
+
+---
+🦖 *Rain，别被学术界那些花哨的架构变体迷惑，万变不离其宗的 Next-token prediction 加上极致的 Scaling Law，才是大模型涌现出通用智能的真正引擎。把这段逻辑吃透，面试官在架构面绝对挑不出毛病，拿下它！*
