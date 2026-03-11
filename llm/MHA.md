@@ -1,8 +1,8 @@
-# 多头注意力机制（Multi-Head Attention）手撕代码
+# MHA
 
-## 一、标准多头注意力实现
+---
 
-### 核心公式
+## 核心公式
 
 ```
 MultiHead(Q, K, V) = Concat(head₁, head₂, ..., headₕ)W^O
@@ -12,7 +12,78 @@ MultiHead(Q, K, V) = Concat(head₁, head₂, ..., headₕ)W^O
 Attention(Q, K, V) = softmax(QK^T / √dₖ)V
 ```
 
-### 完整实现
+---
+
+## 架构图
+
+标准 MHA
+
+```mermaid
+flowchart TD
+    classDef default fill:#1e1e1e,stroke:#4CAF50,stroke-width:2px,color:#fff;
+    classDef pain fill:#4a1414,stroke:#ff5252,stroke-width:2px,color:#ffcdd2,stroke-dasharray: 5 5;
+    classDef highlight fill:#004d40,stroke:#00bfa5,stroke-width:2px,color:#fff;
+
+    Input[输入序列 Token Embeddings] --> Proj(Q, K, V 线性投影)
+    
+    Proj -->|痛点: 单一投影导致语义揉杂, 表达力坍塌| Split[拆分多头 Split into Heads]:::pain
+    
+    Split --> RoPE_Q[对 Q 施加 RoPE 旋转]:::highlight
+    Split --> RoPE_K[对 K 施加 RoPE 旋转]:::highlight
+    Split --> V_Head[V 保持不变]
+    
+    RoPE_Q -.->|痛点: 绝对位置泛化极差, 需注入相对距离感知| RoPE_K:::pain
+    
+    RoPE_Q --> DotProduct[计算 Q * K^T]
+    RoPE_K --> DotProduct
+    
+    DotProduct -->|痛点: 维度d增大导致点积方差爆炸, Softmax梯度消失| Scale[缩放除以 sqrt_d]:::pain
+    
+    Scale --> Mask[因果掩码 Causal Mask]
+    Mask --> Softmax[Softmax 归一化注意力权重]
+    
+    Softmax --> AttnScore[注意力分数]
+    V_Head --> Multiply[乘以 V 并聚合]
+    AttnScore --> Multiply
+    
+    Multiply --> Concat[多头拼接 Concat]
+    Concat --> OutProj(输出线性投影 O)
+```
+
+兼容 MHA/GQA
+
+```mermaid
+flowchart TD
+    classDef default fill:#1e1e1e,stroke:#4CAF50,stroke-width:2px,color:#fff;
+    classDef pain fill:#4a1414,stroke:#ff5252,stroke-width:2px,color:#ffcdd2,stroke-dasharray: 5 5;
+    classDef highlight fill:#004d40,stroke:#00bfa5,stroke-width:2px,color:#fff;
+
+    Input[Input Hidden States] --> QProj(Q Projection 生成 N 个头)
+    Input --> KProj(K Projection 生成 M 个头, M < N):::highlight
+    Input --> VProj(V Projection 生成 M 个头, M < N):::highlight
+
+    QProj --> QNorm(Q RMSNorm)
+    KProj --> KNorm(K RMSNorm)
+
+    QNorm --> RoPE_Q[RoPE 旋转位置编码]
+    KNorm --> RoPE_K[RoPE 旋转位置编码]
+    VProj --> V_State[V 状态保持]
+
+    RoPE_K -->|痛点: Q头多K头少, 无法相乘| RepeatKV_K[repeat_kv 强行复制 K]:::pain
+    V_State -->|同理痛点| RepeatKV_V[repeat_kv 强行复制 V]:::pain
+
+    RoPE_Q --> MatMul[Q * K^T 矩阵乘法]
+    RepeatKV_K --> MatMul
+    
+    MatMul --> Softmax[Softmax]
+    Softmax --> OutMul[乘以 复制后的 V]
+    RepeatKV_V --> OutMul
+    
+    OutMul --> OutProj[O Projection]
+```
+
+
+## 一、标准多头注意力实现
 
 ```python
 import math
@@ -562,3 +633,5 @@ if __name__ == "__main__":
 - Flash Attention 了解原理即可，不需要手写 CUDA 代码
 - GQA 相关内容请参考 GQA.md
 
+> **高管金句 (Executive Talk Track)**
+> "现代大模型多头注意力的演进，表面上是算法的推陈出新，底层实则是一场**带宽与显存的生死时速**。从 RoPE 对相对位置的优雅表达，到 GQA 用组级共享成倍压缩 KV Cache，再到底层 FlashAttention 的片上融合计算，所有的演进都在指向一个目的：打破内存墙限制，将 $O(N^2)$ 的物理成本压至极低。未来的大模型之战，比拼的永远是异构算力环境下的极致 IO 榨取能力与 Serving 吞吐量边际成本。"
