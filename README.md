@@ -133,18 +133,18 @@
 
 #### Function Call
 
-1. Function Call 的多轮对话如何处理？为什么这是最难的部分？
-2. Function Calling 的格式是什么？JSON Schema 如何定义？Schema 怎么设计？
-3. 如何让模型学会选择合适的函数？训练方法有哪些？训练数据怎么设计？
-4. Function Call 的参数提取错误如何处理？错误处理机制怎么设计？
-5. Function Call 的流式输出如何实现？流式调用如何优化？
-6. Function Call 的并行调用如何实现？并行调用如何管理？
-7. Function Call 的验证机制如何设计？参数如何校验？验证规则怎么设计？
-8. Function Call 的多轮交互如何维护上下文？上下文管理怎么设计？
-9. Function Call 的链式调用如何实现？依赖关系如何处理？依赖图怎么设计？
-10. Function Call 的容错机制如何设计？调用失败如何处理？重试策略怎么设计？
-11. Function Call 的权限控制如何实现？如何限制可调用函数？权限系统怎么设计？
-12. Function Call 的延迟如何优化？如何平衡准确性和速度？
+1. [Function Call 的格式是什么？JSON Schema 如何定义？Schema 怎么设计？](llm/FunctionCallSchema.md)
+2. [如何让模型学会选择合适的函数？训练方法有哪些？训练数据怎么设计？](llm/FunctionCallingTraining.md)
+3. [Function Call 的多轮对话如何处理？为什么这是最难的部分？](llm/FunctionCallMultiTurn.md)
+4. [Function Call 的参数提取错误如何处理？错误处理机制怎么设计？](llm/FunctionCallErrorHandling.md)
+5. [Function Call 的流式输出如何实现？流式调用如何优化？](llm/FunctionCallStreaming.md)
+6. [Function Call 的并行调用如何实现？并行调用如何管理？](llm/FunctionCallParallel.md)
+7. [Function Call 的验证机制如何设计？参数如何校验？验证规则怎么设计？](llm/FunctionCallValidation.md)
+8. [Function Call 的多轮交互如何维护上下文？上下文管理怎么设计？](llm/FunctionCallContextManagement.md)
+9. [Function Call 的链式调用如何实现？依赖关系如何处理？依赖图怎么设计？](llm/ChainFunctionCall.md)
+10. [Function Call 的容错机制如何设计？调用失败如何处理？重试策略怎么设计？](llm/FunctionCallFaultTolerance.md)
+11. [Function Call 的权限控制如何实现？如何限制可调用函数？权限系统怎么设计？](llm/FunctionCallPermissionControl.md)
+12. [Function Call 的延迟如何优化？如何平衡准确性和速度？](llm/FunctionCallLatencyOptimization.md)
 
 #### Skills
 
