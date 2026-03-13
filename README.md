@@ -120,16 +120,17 @@
 
 1. [Agent的核心技术模块有哪些？每个模块的功能、难点，以及它们之间怎么联动？](llm/AgentCoreModules.md)
 2. [Tool Calling 如何让模型学会使用工具？工具描述怎么设计？](llm/ToolCalling.md)
-3. [Agent 的规划能力如何设计？有哪些规划方法？如何实现？](llm/AgentPlanningDesign.md)
-4. [ReAct 框架如何实现？提示怎么设计？](llm/ReActFramework.md)
-5. [Agent 的记忆机制有哪些类型？如何实现？](llm/AgentMemoryMechanism.md)
-6. [Agent 的反思能力如何实现？反思机制怎么设计？](llm/AgentReflectionMechanism.md)
-7. [Agent 的决策流程如何设计？有哪些决策框架？如何选择？](llm/AgentDecisionFramework.md)
-8. [Agent 的错误恢复机制如何设计？重试策略怎么设计？](llm/AgentErrorRecoveryAndRetry.md)
-9. [Agent 的自主性如何控制？控制机制怎么设计？](llm/AgentAutonomyControl.md)
-10. [Agent 的长期记忆和短期记忆如何实现？记忆系统怎么设计？](llm/AgentMemorySystemDesign.md)
-11. [Multi-Agent 系统如何实现？Agent 之间如何协作？通信机制怎么设计？](llm/MultiAgentSystem.md)
-12. [LangChain 的核心组件是什么？Agent 系统怎么设计？](llm/LangChainCoreComponentsAndAgentDesign.md)
+3. [AI Agent 和传统 LLM 的区别是什么？有哪些类型？本质区别和优劣对比](llm/AIAgentVsLLMDifferences.md)
+4. [ReAct 框架如何实现？它的核心思想是什么？推理与行动如何平衡？](llm/ReActFrameworkCoreMechanism.md)
+5. [Agent 的规划能力如何设计？有哪些规划方法？如何实现？](llm/AgentPlanningDesign.md)
+6. [Agent 的记忆机制有哪些类型？如何实现？](llm/AgentMemoryMechanism.md)
+7. [Agent 的反思能力如何实现？反思机制怎么设计？](llm/AgentReflectionMechanism.md)
+8. [Agent 的决策流程如何设计？有哪些决策框架？如何选择？](llm/AgentDecisionFramework.md)
+9. [Agent 的错误恢复机制如何设计？重试策略怎么设计？](llm/AgentErrorRecoveryAndRetry.md)
+10. [Agent 的自主性如何体现？如何控制 Agent 的自主性？安全和效率如何权衡？](llm/AgentAutonomyMechanismAndControl.md)
+11. [Agent 的长期记忆和短期记忆如何实现？记忆系统怎么设计？](llm/AgentMemorySystemDesign.md)
+12. [Multi-Agent 系统如何实现？Agent 之间如何协作？通信机制怎么设计？](llm/MultiAgentSystemDesign.md)
+13. [LangChain 的核心组件是什么？Agent 系统怎么设计？](llm/LangChainCoreComponentsAndAgentDesign.md)
 
 #### Function Call
 
@@ -148,7 +149,23 @@
 
 #### Skills
 
+1. [Agent 的技能（Skill）和工具（Tool）有什么区别？技能库在架构中如何定位？](llm/SkillVsTool.md)
+2. [如何让 Agent 从历史执行轨迹中学习并沉淀为可复用技能？技能抽取与泛化怎么做？](llm/AgentSkillExtraction.md)
+3. [技能库（Skill Library）如何设计？技能的表示、检索和组合策略有哪些？](llm/SkillLibraryDesign.md)
+4. [技能与记忆的关系是什么？技能是否可视为一种长期记忆？如何与记忆模块联动？](llm/SkillMemoryRelation.md)
+5. [多技能 Agent 如何做技能选择与调度？与工具调用（Tool Calling）的决策有何异同？](llm/SkillSelectionVsToolCalling.md)
+6. [技能的可组合性如何设计？链式技能、条件分支技能在工程上如何实现？](/root/data/AI/flyllm/llm/SkillComposabilityDesign.md)
+
 ### Memory
+
+1. [Agent 的记忆机制有哪些类型？如何实现？](llm/AgentMemoryMechanism.md)
+2. [Agent 的长期记忆和短期记忆如何实现？记忆系统怎么设计？](llm/AgentMemorySystemDesign.md)
+3. [短期记忆、工作记忆、长期记忆的边界如何划分？存储介质与检索方式如何选型？](llm/MemoryHierarchyArchitecture.md)
+4. [记忆检索的得分函数如何设计？向量相似度、时间衰减、重要性权重如何融合？](llm/MemoryRetrievalScoring.md)
+5. [记忆冲突（同一实体在不同时刻的描述矛盾）如何检测与解决？](llm/MemoryConflictDetectionAndResolution.md)
+6. [记忆的写入风暴与检索盲区如何应对？高并发下的记忆滞后怎么处理？](llm/MemoryWriteStormAndRetrievalBlindSpot.md)
+7. [MemGPT 的分层记忆与虚拟上下文管理是怎样的？和传统 RAG 记忆有何区别？](llm/MemGPTLayeredMemoryAndVirtualContext.md)
+8. [如何评估记忆系统效果？命中率、一致性、延迟等指标如何权衡？](llm/MemorySystemEvaluationMetricsAndTradeoffs.md)
 
 ---
 
@@ -232,5 +249,16 @@
 
 #### Skills
 
+1. 实现技能库的检索接口，支持按描述向量检索与按元数据过滤
+2. 实现技能执行轨迹的解析与关键步骤抽取（用于沉淀为技能）
+3. 实现简单的技能调度器，根据任务描述选择 Top-K 技能并排序
+4. 实现技能组合的执行图，支持链式依赖与并行分支
+
 ### Memory
+
+1. 实现短期记忆的滑动窗口管理，包括 token 计数与超出截断策略
+2. 实现记忆检索得分函数（向量相似度 + 时间衰减 + 重要性权重）
+3. 实现长期记忆的批量写入与异步索引更新（对接向量库接口）
+4. 实现记忆融合逻辑：将检索到的 Top-K 记忆格式化为 prompt 注入
+5. 实现简单的记忆重要性评分（基于 LLM 打分或规则：访问频率、新近度）
 
