@@ -10,31 +10,31 @@
 
 ### LLM
 
-#### Tokenizer - LX
+#### Tokenizer
 
-1. 什么是分词器？为什么 LLM 需要分词而不是直接处理字符？
-2. BPE 算法的核心思想是什么？能详细说说它的训练和编码过程吗？
-3. SentencePiece 和 BPE 有什么区别？为什么 GPT 系列用 BPE，而 T5 用 SentencePiece？
-4. WordPiece 和 BPE 的区别在哪里？BERT 为什么选择 WordPiece？
-5. Unigram Language Model Tokenizer 的工作原理是什么？它有什么优势？
-6. 为什么子词分词比词级分词更适合大模型？遇到稀有词怎么处理？
-7. 词汇表大小如何确定？太大会怎样，太小会怎样？
-8. 特殊标记 [CLS]、[SEP]、[PAD]、[MASK] 分别起什么作用？为什么需要它们？
+1. [什么是分词器？为什么 LLM 需要分词而不是直接处理字符？](llm/what-is-tokenizer.md)
+2. [BPE 算法的核心思想是什么？能详细说说它的训练和编码过程吗？](llm/BPE-algorithm.md)
+3. [SentencePiece 和 BPE 有什么区别？为什么 GPT 系列用 BPE，而 T5 用 SentencePiece？](llm/SentencePiece-vs-BPE.md)
+4. [WordPiece 和 BPE 的区别在哪里？BERT 为什么选择 WordPiece？](llm/WordPiece-vs-BPE.md)
+5. [Unigram Language Model Tokenizer 的工作原理是什么？它有什么优势？](llm/Unigram-Language-Model-Tokenizer.md)
+6. [为什么子词分词比词级分词更适合大模型？遇到稀有词怎么处理？](llm/Subword-vs-Word-level.md)
+7. [词汇表大小如何确定？太大会怎样，太小会怎样？](llm/Vocabulary-Size-Tradeoff.md)
+8. [特殊标记 [CLS]、[SEP]、[PAD]、[MASK] 分别起什么作用？为什么需要它们？](llm/Special-Tokens.md)
 
-#### Transformer 前12-LX 后12-XY
+#### Transformer
 
-1. Transformer 的核心架构是什么？为什么它成为所有 LLM 的基础？Encoder 和 Decoder 的区别在哪里？
-2. 自注意力机制的数学公式是什么？Q、K、V 分别代表什么？为什么要除以 sqrt(d_k)？
-3. 为什么需要多头注意力？多头比单头好在哪里？头数怎么选择？
-4. Cross-Attention 和 Self-Attention 有什么区别？分别用在什么场景？
-5. 注意力机制的计算复杂度是 O(n²)，如何优化？有哪些降低复杂度的方法？
-6. 因果掩码（Causal Mask）是什么？为什么自回归模型需要它？怎么实现？
-7. 稀疏注意力有哪些实现方式？Longformer 和 BigBird 的区别是什么？
-8. 局部注意力适用于什么场景？窗口大小怎么设计？
-9. 线性注意力如何降低复杂度？Performer 和 Linformer 的区别是什么？
-10. GQA（分组查询注意力）是什么？为什么 LLaMA 2 用它？它如何平衡性能和效率？
-11. Longformer 的滑动窗口注意力是怎么实现的？窗口大小怎么选？
-12. Flash Attention 解决了什么问题？它的核心思想是什么？Flash Attention 2 改进了什么？
+1. [Transformer 的核心架构是什么？为什么它成为所有 LLM 的基础？Encoder 和 Decoder 的区别在哪里？](llm/TransformerArchitecture.md)
+2. [自注意力机制的数学公式是什么？Q、K、V 分别代表什么？为什么要除以 sqrt(d_k)？](llm/SelfAttentionMath.md)
+3. [为什么需要多头注意力？多头比单头好在哪里？头数怎么选择？](llm/MultiHeadAttention.md)
+4. [Cross-Attention 和 Self-Attention 有什么区别？分别用在什么场景？](llm/CrossVsSelfAttention.md)
+5. [注意力机制的计算复杂度是 O(n²)，如何优化？有哪些降低复杂度的方法？](llm/AttentionComplexityOptimization.md)
+6. [因果掩码（Causal Mask）是什么？为什么自回归模型需要它？怎么实现？](llm/CausalMask.md)
+7. [稀疏注意力有哪些实现方式？Longformer 和 BigBird 的区别是什么？](llm/SparseAttention.md)
+8. [局部注意力适用于什么场景？窗口大小怎么设计？](llm/LocalAttention.md)
+9. [线性注意力如何降低复杂度？Performer 和 Linformer 的区别是什么？](llm/LinearAttention.md)
+10. [GQA（分组查询注意力）是什么？为什么 LLaMA 2 用它？它如何平衡性能和效率？](llm/GQA.md)
+11. [Longformer 的滑动窗口注意力是怎么实现的？窗口大小怎么选？](llm/LongformerSlidingWindow.md)
+12. [Flash Attention 解决了什么问题？它的核心思想是什么？Flash Attention 2 改进了什么？](llm/FlashAttention.md)
 13. [注意力权重可视化能告诉我们什么？如何分析模型的注意力模式？](llm/AttentionPatternAnalysis.md)
 14. [注意力机制会出现梯度消失吗？如何缓解？](llm/AttentionVanishingGradient.md)
 15. [位置偏置（Position Bias）是什么？如何消除？](llm/PositionBias.md)
@@ -51,39 +51,39 @@
 26. [BF16 FP16 之间的区别，适用的情况](llm/Bf16VsFp16.md)
 27. [7B 模型显存计算](llm/显存计算.md)
 
-#### Finetuning - LX
+#### Finetuning
 
-1. 全量微调和参数高效微调的区别是什么？什么时候用全量微调？
-2. LoRA 的原理是什么？rank 和 alpha 参数怎么选？为什么有效？
-3. QLoRA 如何进一步降低显存？4-bit 量化怎么实现？精度损失大吗？
-4. Adapter 和 LoRA 的区别是什么？各自的适用场景？
-5. 指令微调的数据怎么构建？指令格式怎么设计？需要多少数据？
-6. 数据合成（Data Synthesis）有哪些方法？如何生成高质量的SFT数据？合成数据的质量如何评估？
-7. SFT 训练中的 Loss 如何设计？交叉熵损失的具体计算过程是什么？如何处理不平衡的数据分布？
-8. SFT 之后出现灾难性遗忘（Catastrophic Forgetting）的原因是什么？如何解决？有哪些具体方法？
-9. 多任务微调如何平衡不同任务？损失函数怎么设计？如何避免任务间的负迁移？
-10. 微调的学习率怎么设置？初始学习率怎么选？需要 Warmup 吗？学习率调度策略如何选择？
-11. 早停机制怎么设计？验证指标怎么选？patience 怎么设置？如何防止过拟合？
-12. 微调的数据增强有哪些方法？如何设计增强策略？如何保证增强后的数据质量？
+1. [全量微调和参数高效微调的区别是什么？什么时候用全量微调？](llm/FullVsParameterEfficient.md)
+2. [LoRA 的原理是什么？rank 和 alpha 参数怎么选？为什么有效？](llm/LoRA-Principle.md)
+3. [QLoRA 如何进一步降低显存？4-bit 量化怎么实现？精度损失大吗？](llm/QLoRA-Principle.md)
+4. [Adapter 和 LoRA 的区别是什么？各自的适用场景？](llm/AdapterVsLoRA.md)
+5. [指令微调的数据怎么构建？指令格式怎么设计？需要多少数据？](llm/InstructionsDataConstruction.md)
+6. [数据合成（Data Synthesis）有哪些方法？如何生成高质量的SFT数据？合成数据的质量如何评估？](llm/DataSynthesis.md)
+7. [SFT 训练中的 Loss 如何设计？交叉熵损失的具体计算过程是什么？如何处理不平衡的数据分布？](llm/SFT-Loss-Design.md)
+8. [SFT 之后出现灾难性遗忘（Catastrophic Forgetting）的原因是什么？如何解决？有哪些具体方法？](llm/CatastrophicForgetting.md)
+9. [多任务微调如何平衡不同任务？损失函数怎么设计？如何避免任务间的负迁移？](llm/MultiTaskFinetuning.md)
+10. [微调的学习率怎么设置？初始学习率怎么选？需要 Warmup 吗？学习率调度策略如何选择？](llm/Finetuning-LearningRate.md)
+11. [早停机制怎么设计？验证指标怎么选？patience 怎么设置？如何防止过拟合？](llm/EarlyStopping.md)
+12. [微调的数据增强有哪些方法？如何设计增强策略？如何保证增强后的数据质量？](llm/Finetuning-DataAugmentation.md)
 
-#### RL - LX
+#### RL
 
-1. 强化学习的基本概念是什么？如何应用到 LLM 训练？
-2. Policy Gradient 方法的核心思想是什么？REINFORCE 算法如何计算梯度？
-3. Actor-Critic 方法是什么？价值函数和策略函数如何训练？
-4. PPO 为什么比 REINFORCE 更稳定？它的核心改进是什么？
-5. RLHF 的完整流程是什么？每一步具体怎么做？
-6. 奖励模型如何训练？奖励函数怎么设计？需要多少数据？
-7. DPO 相比 RLHF 的优势是什么？如何实现？为什么更简单？
-8. KL 散度惩罚为什么需要？KL 系数怎么设置？太大太小会怎样？
-9. 奖励函数怎么设计？奖励黑客是什么？如何防止？
-10. 离线强化学习如何应用到 LLM？有哪些挑战？
-11. 探索与利用如何平衡？在 LLM 训练中如何体现？
-12. 价值函数如何用神经网络表示？如何训练？
-13. 讲一下 GRPO 原理
-14. DAPO 相比 GRPO 做了哪些改进？
+1. [强化学习的基本概念是什么？如何应用到 LLM 训练？](llm/ReinforcementLearningLLM.md)
+2. [Policy Gradient 方法的核心思想是什么？REINFORCE 算法如何计算梯度？](llm/PolicyGradient-REINFORCE.md)
+3. [Actor-Critic 方法是什么？价值函数和策略函数如何训练？](llm/ActorCritic.md)
+4. [PPO 为什么比 REINFORCE 更稳定？它的核心改进是什么？](llm/PPO-vs-REINFORCE.md)
+5. [RLHF 的完整流程是什么？每一步具体怎么做？](llm/RLHF-FullProcess.md)
+6. [奖励模型如何训练？奖励函数怎么设计？需要多少数据？](llm/Reward-Model-Training.md)
+7. [DPO 相比 RLHF 的优势是什么？如何实现？为什么更简单？](llm/DPO-vs-RLHF.md)
+8. [KL 散度惩罚为什么需要？KL 系数怎么设置？太大太小会怎样？](llm/KL-Divergence-Penalty.md)
+9. [奖励函数怎么设计？奖励黑客是什么？如何防止？](llm/Reward-Hacking.md)
+10. [离线强化学习如何应用到 LLM？有哪些挑战？](llm/Offline-RL-for-LLM.md)
+11. [探索与利用如何平衡？在 LLM 训练中如何体现？](llm/Exploration-Exploitation.md)
+12. [价值函数如何用神经网络表示？如何训练？](llm/Value-Function-Training.md)
+13. [讲一下 GRPO 原理](llm/GRPO.md)
+14. [DAPO 相比 GRPO 做了哪些改进？](llm/DAPO-vs-GRPO.md)
 
-#### Inference - XY
+#### Inference
 
 1. [LLM 模型推理的流程是什么？有哪些关键步骤？如何优化？](llm/ModelInference.md)
 2. [KV Cache 如何加速推理？如何实现？内存怎么优化？](llm/KVCache-kimi.md)
@@ -100,7 +100,7 @@
 13. [大模型流式解析](llm/LLMStream.md)
 14. [KVCache-工业架构图](llm/KVCache-工业架构图.md)
 
-#### RAG - XY
+#### RAG
 
 1. [RAG 的核心思想是什么？为什么有效？解决了什么问题？](llm/[RAG.md](http://RAG.md))
 2. [RAG 系统的检索模块怎么设计？有哪些检索方法？怎么选择？](llm/RAGRetrievalDesign.md)
@@ -114,7 +114,7 @@
 10. [RAG 中 Query Expansion 如何优化查询？查询重写怎么实现？](llm/RAG_QueryExpansion.md)
 11. [字节跳动 RAG 实践手册](https://docs.qq.com/doc/DSXJiaE5taUtaVGx6?_t=1768892540919&nlc=1)
 
-### Agent - XY
+### Agent
 
 #### Agent Framework
 
