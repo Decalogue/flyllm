@@ -113,6 +113,7 @@
 9. [RAG 中的上下文窗口限制怎么处理？长文档如何优化？](llm/RAGContextWindowOptimization.md)
 10. [RAG 中 Query Expansion 如何优化查询？查询重写怎么实现？](llm/RAG_QueryExpansion.md)
 11. [字节跳动 RAG 实践手册](https://docs.qq.com/doc/DSXJiaE5taUtaVGx6?_t=1768892540919&nlc=1)
+12. [详解 BM25](llm/BM25.md)
 
 ### Agent
 
