@@ -104,7 +104,6 @@ ENV/
 # custom
 docs/
 data/
-interview/
 .vscode/
 .cursor/
 .claude/

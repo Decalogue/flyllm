@@ -233,6 +233,27 @@ find . -name "*.py" -type f | xargs grep -l "self-attention" | head -5
 git status
 ```
 
+### LeetCode 4-Day Sprint - State Recovery
+
+```bash
+# Check current sprint progress
+cat workspace/leetcode/coach/session-state.json | python3 -m json.tool
+
+# View completed Q&A records
+ls workspace/leetcode/coach/*.md
+
+# Resume sprint from last session
+# 1. Read session state
+# 2. Check current problem in 4-day plan
+grep -A 5 '"current_problem"' workspace/leetcode/coach/session-state.json
+cat leetcode/4-day-hot100-sprint-plan.md | grep -A 10 "current_problem"
+
+# Review today's problems
+day=$(grep '"active_day"' workspace/leetcode/coach/session-state.json | cut -d: -f2 | tr -d ',' | xargs)
+echo "Day $day Problems:"
+grep -A 50 "### Day $day:" leetcode/4-day-hot100-sprint-plan.md | grep -E '^\| [0-9]+' | head -20
+```
+
 ## Important Notes
 
 - **Active Development** - Focus on `/llm_v1/` for new LLM content (structured learning path)
