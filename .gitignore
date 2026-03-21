@@ -102,8 +102,10 @@ ENV/
 .mypy_cache/
 
 # custom
-docs/
-data/
 .vscode/
 .cursor/
 .claude/
+docs/
+data/
+frontend/node_modules/
+frontend/dist/

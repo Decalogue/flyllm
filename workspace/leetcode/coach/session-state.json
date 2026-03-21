@@ -6,9 +6,9 @@
     "current_day": 1,
     "total_days": 4,
     "start_date": "2026-03-19",
-    "last_updated": "2026-03-19 18:00:00",
+    "last_updated": "2026-03-19 19:20:00",
     "status": "in_progress",
-    "milestone": "已完成3题（283、169、001），开始015三数之和"
+    "milestone": "已完成Step 0-1（题目定位+特征映射），开始015三数之和Step 2-5"
   },
   "user_profile": {
     "level": "intermediate",

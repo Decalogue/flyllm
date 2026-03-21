@@ -1,0 +1,28 @@
+/* Kimi 蜂群风格 — Inter + Public Sans */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+/* 顶栏导航：由 Layout 注入 --nav-* 变量 */
+.app-layout .app-layout-nav-link {
+  color: var(--nav-inactive);
+  background: transparent;
+  font-weight: 500;
+}
+.app-layout .app-layout-nav-link--active {
+  color: var(--nav-active-color);
+  background: var(--nav-active-bg);
+  font-weight: 600;
+}
+.app-layout .app-layout-nav-link:not(.app-layout-nav-link--active):hover {
+  color: var(--nav-hover-color);
+  background: var(--nav-hover-bg);
+}
+
+.custom-placeholder input::placeholder,
+.custom-placeholder input::-webkit-input-placeholder {
+  color: #bfbfbf;
+  opacity: 1;
+}
+.custom-placeholder input[type='password']::placeholder {
+  color: #bfbfbf;
+  opacity: 1;
+}
