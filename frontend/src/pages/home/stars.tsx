@@ -760,6 +760,47 @@ export default function StarsPage() {
             <div style={{ fontSize: 12, color: '#94a3b8' }}>
               {BAGU_GROUP_LABEL[selected.group]} · 关联 {neighbors.length} 个知识点
             </div>
+            {selected.sourcePath ? (
+              <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {STARS_DOC_BASE_URL ? (
+                  <a
+                    href={`${STARS_DOC_BASE_URL.replace(/\/$/, '')}/${selected.sourcePath}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: '#38bdf8',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    打开原文 Markdown ↗
+                  </a>
+                ) : null}
+                <code
+                  style={{
+                    fontSize: 11,
+                    color: '#94a3b8',
+                    wordBreak: 'break-all',
+                    background: 'rgba(0,0,0,0.25)',
+                    padding: '6px 8px',
+                    borderRadius: 8,
+                    border: '1px solid rgba(148,163,184,0.2)',
+                  }}
+                >
+                  {selected.sourcePath}
+                </code>
+                {!STARS_DOC_BASE_URL ? (
+                  <span style={{ fontSize: 11, color: '#64748b' }}>
+                    在 <code style={{ fontSize: 10 }}>frontend/.env</code> 设置{' '}
+                    <code style={{ fontSize: 10 }}>STARS_DOC_BASE_URL</code>（如 GitHub blob 前缀）可一键打开在线原文
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
           </div>
           <div style={{ padding: '12px 18px', flex: 1, overflowY: 'auto' }}>
             <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#64748b', marginBottom: 8 }}>

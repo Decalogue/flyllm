@@ -199,7 +199,8 @@ function build() {
     if (rel.startsWith(`research${path.sep}`) || /vs|comparison|differences/i.test(base)) tier = 1;
     if (HUB_IDS.has(id)) tier = 3;
 
-    nodes.push({ id, label, group, tier, tips });
+    const sourcePath = path.posix.join('llm', rel.split(path.sep).join('/'));
+    nodes.push({ id, label, group, tier, tips, sourcePath });
     fileToId.set(file, id);
   }
 
@@ -254,6 +255,7 @@ function build() {
     group: '${n.group}',
     tier: ${n.tier} as 1 | 2 | 3,
     tips: [${n.tips.map((t) => `'${escapeTs(t)}'`).join(', ')}],
+    sourcePath: '${escapeTs(n.sourcePath)}',
   }`,
     )
     .join(',\n');

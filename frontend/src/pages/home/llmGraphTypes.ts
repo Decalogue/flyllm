@@ -8,6 +8,8 @@ export interface BaguNode {
   group: BaguGroup;
   tier: 1 | 2 | 3;
   tips: string[];
+  /** 仓库内 Markdown 路径，如 llm/TransformerArchitecture.md */
+  sourcePath: string;
 }
 
 export interface BaguLink {

@@ -11,6 +11,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，AI Agent 是为解决LLM被动响应的局限性，通过主动决策循环机制实现的状态感知-工具调用-环境交互系统，突破了LLM仅基于静态训练数据生成文本的能力边界。'],
+    sourcePath: 'llm/AIAgentVsLLMDifferences.md',
   },
   {
     id: 'a-li-bi-vs-ro-pe',
@@ -18,6 +19,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，ALiBi 是通过在注意力分数加入距离惩罚，实现免微调长文本外推的位置编码。'],
+    sourcePath: 'llm/ALiBiVsRoPE.md',
   },
   {
     id: 'actor-critic',
@@ -25,6 +27,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Actor-Critic是策略（Actor）和价值函数（Critic）的协同训练，用Critic预测 作为基线来降低策略梯度的方差，在LLM中Critic通常是一个与生成模型并行的价值头，A2C/A3C是其深度强化学习实现，PPO是其高级变体引入了裁剪和目标函数约束。'],
+    sourcePath: 'llm/ActorCritic.md',
   },
   {
     id: 'adapter-vs-lo-ra',
@@ -32,6 +35,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，Adapter 通过在 Transformer 层间插入新增模块（上投影+下投影+激活）实现参数微调，而 LoRA 通过低秩矩阵分解在现有权重上注入更新。Adapter 增加模型深度和延迟，LoRA 保持模型结构不变，两者分别代表架构扩展和权重分解两种参数高效微调范式。'],
+    sourcePath: 'llm/AdapterVsLoRA.md',
   },
   {
     id: 'agent-autonomy-control',
@@ -39,6 +43,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 自主性控制是一个分层权限仲裁系统，通过 "人类指令层 → 策略约束层 → 执行沙箱层" 的三级 gate 机制，将 LLM 的生成行为限制在预设的安全与意图边界内。'],
+    sourcePath: 'llm/AgentAutonomyControl.md',
   },
   {
     id: 'agent-autonomy-mechanism-and-control',
@@ -46,6 +51,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent自主性是一个在自由度与安全性之间动态寻优的控制系统，通过可编程约束引擎实现分层授权管理，在保持任务执行效率的同时防止能力滥用和越权操作。'],
+    sourcePath: 'llm/AgentAutonomyMechanismAndControl.md',
   },
   {
     id: 'agent-core-modules',
@@ -53,6 +59,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，Agent是一个以LLM为推理中枢，通过循环执行「感知→推理→行动→记忆」的自主决策系统，其核心难点在于打破LLM的被动响应模式，实现状态ful的自主任务拆解与工具编排。'],
+    sourcePath: 'llm/AgentCoreModules.md',
   },
   {
     id: 'agent-decision-framework',
@@ -60,6 +67,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 决策流程是为了解决"LLM 缺乏自主任务执行与错误恢复能力"的问题，通过"感知-推理-行动-记忆"闭环控制机制实现的自主任务处理架构。'],
+    sourcePath: 'llm/AgentDecisionFramework.md',
   },
   {
     id: 'agent-error-recovery-and-retry',
@@ -67,6 +75,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 错误恢复是一个基于状态机 + 指数退避的容错闭环，通过可观测性分层区分瞬时故障与致命错误，用幂等执行保障最终一致性。'],
+    sourcePath: 'llm/AgentErrorRecoveryAndRetry.md',
   },
   {
     id: 'agent-memory-mechanism',
@@ -74,6 +83,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 记忆机制是为了解决上下文窗口有限与长期任务连续性之间的矛盾，通过分层存储 + 检索增强实现的信息持久化架构。'],
+    sourcePath: 'llm/AgentMemoryMechanism.md',
   },
   {
     id: 'agent-memory-system-design',
@@ -81,6 +91,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，Agent 记忆系统是一个为了解决大模型上下文窗口有限与任务需要持续状态之间的矛盾，通过分层存储架构（短时工作记忆 + 长时外部记忆）实现的认知增强结构。'],
+    sourcePath: 'llm/AgentMemorySystemDesign.md',
   },
   {
     id: 'agent-planning-design',
@@ -88,6 +99,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 规划是一个为了将高层目标分解为可执行动作序列，通过状态空间搜索 + 启发式评估实现的序列决策过程。'],
+    sourcePath: 'llm/AgentPlanningDesign.md',
   },
   {
     id: 'agent-reflection-mechanism',
@@ -95,6 +107,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 反思是一种通过「执行-观察-评估-修正」的元认知循环，将环境反馈内化为策略更新的自我迭代机制。'],
+    sourcePath: 'llm/AgentReflectionMechanism.md',
   },
   {
     id: 'agent-skill-extraction',
@@ -102,6 +115,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Agent 技能学习是一个将执行轨迹通过逆强化学习/模式挖掘提炼为可复用策略（Skill Policy）的过程，核心挑战在于轨迹噪声过滤、意图对齐与跨任务泛化。'],
+    sourcePath: 'llm/AgentSkillExtraction.md',
   },
   {
     id: 'attention-complexity-optimization',
@@ -109,6 +123,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，注意力优化的核心是将全局的 密集计算转化为稀疏计算、低秩近似或分块计算，通过引入局部性假设、核方法或递归结构，在计算精度与计算成本间寻求次线性或接近线性的权衡。'],
+    sourcePath: 'llm/AttentionComplexityOptimization.md',
   },
   {
     id: 'attention-pattern-analysis',
@@ -116,6 +131,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，注意力权重可视化是大模型内部信息路由机制的拓扑显影，揭示了 Token 间的语义依赖与特征聚合路径。'],
+    sourcePath: 'llm/AttentionPatternAnalysis.md',
   },
   {
     id: 'attention-vanishing-gradient',
@@ -123,6 +139,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，标准注意力机制会在 Softmax 阶段引发梯度消失，这是一个因点积方差随维度增大而放大，导致 Softmax 分布极化并致使梯度归零的数值稳定性问题。'],
+    sourcePath: 'llm/AttentionVanishingGradient.md',
   },
   {
     id: 'bm25',
@@ -130,6 +147,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['- ：语料库中文档总数 - ：包含词项 的文档数 作用：惩罚常见词，奖励稀有词。出现在越少文档中的词，区分度越高。'],
+    sourcePath: 'llm/BM25.md',
   },
   {
     id: 'bpe-algorithm',
@@ -137,6 +155,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，BPE（Byte Pair Encoding） 是一种基于贪婪合并策略的无监督子词切分算法，通过迭代合并最高频的字符对来构建变长词汇表，在压缩文本长度与引入语义边界之间取得平衡。'],
+    sourcePath: 'llm/BPE-algorithm.md',
   },
   {
     id: 'batch-inference-optimization',
@@ -144,6 +163,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，批量推理优化是为了解决 GPU 内存带宽瓶颈 与 请求长度异构 的矛盾，通过动态请求聚合与流水线化调度，在延迟与吞吐之间做帕累托最优的动态平衡。'],
+    sourcePath: 'llm/BatchInferenceOptimization.md',
   },
   {
     id: 'bf16-vs-fp16',
@@ -151,6 +171,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，BF16 与 FP16 是为了解决深度学习显存瓶颈，通过重新分配指数与尾数位权重的16位半精度浮点压缩结构。'],
+    sourcePath: 'llm/Bf16VsFp16.md',
   },
   {
     id: 'catastrophic-forgetting',
@@ -158,6 +179,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，灾难性遗忘是持续学习中的稳定性-可塑性权衡问题：模型在学习新任务（指令微调）时，通过梯度更新覆盖或干扰了预训练阶段编码的通用知识表征，导致在新任务上性能提升的同时，原始语言能力（如通用文本理解、世界知识）显著下降。'],
+    sourcePath: 'llm/CatastrophicForgetting.md',
   },
   {
     id: 'causal-mask',
@@ -165,6 +187,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，因果掩码（Causal Mask） 是一种上三角负无穷屏蔽矩阵，通过强制注意力矩阵的对角线以上位置为 ，阻止当前位置关注未来信息，确保自回归生成符合时间因果律，实现从左到右的无泄漏预测。'],
+    sourcePath: 'llm/CausalMask.md',
   },
   {
     id: 'chain-function-call',
@@ -172,6 +195,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 链式调用是一个为了解决"多步推理任务中工具依赖编排"问题，通过"有向无环图(DAG)调度 + 拓扑排序执行"机制实现的异步执行框架。'],
+    sourcePath: 'llm/ChainFunctionCall.md',
   },
   {
     id: 'context-window-limit-and-extension',
@@ -179,6 +203,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，上下文长度限制是 Self-Attention 计算/内存复杂度 与 位置编码外推能力 双重约束的产物；扩展方法通过 稀疏注意力、位置编码外推、上下文压缩 三大技术路线突破物理显存瓶颈。'],
+    sourcePath: 'llm/ContextWindowLimitAndExtension.md',
   },
   {
     id: 'cross-vs-self-attention',
@@ -186,6 +211,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，Cross-Attention 是跨两个不同序列的注意力机制，其中 Query 来自目标序列而 Key/Value 来自源序列，实现信息的条件融合；Self-Attention 则是单序列的内部注意力，Q/K/V 同源，用于捕获序列内依赖。'],
+    sourcePath: 'llm/CrossVsSelfAttention.md',
   },
   {
     id: 'dapo-vs-grpo',
@@ -193,6 +219,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，DAPO（Distributed Advantage Policy Optimization）是GRPO的分布式扩展，通过多机并行采样将Group size从单机的 扩展到跨节点的 ，利用全局奖励分布计算优势，实现线性扩展的variance reduction，在32节点上相比GRPO额外降低方差35%，训练速度提升5倍。'],
+    sourcePath: 'llm/DAPO-vs-GRPO.md',
   },
   {
     id: 'dpo-vs-rlhf',
@@ -200,6 +227,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，DPO是RLHF的变分优化（Variational Optimization），通过隐式奖励推导将RL问题转化为监督学习，直接优化策略满足偏好概率，跨过显式奖励和PPO优化，无需价值函数即可实现人类偏好对齐。'],
+    sourcePath: 'llm/DPO-vs-RLHF.md',
   },
   {
     id: 'data-synthesis',
@@ -207,6 +235,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，数据合成是通过自举（Bootstrap）机制利用已有模型或规则生成新训练样本，解决标注成本高和数据稀缺问题，关键在于质量-多样性权衡与幻觉抑制。'],
+    sourcePath: 'llm/DataSynthesis.md',
   },
   {
     id: 'decoder-only',
@@ -214,6 +243,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，Decoder-only 架构是一个为了解决生成任务通用性问题，通过严格的下三角掩码（Causal Mask）机制实现自回归条件概率建模的极简自注意力网络。'],
+    sourcePath: 'llm/Decoder-only.md',
   },
   {
     id: 'decoding-and-temperature',
@@ -221,6 +251,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，解码策略是在自回归生成的概率空间中寻找最优序列的启发式搜索算法，而 Temperature 是通过缩放 Logits 来动态重塑概率分布平滑度的热力学控制系数。'],
+    sourcePath: 'llm/DecodingAndTemperature.md',
   },
   {
     id: 'early-stopping',
@@ -228,6 +259,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，早停（Early Stopping） 是一种自适应训练终止策略，通过在验证集上监控模型性能，在训练损失继续下降但泛化性能开始恶化时提前终止，利用验证集作为代理测试集实现隐式正则化，防止模型过度拟合训练数据。'],
+    sourcePath: 'llm/EarlyStopping.md',
   },
   {
     id: 'embedding',
@@ -235,6 +267,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，RAG Embedding 模型选择是一个在语义对齐能力、推理成本、语言/领域适配之间做权衡的决策问题：通过选对编码器，使查询向量与文档向量在同一语义空间内具备高区分度，从而最大化检索召回率与精排前的粗排质量。', '选型错误会导致：语义鸿沟（同义不召）、维度浪费（高维低效）、领域漂移（通用模型在垂直领域 MRR 暴跌）。'],
+    sourcePath: 'llm/Embedding.md',
   },
   {
     id: 'exploration-exploitation',
@@ -242,6 +275,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Exploration（探索）在LLM中是采样低概率token（温度 0）以发现新回答模式，Exploitation（利用）是贪婪解码（温度=0）使用当前最优策略，在RLHF中表现为高熵策略（多样化生成）vs 低熵策略（保守生成）的权衡，平衡点是策略熵 ，避免模式崩溃或随机乱码。'],
+    sourcePath: 'llm/Exploration-Exploitation.md',
   },
   {
     id: 'finetuning-data-augmentation',
@@ -249,6 +283,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，微调数据增强是通过保留语义不变性的变换生成语义等价但表面形式多样化的样本，核心策略包括回译（Back-translation）、Self-consistency解码、Prompt工程变换、对抗扰动，使 条原始数据扩展到 条，提升模型鲁棒性与泛化能力，减少过拟合 20-40%。'],
+    sourcePath: 'llm/Finetuning-DataAugmentation.md',
   },
   {
     id: 'finetuning-learning-rate',
@@ -256,6 +291,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，微调学习率是控制模型在预训练基础上进行任务适应的参数更新步长，其选择需要在"快速收敛"和"不破坏预训练表征"之间进行精细权衡。过大导致灾难性遗忘和优化不稳定，过小导致收敛缓慢和欠拟合。'],
+    sourcePath: 'llm/Finetuning-LearningRate.md',
   },
   {
     id: 'flash-attention',
@@ -263,6 +299,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，FlashAttention 是一种 IO 感知（IO-aware）的精确注意力算法，通过分块（tiling）和重计算（recomputation）技术，在不改变数学结果的前提下，将注意力计算的内存复杂度从 降至 ，突破长序列训练的显存墙。'],
+    sourcePath: 'llm/FlashAttention.md',
   },
   {
     id: 'full-vs-parameter-efficient',
@@ -270,6 +307,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，全量微调是更新预训练模型所有参数（ ）的密集优化，参数高效微调则通过冻结主干仅更新少量增量参数（ ）实现任务适配，在保持 95% 性能的同时将训练成本降低 90%。'],
+    sourcePath: 'llm/FullVsParameterEfficient.md',
   },
   {
     id: 'function-call-context-management',
@@ -277,6 +315,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 的上下文维护是一个状态机驱动的有限历史窗口管理问题，通过对话级消息链 + 工具结果注入机制实现多轮语义连续性。'],
+    sourcePath: 'llm/FunctionCallContextManagement.md',
   },
   {
     id: 'function-call-error-handling',
@@ -284,6 +323,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 错误处理是一个输入验证 → 错误分类 → 降级恢复的三层防御体系，核心目标是在用户意图保真与系统稳定性之间建立隔离墙。'],
+    sourcePath: 'llm/FunctionCallErrorHandling.md',
   },
   {
     id: 'function-call-fault-tolerance',
@@ -291,6 +331,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 容错是一套基于状态机 + 幂等控制 + 指数退避的端到端可靠性工程，核心目标是在不确定网络环境下将调用成功率逼近 100%。'],
+    sourcePath: 'llm/FunctionCallFaultTolerance.md',
   },
   {
     id: 'function-call-latency-optimization',
@@ -298,6 +339,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 是一个解码时工具选择 + 结构化输出的联合优化问题，延迟瓶颈在于工具空间大时的 token-by-token 解码成本，准确性瓶颈在于工具描述的语义对齐与边界分类。'],
+    sourcePath: 'llm/FunctionCallLatencyOptimization.md',
   },
   {
     id: 'function-call-multi-turn',
@@ -305,6 +347,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 多轮对话是一个基于状态机的递归执行循环，通过将工具执行结果（Tool Message）回注上下文，实现 LLM 与外部系统的持续交互，直到达成终止条件或达到最大轮次。'],
+    sourcePath: 'llm/FunctionCallMultiTurn.md',
   },
   {
     id: 'function-call-parallel',
@@ -312,6 +355,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 的并行调用是一个通过 并发槽位分配 + 异步 I/O 多路复用 机制，在单请求生命周期内最大化工具吞吐量的调度结构。'],
+    sourcePath: 'llm/FunctionCallParallel.md',
   },
   {
     id: 'function-call-permission-control',
@@ -319,6 +363,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 权限控制是一个通过「声明式 Schema 白名单 + 运行时策略引擎」双层架构，解决 LLM 对工具访问越界问题的沙箱隔离机制。'],
+    sourcePath: 'llm/FunctionCallPermissionControl.md',
   },
   {
     id: 'function-call-schema',
@@ -326,6 +371,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 是 LLM 与外部工具世界的标准化协议接口，通过结构化 JSON Schema 描述函数签名，使模型能精确输出可执行的函数调用指令。'],
+    sourcePath: 'llm/FunctionCallSchema.md',
   },
   {
     id: 'function-call-streaming',
@@ -333,6 +379,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 流式输出是为了解决首Token延迟问题，通过增量解析 Partial JSON机制，在模型生成过程中实时提取工具调用参数的边计算边消费架构。'],
+    sourcePath: 'llm/FunctionCallStreaming.md',
   },
   {
     id: 'function-call-validation',
@@ -340,6 +387,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Call 验证机制是一套「输入契约约束系统」，通过 Schema 声明式定义参数类型/范围/依赖关系，在推理后、执行前进行多阶段校验，防止非法输入穿透到业务层。'],
+    sourcePath: 'llm/FunctionCallValidation.md',
   },
   {
     id: 'function-calling-training',
@@ -347,6 +395,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Function Calling 是为了解决大模型与外部世界交互的问题，通过将工具描述注入上下文，训练模型生成结构化参数来实现的一种解码时工具选择机制。'],
+    sourcePath: 'llm/FunctionCallingTraining.md',
   },
   {
     id: 'gqa',
@@ -354,6 +403,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，GQA (Grouped Query Attention) 是 Multi-Query Attention (MQA) 和 Multi-Head Attention (MHA) 的折中方案，通过将查询头分组并让每组共享一个键/值头，在保持 MHA 表达能力的同时将 KV-cache 内存减少为原来的 （ 为分组数），推理速度提升 30-40%。'],
+    sourcePath: 'llm/GQA.md',
   },
   {
     id: 'grpo',
@@ -361,6 +411,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，GRPO（Group Relative Policy Optimization）通过组内相对奖励替代传统价值函数：从同一prompt采样 个回答，用组内标准化奖励 作为优势函数，无需训练Critic，内存减少40%，训练速度提升1.5倍，同时通过相对排序天然避免奖励尺度问题。'],
+    sourcePath: 'llm/GRPO.md',
   },
   {
     id: 'hybrid-search',
@@ -368,6 +419,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Hybrid Search 是为了解决纯向量搜索的语义漂移问题，通过融合向量相似度与关键词匹配分数实现的多路召回融合算法。'],
+    sourcePath: 'llm/HybridSearch.md',
   },
   {
     id: 'inference-cache-design',
@@ -375,6 +427,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，推理缓存是一个为了解决大模型自回归生成中重复计算冗余问题，通过 KV-Cache 机制实现的内存换计算优化结构。'],
+    sourcePath: 'llm/InferenceCacheDesign.md',
   },
   {
     id: 'inference-quantization',
@@ -382,6 +435,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，模型量化是一个为了在推理阶段用低比特数值（INT8/INT4/INT1）近似浮点权重/激活，通过缩小内存占用与计算位宽来换取吞吐提升与功耗降低的压缩技术。'],
+    sourcePath: 'llm/InferenceQuantization.md',
   },
   {
     id: 'info-nce',
@@ -389,6 +443,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['InfoNCE 的核心目标是最大化正样本对之间的互信息： 公式中各变量的详细解释 1. I(x; y) - 互信息（Mutual Information） - 定义：衡量两个随机变量 x 和 y 之间的相互依赖程度 - 单位：比特（bits）或纳特（nats） - 取值范围：I(x; y) ≥ 0 - I(x; y) = 0：x 和 y 相互独立 - I(x; y) 0：x 和 y 相关，值越大相', '- I(z; z^+) 大 → z 和 z^+ 高度相关 - 说明模型学习到了有意义的表示 - 正样本对（同一图像的不同增强）应该相似 互信息的直观理解： - I(z; z^+) = 0：z 和 z^+ 完全无关（学习失败） - I(z; z^+) 大：z 和 z^+ 高度相关（学习成功） - 通过最大化互信息，模型学习到"语义相似"的表示 互信息的可视化理解 关键关系： - H(x)：x 的总信'],
+    sourcePath: 'llm/InfoNCE.md',
   },
   {
     id: 'instructions-data-construction',
@@ -396,6 +451,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，指令微调数据构建是通过将原始文本转化为 (指令, 输入, 输出) 三元组格式，使模型学习遵循人类指令的映射能力，关键在于任务多样性覆盖和意图-响应的质量对齐。'],
+    sourcePath: 'llm/InstructionsDataConstruction.md',
   },
   {
     id: 'kl-divergence-penalty',
@@ -403,6 +459,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，KL散度惩罚是策略分布约束机制，通过在PPO目标中增加 ，防止优化后策略 过度偏离参考策略 （通常为SFT模型），避免奖励黑客和模式崩溃（熵从4.5降至2.8）。'],
+    sourcePath: 'llm/KL-Divergence-Penalty.md',
   },
   {
     id: 'kv-cache-gemini',
@@ -410,6 +467,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，KV Cache 是一种用空间换时间的自回归解码加速技术，通过缓存历史 Token 在 Attention 层生成的 Key 和 Value 向量，消除冗余的矩阵乘法计算。'],
+    sourcePath: 'llm/KVCache-gemini.md',
   },
   {
     id: 'kv-cache-kimi',
@@ -417,6 +475,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，KV Cache 是为了解决自回归生成中重复计算历史 token 的注意力键值对问题，通过空间换时间策略，将已计算的前缀 KV 张量缓存复用的内存驻留结构。'],
+    sourcePath: 'llm/KVCache-kimi.md',
   },
   {
     id: 'kv-cache-工业架构图',
@@ -424,6 +483,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['--- 🎯 工业架构图 mermaid flowchart TD classDef default fill: f1f5f9,stroke: 64748b,stroke-width:2px; classDef cache fill: fef08a,stroke: ca8a04,stroke-width:2px,stroke-dasharray: 5 5; classDef compute fil'],
+    sourcePath: 'llm/KVCache-工业架构图.md',
   },
   {
     id: 'llm-stream',
@@ -431,6 +491,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['题目 考查点 ------ -------- LLM 流式输出和一次性返回有什么区别？为什么要做流式？', '流式 vs 非流式、TTFB、体验与内存 SSE 和 WebSocket 在 LLM 场景下怎么选？各自适用什么情况？'],
+    sourcePath: 'llm/LLMStream.md',
   },
   {
     id: 'lang-chain-core-components-and-agent-design',
@@ -438,6 +499,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，LangChain 是一个为了解决 "LLM 缺乏外部世界连接能力与复杂任务规划能力" 问题，通过 模块化管道编排 + ReAct 循环决策机制 实现的 大模型应用开发框架 。'],
+    sourcePath: 'llm/LangChainCoreComponentsAndAgentDesign.md',
   },
   {
     id: 'latency-throughput-optimization',
@@ -445,6 +507,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['推理延迟优化本质上是通过减少每个 token 的浮点运算量（FLOPs） 或提高硬件利用率（TFLOPS） 来降低生成时间；吞吐量优化则是通过批量聚合（Batching）和请求调度将硬件算力"填满"以提升整体利用率。'],
+    sourcePath: 'llm/LatencyThroughputOptimization.md',
   },
   {
     id: 'layer-norm-vs-batch-norm',
@@ -452,6 +515,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 1 as 1 | 2 | 3,
     tips: ['1. BN: 对每个特征维度，计算跨 batch 的均值 和方差 ，然后 ，最后学一个 affine 变换 。', '2. LN: 对每个样本，计算其所有特征维度的均值 和方差 ，然后 ，同样接 affine。'],
+    sourcePath: 'llm/LayerNormVsBatchNorm.md',
   },
   {
     id: 'linear-attention',
@@ -459,6 +523,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，线性注意力通过核技巧将 softmax 注意力分解为特征映射的内积，利用矩阵乘法的结合律改变计算顺序，将复杂度从 降至 ，在长序列场景下实现线性增长而非二次增长。'],
+    sourcePath: 'llm/LinearAttention.md',
   },
   {
     id: 'lo-ra-principle',
@@ -466,6 +531,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，LoRA (Low-Rank Adaptation) 是一种基于低秩矩阵分解的参数高效微调方法，通过在预训练权重旁路注入可训练的低秩矩阵 （其中 ， ），在冻结原权重的基础上，仅优化极少量参数（0.1%-1%）即可达到全量微调效果。'],
+    sourcePath: 'llm/LoRA-Principle.md',
   },
   {
     id: 'lo-ra',
@@ -473,6 +539,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，LoRA 是为了解决大模型微调显存爆炸的问题，通过低秩矩阵分解旁路实现的参数高效微调（PEFT）算法。'],
+    sourcePath: 'llm/LoRA.md',
   },
   {
     id: 'local-attention',
@@ -480,6 +547,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，局部注意力是一种基于局部性假设的稀疏注意力机制，通过将每个 token 的注意力范围限制在固定大小的滑动窗口内，将复杂度从 降至 ，在捕获短距离依赖的同时，依赖层级堆叠实现远距离信息传播。'],
+    sourcePath: 'llm/LocalAttention.md',
   },
   {
     id: 'longformer-sliding-window',
@@ -487,6 +555,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Longformer 的滑动窗口注意力通过将全局密集注意力矩阵稀疏化为带状结构（banded matrix），仅计算中心对角线及两侧固定宽度 内的注意力，将复杂度从 降至 ，使 Transformer 可处理 4096+ 长度的文档，同时通过 dilation 和全局 token 机制捕获长距离依赖。'],
+    sourcePath: 'llm/LongformerSlidingWindow.md',
   },
   {
     id: 'mha',
@@ -494,6 +563,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['- 注意力分数： QK^T / √d_k - 缩放原因：防止点积过大导致 softmax 梯度消失 - 多头拼接： Concat(head₁, ..., headₕ)W^O'],
+    sourcePath: 'llm/MHA.md',
   },
   {
     id: 'mem-gpt-layered-memory-and-virtual-context',
@@ -501,6 +571,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，MemGPT是一个为解决有限上下文窗口与无限记忆需求的矛盾，通过操作系统式分页管理与三级存储架构实现的虚拟上下文系统，将LLM从"短期记忆受限"提升为"永久记忆可寻址"。'],
+    sourcePath: 'llm/MemGPTLayeredMemoryAndVirtualContext.md',
   },
   {
     id: 'memory-conflict-detection-and-resolution',
@@ -508,6 +579,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，记忆冲突检测是一个基于时序一致性感知的实体消歧问题，通过建立版本向量与真值溯源机制，在分布式记忆系统中识别并解决同一实体在不同时间戳下的描述矛盾。'],
+    sourcePath: 'llm/MemoryConflictDetectionAndResolution.md',
   },
   {
     id: 'memory-hierarchy-architecture',
@@ -515,6 +587,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，AI记忆分层 是一个为了解决「上下文窗口有限 vs 信息无限」矛盾，通过 时间衰减 + 重要性过滤 + 向量索引 机制实现的分级存储-检索系统。'],
+    sourcePath: 'llm/MemoryHierarchyArchitecture.md',
   },
   {
     id: 'memory-retrieval-scoring',
@@ -522,6 +595,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，记忆检索得分函数是一个多目标优化问题，通过加权融合语义相关性、时间新鲜度和业务重要性三个正交维度，实现对海量记忆的高效排序与截断。'],
+    sourcePath: 'llm/MemoryRetrievalScoring.md',
   },
   {
     id: 'memory-system-evaluation-metrics-and-tradeoffs',
@@ -529,6 +603,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，记忆系统评估是一个在多维目标空间中寻求帕累托最优的决策问题，通过建立加权效用函数在命中率、延迟、一致性、召回率等指标间进行动态权重分配和冲突裁决。'],
+    sourcePath: 'llm/MemorySystemEvaluationMetricsAndTradeoffs.md',
   },
   {
     id: 'memory-write-storm-and-retrieval-blind-spot',
@@ -536,6 +611,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，这是三个相互关联的工程级问题： - 写入风暴：高频交互下记忆写入 I/O 成为瓶颈，单条实时落盘导致向量库/索引压力剧增。', '- 检索盲区：关键记忆因语义漂移、Top-K 截断或索引未更新而未被召回，Agent 出现「失忆」且无法自我察觉。'],
+    sourcePath: 'llm/MemoryWriteStormAndRetrievalBlindSpot.md',
   },
   {
     id: 'model-inference',
@@ -543,6 +619,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，模型推理是一个自回归条件概率生成过程，通过已训练参数将输入token序列映射为输出token序列，每一步最大化条件概率 。'],
+    sourcePath: 'llm/ModelInference.md',
   },
   {
     id: 'multi-agent-system',
@@ -550,6 +627,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Multi-Agent 是一个为了解决"复杂任务分解与并行执行"问题，通过"消息总线 + 状态共享"机制实现的分布式认知计算架构。'],
+    sourcePath: 'llm/MultiAgentSystem.md',
   },
   {
     id: 'multi-agent-system-design',
@@ -557,6 +635,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，Multi-Agent系统是为解决单一Agent能力边界限制，通过分布式决策和协议化通信实现的任务分解-角色分工-结果聚合系统，使LLM能从单体智能升级为协同智能。'],
+    sourcePath: 'llm/MultiAgentSystemDesign.md',
   },
   {
     id: 'multi-head-attention',
@@ -564,6 +643,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，多头注意力通过将输入投影到多个低维子空间并行计算注意力，再将结果拼接，使模型能同时捕获不同语义关系（句法、语义、指代等），每个头专注特定模式，实现特征多样性增强和表达能力指数级提升。'],
+    sourcePath: 'llm/MultiHeadAttention.md',
   },
   {
     id: 'multi-task-finetuning',
@@ -571,6 +651,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，多任务微调是在共享参数空间中联合优化多个任务目标，通过任务间的梯度对齐、加权平衡和表征解耦，在提升整体性能的同时避免负迁移。核心挑战是不同任务的梯度方向冲突、数据量不平衡和优化速度差异。'],
+    sourcePath: 'llm/MultiTaskFinetuning.md',
   },
   {
     id: 'offline-rl-for-llm',
@@ -578,6 +659,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，离线（Offline）RL通过静态数据集训练策略，无需在线交互采样，利用重要性采样或保守优化从现有轨迹（SFT数据、人类对话、模型生成）中学习，避免昂贵的在线生成成本，样本效率提升10-100倍。'],
+    sourcePath: 'llm/Offline-RL-for-LLM.md',
   },
   {
     id: 'ppo-vs-reinforce',
@@ -585,6 +667,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，PPO通过重要性采样裁剪和值函数基线实现保守策略更新，降低策略更新分布差异（KL散度）可控制在0.02以内，而REINFORCE用朴素策略梯度无约束，导致KL爆炸（ 5）、方差极大（ ），在长序列中需要100-1000倍样本才能收敛。'],
+    sourcePath: 'llm/PPO-vs-REINFORCE.md',
   },
   {
     id: 'paged-attention',
@@ -592,6 +675,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，PagedAttention 是为了解决 LLM 推理中 KV Cache 内存碎片化和预留浪费问题，通过借鉴 OS 虚拟内存的页式管理机制，实现非连续、动态分配的 KV Cache 存储结构。'],
+    sourcePath: 'llm/PagedAttention.md',
   },
   {
     id: 'parallelism',
@@ -599,6 +683,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['数据并行：本质是 "复制模型，分割数据"，通过梯度聚合实现多卡线性加速，解决显存充裕但批次训练慢的问题。', '模型并行：本质是 "分割模型，复制数据"，将巨型模型层/张量拆分到多卡，解决单卡显存无法容纳完整模型的问题。'],
+    sourcePath: 'llm/Parallelism.md',
   },
   {
     id: 'policy-gradient-reinforce',
@@ -606,6 +691,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Policy Gradient是策略参数的直接优化，通过梯度上升最大化期望奖励 ，而REINFORCE是其蒙特卡洛实现，使用完整回合的累积回报 作为无偏但高方差的价值估计。'],
+    sourcePath: 'llm/PolicyGradient-REINFORCE.md',
   },
   {
     id: 'position-bias',
@@ -613,6 +699,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，位置偏置是大模型在处理长文本时，因注意力机制缺陷导致过度关注首尾信息而忽略中间内容的“Lost in the Middle”现象。'],
+    sourcePath: 'llm/PositionBias.md',
   },
   {
     id: 'positional-encoding',
@@ -620,6 +707,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，这是打破注意力排列不变性，注入时序或相对距离信息的特征增强机制。'],
+    sourcePath: 'llm/PositionalEncoding.md',
   },
   {
     id: 'pretraining-finetuning-instruction-tuning',
@@ -627,6 +715,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 阶段 本质定义 ------ ---------- 预训练 在海量无标注语料上通过自监督学习任务（MLM/CLM）构建通用语义表征空间，习得语言知识与世界常识 微调 在特定领域标注数据上，以预训练参数为初始化，通过监督学习将通用能力适配到下游任务 指令微调 通过 (指令, 输入, 输出) 三元组形式的数据，训练模型理解并遵循人类指令意图，实现跨任务泛化 -'],
+    sourcePath: 'llm/PretrainingFinetuningInstructionTuning.md',
   },
   {
     id: 'q-lo-ra-principle',
@@ -634,6 +723,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，QLoRA (Quantized LoRA) 是在 LoRA 基础上引入 4-bit NormalFloat 量化技术的大模型微调方法，通过冻结的 4-bit 量化基础模型（LLM.int8() 改进）和 16-bit LoRA 适配器，在保持 15.7 位有效精度的同时，将 65B 模型显存需求从 780GB 降至 48GB，实现消费级 GPU 微调千亿级模型。'],
+    sourcePath: 'llm/QLoRA-Principle.md',
   },
   {
     id: 'rag',
@@ -641,6 +731,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，RAG 是一个为了解决大模型知识滞后与幻觉问题，通过动态检索外部知识库来扩展上下文并约束生成的架构范式。'],
+    sourcePath: 'llm/RAG.md',
   },
   {
     id: 'rag-chunking-strategy',
@@ -648,6 +739,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，文档分块是一个为了在 Embedding 模型的上下文限制与语义完整性之间取得平衡，通过控制文本粒度来最大化检索召回率与答案相关性的工程策略。'],
+    sourcePath: 'llm/RAGChunkingStrategy.md',
   },
   {
     id: 'rag-context-window-optimization',
@@ -655,6 +747,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，RAG 的上下文窗口限制是一个检索精度与生成质量的联合优化问题，通过分块-重排序-截断/压缩的三级策略，在信息密度与位置偏见之间寻找帕累托最优。'],
+    sourcePath: 'llm/RAGContextWindowOptimization.md',
   },
   {
     id: 'rag-retrieval-design',
@@ -662,6 +755,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，RAG检索模块是一个为解决LLM知识滞后与幻觉问题，通过语义对齐+多路召回+重排精筛三级架构实现的知识外挂系统。'],
+    sourcePath: 'llm/RAGRetrievalDesign.md',
   },
   {
     id: 'rag-query-expansion',
@@ -669,6 +763,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Query Expansion 是为了解决用户原始查询语义稀疏/偏移导致的检索失效问题，通过生成语义等价或互补的查询变体来扩展检索覆盖面的查询增强策略。'],
+    sourcePath: 'llm/RAG_QueryExpansion.md',
   },
   {
     id: 'rlhf-full-process',
@@ -676,6 +771,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，RLHF是三阶段流水线：SFT阶段让模型学会遵循指令（30k数据），RM阶段训练奖励模型捕捉人类偏好（50-100k比较对），PPO阶段用强化学习优化策略提升人类满意度（10-50万prompt），实现从"讲人话"到"合人意"的能力跃迁。'],
+    sourcePath: 'llm/RLHF-FullProcess.md',
   },
   {
     id: 'rms-norm',
@@ -683,6 +779,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['RMSNorm 本质上是一种仅通过均方根(RMS)进行缩放、无需均值归一化的归一化层，以更低计算成本获得与 LayerNorm 等效的稳定训练效果。'],
+    sourcePath: 'llm/RMSNorm.md',
   },
   {
     id: 're-act-framework',
@@ -690,6 +787,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，ReAct 是一个通过交错生成"推理轨迹(Reasoning)"与"动作执行(Action)"来解决多步决策问题的协同式 Agent 架构。'],
+    sourcePath: 'llm/ReActFramework.md',
   },
   {
     id: 're-act-framework-core-mechanism',
@@ -697,6 +795,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，ReAct是为解决LLM静态推理的局限性，通过交错生成推理轨迹（Reasoning Trace）与任务特定行动（Task-specific Actions）实现的认知-执行双循环框架，使LLM能够动态调整策略并基于实时观察迭代优化决策。'],
+    sourcePath: 'llm/ReActFrameworkCoreMechanism.md',
   },
   {
     id: 'reinforcement-learning-llm',
@@ -704,6 +803,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，RL在LLM中的应用前提是将文本生成建模为序列决策过程，其中Policy是参数化的语言模型 ，Action Space是词汇表 （大小50k-100k），Reward是回答质量的延迟奖励函数 ，通过最大化累积奖励实现指令对齐。'],
+    sourcePath: 'llm/ReinforcementLearningLLM.md',
   },
   {
     id: 'rerank-explanation',
@@ -711,6 +811,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Rerank 是一个为了解决"双塔召回粗粒度、语义漂移"问题，通过"细粒度交叉编码器"对候选集进行精准重排的精排模块。'],
+    sourcePath: 'llm/RerankExplanation.md',
   },
   {
     id: 'retrieval-methods-comparison',
@@ -718,6 +819,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['--- 一、核心定性 Sparse Retrieval：基于词汇匹配的离散表示检索，通过精确词项重叠计算相关性，本质是"关键词命中游戏"。', 'Dense Retrieval：基于语义向量的连续表示检索，通过嵌入空间中的向量相似度捕捉语义相关性，本质是"语义近邻搜索"。'],
+    sourcePath: 'llm/RetrievalMethodsComparison.md',
   },
   {
     id: 'reward-hacking',
@@ -725,6 +827,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Reward Hacking是模型利用奖励函数的缺陷或漏洞，通过非预期行为获取高奖励但实际质量下降的现象，例如：生成长篇大论（长度偏置）、过度使用emoji、重复关键词、过度道歉，在RLHF中表现为RM分数↑但人类满意度↓，形成目标错位（Goal Misalignment） 。'],
+    sourcePath: 'llm/Reward-Hacking.md',
   },
   {
     id: 'reward-model-training',
@@ -732,6 +835,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Reward Model训练是学习一个标量评分函数 拟合人类偏好，通过Bradley-Terry排序损失将成对比较转化为概率预测，目标是最大化偏好对的一致性，而非预测绝对奖励值。'],
+    sourcePath: 'llm/Reward-Model-Training.md',
   },
   {
     id: 'ro-pe',
@@ -739,6 +843,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，RoPE (旋转位置编码) 是一个为了解决 Transformer 长度泛化问题，通过将绝对位置映射为复数域旋转矩阵，从而在 QK 点积时天然实现相对位置编码的代数结构。'],
+    sourcePath: 'llm/RoPE.md',
   },
   {
     id: 'sft-loss-design',
@@ -746,6 +851,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，SFT损失是指令响应的条件概率最大化，仅对回答部分（Response）计算交叉熵；而预训练损失是无条件自回归语言建模，对全序列（包括用户指令）计算均匀交叉熵，两者差异在于注意力掩码和计算域。'],
+    sourcePath: 'llm/SFT-Loss-Design.md',
   },
   {
     id: 'sft-vs-rlhf',
@@ -753,6 +859,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['- SFT：本质上是一个行为克隆过程，通过最小化模型输出与人类标注数据的交叉熵损失，将预训练模型的"通识分布"对齐到"目标域分布"。', '- RLHF：本质上是一个偏好优化框架，通过奖励模型（RM）将人类偏好量化为标量信号，再用强化学习（PPO）在策略空间中搜索能最大化累积奖励的最优策略。'],
+    sourcePath: 'llm/SFT_VS_RLHF.md',
   },
   {
     id: 'self-attention-math',
@@ -760,6 +867,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，自注意力是一种基于查询-键-值（Query-Key-Value）三元组的动态权重分配机制，通过 softmax 归一化的点积相似度将值向量加权求和，实现上下文感知的特征重标定，而除以 是为了稳定梯度分布、抑制维度增长导致的注意力分布过度集中。'],
+    sourcePath: 'llm/SelfAttentionMath.md',
   },
   {
     id: 'sentence-piece-vs-bpe',
@@ -767,6 +875,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，SentencePiece 是 BPE/Unigram 算法的工业化封装层，通过将分词建模为字符串到 token ID 的序列标注问题并引入可微调的似然目标，解决了多语言字符集不兼容和词汇表可扩展性问题。'],
+    sourcePath: 'llm/SentencePiece-vs-BPE.md',
   },
   {
     id: 'skill-composability-design',
@@ -774,6 +883,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，技能可组合性是通过统一接口契约（Contract）+ 上下文状态机（State Machine）实现的能力编排系统，链式与条件分支分别对应函数式管道（Pipeline）与策略路由（Router）两种控制流模式。'],
+    sourcePath: 'llm/SkillComposabilityDesign.md',
   },
   {
     id: 'skill-library-design',
@@ -781,6 +891,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Skill Library 是一个为 LLM 提供可插拔工具能力的「操作系统驱动层」，通过结构化语义描述 + 向量化索引 + 图拓扑组合实现技能的动态发现、调用与编排。'],
+    sourcePath: 'llm/SkillLibraryDesign.md',
   },
   {
     id: 'skill-memory-relation',
@@ -788,6 +899,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，技能是对外暴露的工具调用能力（API），而记忆是对话上下文的持久化状态（State）；技能通过记忆获取上下文连续性，记忆通过技能实现动态更新，二者构成认知闭环。'],
+    sourcePath: 'llm/SkillMemoryRelation.md',
   },
   {
     id: 'skill-selection-vs-tool-calling',
@@ -795,6 +907,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，技能选择是一个基于语义相似度的"描述→匹配→路由"三层决策结构，而 Tool Calling 是基于 LLM 生成能力直接在 token 空间进行函数签名生成与参数填充。'],
+    sourcePath: 'llm/SkillSelectionVsToolCalling.md',
   },
   {
     id: 'skill-vs-tool',
@@ -802,6 +915,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['Skill 是面向目标的声明式编排单元，Tool 是面向过程的原子式执行单元；技能库是 Agent 的"战术手册层"，位于意图理解层与原子工具层之间，承担语义聚合与复用策略的职责。'],
+    sourcePath: 'llm/SkillVsTool.md',
   },
   {
     id: 'sparse-attention',
@@ -809,6 +923,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，稀疏注意力通过将全局的 密集注意力矩阵约束为预定义或动态学习的稀疏模式，用计算图的局部连通性换取内存和复杂度的指数级下降，在长序列建模中实现次二次复杂度。'],
+    sourcePath: 'llm/SparseAttention.md',
   },
   {
     id: 'special-tokens',
@@ -816,6 +931,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，特殊标记（Special Tokens） 是预训练任务与模型架构之间的控制信号载体，通过在离散 token 空间中注入结构化语义指示符，使自监督任务（MLM、NSP）能在统一序列表示中实现任务路由和边界感知。'],
+    sourcePath: 'llm/Special-Tokens.md',
   },
   {
     id: 'stream-inference',
@@ -823,6 +939,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['(The 10-Second Hook) 本质上，流式推理是为了解决首字节延迟（TTFB）问题，通过将自回归生成的序列逐 token 推送到客户端，实现边生成边输出的流水线结构。'],
+    sourcePath: 'llm/StreamInference.md',
   },
   {
     id: 'subword-vs-word-level',
@@ -830,6 +947,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，子词分词通过将词拆分为可复用的子词单元，以固定的有限词汇表实现了对无限词汇的压缩表示，结合参数共享机制在避免词级分词的稀疏性诅咒的同时捕获了跨词的形态学规律。'],
+    sourcePath: 'llm/Subword-vs-Word-level.md',
   },
   {
     id: 'tokenizer',
@@ -837,6 +955,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['Tokenizer（分词器）是NLP和LLM中的核心组件，负责将原始文本转换为模型可以理解的数字序列。', '核心作用： - 将文本分割成更小的单元（tokens） - 将tokens映射为数字ID - 处理未知词（OOV, Out-of-Vocabulary） 示例：'],
+    sourcePath: 'llm/Tokenizer.md',
   },
   {
     id: 'tool-calling',
@@ -844,6 +963,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，Tool Calling 是一个为了让 LLM 突破参数化知识边界，通过 "意图识别 → 参数填充 → 外部执行 → 结果回注" 闭环机制实现的函数调用编排系统。'],
+    sourcePath: 'llm/ToolCalling.md',
   },
   {
     id: 'tool-calling-mechanism-and-design',
@@ -851,6 +971,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Tool Calling是为解决LLM静态知识局限性，通过结构化接口和强化学习实现的函数式编程范式，使LLM能够从"文本生成器"转变为"可调用外部API的通用程序解释器"。'],
+    sourcePath: 'llm/ToolCallingMechanismAndDesign.md',
   },
   {
     id: 'transformer-architecture',
@@ -858,6 +979,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 3 as 1 | 2 | 3,
     tips: ['本质上，Transformer 是一种基于自注意力机制的序列建模架构，通过摒弃循环/卷积结构并引入多头自注意力和位置前馈网络，实现了 O(1) 并行度的全局依赖捕获，为大规模语言模型的可扩展性奠定了理论和工程基础。'],
+    sourcePath: 'llm/TransformerArchitecture.md',
   },
   {
     id: 'unigram-language-model-tokenizer',
@@ -865,6 +987,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Unigram Language Model Tokenizer 是一种基于概率语言模型的反向迭代剪枝算法，通过从超大候选词表出发逐步删除对语料似然贡献最小的 token，实现全局最优而非贪心局部最优的子词划分。'],
+    sourcePath: 'llm/Unigram-Language-Model-Tokenizer.md',
   },
   {
     id: 'value-function-training',
@@ -872,6 +995,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，价值函数 是期望累积奖励的估计器，学习状态（前缀）的长期价值，通过TD误差或蒙特卡洛更新；奖励函数 是即时质量评估器，输出回答的标量分数。两者构成Actor-Critic的核心，价值函数用于方差缩减，奖励函数提供优化目标。'],
+    sourcePath: 'llm/Value-Function-Training.md',
   },
   {
     id: 'vector-and-keyword-retrieval',
@@ -879,6 +1003,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 2 as 1 | 2 | 3,
     tips: ['向量检索本质上是为了解决语义相似性问题，通过将文本嵌入高维稠密向量空间，利用向量距离度量语义相近度的检索机制。', '关键词检索（稀疏检索）本质上是为了解决精确匹配问题，通过倒排索引快速定位包含特定词项的文档，基于词项共现的检索机制。'],
+    sourcePath: 'llm/VectorAndKeywordRetrieval.md',
   },
   {
     id: 'vector-db-milvus-vs-qdrant',
@@ -886,6 +1011,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['Milvus 本质上是一个面向海量十亿级向量的云原生分布式向量数据库，通过存储计算分离 + 分片分区分桶架构实现高吞吐高可用。', 'Qdrant 本质上是一个面向中小规模高性能检索的单体式向量数据库，通过HNSW 索引 + 内存映射 + 过滤器下推实现毫秒级延迟。'],
+    sourcePath: 'llm/VectorDB_Milvus_vs_Qdrant.md',
   },
   {
     id: 'vllm-vs-sglang',
@@ -893,6 +1019,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，vLLM 是基于 PagedAttention 解决单次请求显存碎片的通用高吞吐推理引擎；而 SGLang 是基于 RadixAttention 实现跨请求前缀缓存的结构化/Agent 专用加速栈。'],
+    sourcePath: 'llm/VllmVsSglang.md',
   },
   {
     id: 'vocabulary-size-tradeoff',
@@ -900,6 +1027,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'arch',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，词汇表大小是 tokenizer 空间复杂度与序列长度时间复杂度的核心权衡参数，通过信息论中的熵率-词表大小权衡曲线在模型容量、推理效率和泛化能力间寻求帕累托最优。'],
+    sourcePath: 'llm/Vocabulary-Size-Tradeoff.md',
   },
   {
     id: 'word-piece-vs-bpe',
@@ -907,6 +1035,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['本质上，WordPiece 是融合语言模型似然的 BPE 变体，通过最大化语言模型似然而非简单频数统计来合并字符对，确保每个合并操作最大化词序列的联合概率从而捕获更优的语义边界。'],
+    sourcePath: 'llm/WordPiece-vs-BPE.md',
   },
   {
     id: 'ze-ro',
@@ -914,6 +1043,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，ZeRO（Zero Redundancy Optimizer）是一种通过分片（Partitioning）策略消除数据并行中的冗余参数副本，将显存占用随 GPU 数量线性降低的分布式优化器。'],
+    sourcePath: 'llm/ZeRO.md',
   },
   {
     id: 'research-2-grpo',
@@ -921,6 +1051,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['传统GRPO的依赖困境： 维度 传统认知 问题 ------ --------- ------ 组规模G 需要G=16才能稳定 生成16个rollout耗时巨大💥 计算瓶颈 生成阶段占70%+训练时间 效率低下，限制应用 样本浪费 大组规模才能准确归一化 资源消耗高 📊 实际场景： --- 2️⃣ 核心洞察：GRPO即对比学习（2分钟） ✅ 理论突破：重新诠释GRPO 传统理解： GRPO是方', '论文发现： GRPO本质是对比学习——拉近正样本，推开负样本！'],
+    sourcePath: 'llm/research/2-GRPO.md',
   },
   {
     id: 'research-deep-seek-ocr',
@@ -928,6 +1059,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['核心使命 处理高分辨率图像时产生<span style="color: E63946" 极少量、高信息密度</span 的视觉Token。', '三阶段设计：先局部→再压缩→后全局 阶段一：局部处理（Local Processing） - 模块： SAM-base模型（80M参数） - 机制： 窗口注意力（Window Attention） - 作用： 对高分辨率图像进行细粒度局部特征提取 - 特点： 虽生成大量Token，但窗口注意力保持显存可控 阶段二：再压缩（Re-compression） - 模块： 16x卷积压缩器（Conv 16'],
+    sourcePath: 'llm/research/DeepSeek-OCR.md',
   },
   {
     id: 'research-light-rag',
@@ -935,6 +1067,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'app',
     tier: 1 as 1 | 2 | 3,
     tips: ['传统 RAG 的两大"硬伤"： 维度 问题 影响 ------ ------ ------ 扁平向量化表示 文本被"压扁"成单一向量，结构信息全丢 就像把一本书拍成照片，字都在但逻辑没了 缺乏实体关系探索 实体之间"老死不相往来"，无法建模联系 面对复杂问题时，无法"举一反三"整合信息 LightRAG 的"解题思路"： --- 2️⃣ LightRAG 核心架构（2分钟） ✅ 基于图结构的文本索', '--- 3️⃣ 关键实验发现（1.5分钟） 论文在 Agriculture、CS、Legal、Mix 四个数据集上"全面开战"，对比 NaiveRAG、RQ-RAG、HyDE、GraphRAG： 结论 证据 意义 ------ ------ ------ 全面性优势 Legal 数据集上对 NaiveRAG 胜率 80.95%（基线仅 19.05%），LightRAG 碾压式领先 图增强RAG能更'],
+    sourcePath: 'llm/research/LightRAG.md',
   },
   {
     id: 'research-negative-rl',
@@ -942,6 +1075,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 1 as 1 | 2 | 3,
     tips: ['传统RL（PPO/GRPO）的问题： 维度 现象 问题 ------ ------ ------ 奖励信号混合 正负样本同池优化 梯度相互抵消，信号稀释 多样性-准确率折中 Pass@1↑伴随多样性↓ 出现模式崩溃（EE-Tradeoff） 先验知识损失 长期训练后性能下滑 错误惩罚不足导致“坏习惯”固化 论文反直觉发现： --- 2️⃣ Negative RL 核心原理（2分钟） ✅ RLVR ', '✅ 梯度视角的机制解释 - PSR 梯度（奖励 +1）： 提高生成正确token的概率，同时强压所有其它token → 多样性下降。'],
+    sourcePath: 'llm/research/NegativeRL.md',
   },
   {
     id: 'v-llm-parallelism',
@@ -949,6 +1083,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，vLLM 的并行架构是一个为了在单卡显存受限下实现大模型推理吞吐最大化，通过「Token-Level 调度 + 三维并行解耦计算与存储」实现的分布式推理引擎。'],
+    sourcePath: 'llm/vLLM-Parallelism.md',
   },
   {
     id: 'v-llm-continuous-batching',
@@ -956,6 +1091,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，Continuous Batching 是为了解决 LLM 推理中"每个请求生成长度差异巨大"导致的 GPU 算力空转问题，通过将传统 Batch 粒度从"请求级"拆解到"Token 级"实现的细粒度流水线调度结构。'],
+    sourcePath: 'llm/vLLMContinuousBatching.md',
   },
   {
     id: 'what-is-tokenizer',
@@ -963,6 +1099,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'train',
     tier: 2 as 1 | 2 | 3,
     tips: ['本质上，分词器（Tokenizer） 是将文本序列离散化为紧凑语义单元（token）的确定性映射函数，通过平衡词汇表大小与序列长度来缓解高维字符空间的维度灾难问题。'],
+    sourcePath: 'llm/what-is-tokenizer.md',
   },
   {
     id: 'gpu-memory-estimation',
@@ -970,6 +1107,7 @@ export const corpusNodes: BaguNode[] = [
     group: 'infer',
     tier: 2 as 1 | 2 | 3,
     tips: ['在 , 的设定下，全参数 SFT 的显存盘点如下： 显存项 计算公式或经验值 显存占用 (GB) 备注与优化手段 -------------- ----------------------------------------------------- ------------ ------------------------------------------------ 1. 模型参数 byte', '总显存消耗预估： 55.6 GB。可在 80GB A100/H100 上流畅运行。'],
+    sourcePath: 'llm/显存计算.md',
   }
 ];
 
