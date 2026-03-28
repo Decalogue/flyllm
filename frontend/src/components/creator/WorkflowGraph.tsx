@@ -1,6 +1,5 @@
 /**
- * 实时 Agent 工作流图 — 参考 WorkflowOrchestrator
- * 画布网格 + 可配置节点/边，支持动态 agents，运行工作流 / 进度 / 状态 / 实时编排
+ * 流程编排图：research 用于复习落地页「学习闭环」示意；creation 为长内容流水线（保留）。
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -23,12 +22,12 @@ import { INTRO_THEME } from './creatorTheme';
 
 const T = INTRO_THEME;
 
-/** 通用研究流程（保留供 creator 页使用） */
+/** 学习/复习闭环（主页 WorkflowGraph variant="research"） */
 const RESEARCH_AGENTS = [
-  { id: 'research', name: '研究Agent', icon: <BulbOutlined />, color: '#3b82f6' },
-  { id: 'writing', name: '写作Agent', icon: <EditOutlined />, color: '#10b981' },
-  { id: 'entity', name: '实体Agent', icon: <DatabaseOutlined />, color: '#06b6d4' },
-  { id: 'review', name: '审核Agent', icon: <CheckCircleOutlined />, color: '#ec4899' },
+  { id: 'research', name: '学习与摄入', icon: <BulbOutlined />, color: '#3b82f6' },
+  { id: 'writing', name: '归纳卡片', icon: <EditOutlined />, color: '#10b981' },
+  { id: 'entity', name: '关联巩固', icon: <DatabaseOutlined />, color: '#06b6d4' },
+  { id: 'review', name: '间隔复习', icon: <CheckCircleOutlined />, color: '#ec4899' },
 ] as const;
 
 const RESEARCH_POSITIONS: Record<string, { x: number; y: number }> = {
@@ -46,7 +45,7 @@ const RESEARCH_LINKS = [
 
 const RESEARCH_RUN_ORDER = ['research', 'writing', 'entity', 'review'];
 
-/** 创作任务流程：构思 → 记忆召回(跨章人物、伏笔、长线设定) → 续写 → 质检 ⇄ 重写 → 实体提取 → 记忆入库 */
+/** creation 变体：长内容生产流水线示意（历史保留）；主页复习流请用 variant="research"。 */
 const CREATION_AGENTS = [
   { id: 'ideate', name: '构思Agent', icon: <BulbOutlined />, color: '#3b82f6' },
   { id: 'recall', name: '记忆召回', icon: <ReadOutlined />, color: '#0ea5e9' },
@@ -101,7 +100,7 @@ export interface WorkflowAgent {
 }
 
 export interface WorkflowGraphProps {
-  /** 流程变体：creation 创作任务（构思→续写→实体→质检），research 通用研究流程 */
+  /** creation：内容生产流水线；research：学习/研究闭环（复习主页使用） */
   variant?: 'creation' | 'research';
   /** 动态 agents，不传则根据 variant 使用预设 */
   agents?: WorkflowAgent[];

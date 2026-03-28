@@ -1,55 +1,112 @@
-# 创想AI 前端
+# FlyLLM Review · 前端
 
-基于 Umi 4 + React + Ant Design 的 AI 创作助手前端应用。
+面向 **大厂 LLM 岗** 备考的 **大模型八股高效复习** 前端：以 **掌握度与间隔复习** 为核心，首期垂直 **RAG / Agent** 考点图谱，并预留 **简历触点 → 考点**、**追问链** 等个性化记忆能力。
 
-## 页面结构
+技术栈：**Umi 4** + **React 18** + **Ant Design 5** + **TypeScript**。可与任意符合 REST 约定的复习后端对接；当前仓库内页面部分仍为历史能力，按下方「项目规划」逐步替换为复习主流程。
+
+---
+
+## 产品定位
+
+| 维度 | 说明 |
+|------|------|
+| **用户** | 准备国内大厂 LLM 相关岗位（应用/平台/算法向）的候选人 |
+| **痛点** | 资料碎片化、易遗忘、不知薄弱点、追问答不深 |
+| **解法** | 结构化考点（RAG/Agent）+ 间隔重复调度 + 薄弱优先 + 后续简历绑定与变式追问 |
+| **非目标** | 替代完整模拟面试、押题、侵犯真题版权的搬运 |
+
+---
+
+## 当前路由与页面（代码现状）
 
 | 路径 | 组件 | 说明 |
 |------|------|------|
-| `/` | `home/intro` | 主页：Hero、工作流、记忆系统（默认 3D 图谱）、CTA |
-| `/creator` | `home/creator` | 创作助手主界面：模式（大纲/章节/润色/对话）、指挥中心、章节列表与单章全文 |
-| `/ai` | `home/ai` | AI 对话 |
+| `/` | `home/index` | 复习产品落地页：价值主张、研究向工作流图、三步介绍、知识星空 CTA |
+| `/review` | `home/review/index` | 复习中心：今日复习 / 考点大纲（占位）/ 知识星空入口 |
+| `/review/today` | `home/review/today` | 今日复习（当前为静态演示卡片，待接题库与调度） |
+| `/ai` | `home/ai` | AI 能力台：导航至完整对话 |
+| `/chat` | `home/chat` | 完整多轮对话 |
+| `/stars` | `home/stars` | 知识星空图（既有实现） |
 
-## 主要组件
+路由定义见 `config/routes.ts`。后续可继续增加 `/review/syllabus`、`/plan` 等。
 
-- **IntroFooter**：主页页脚，含品牌、联系方式、链接、订阅区
-- **WorkflowGraph**：工作流编排可视化。`variant="creation"` 展示创作流程（构思→记忆召回(跨章人物、伏笔、长线设定)→续写→质检⇄重写→实体提取→记忆入库），`variant="research"` 展示通用研究流程；箭头向右，召回分三路到三模块再汇聚到续写
-- **MemoryGraphThree**：3D 记忆图谱；图例按类型上色，节点按类型区分几何（实体八面体、事实扁圆柱、原子笔记球体）；intro 模式下节点下展示 brief/source
-- **MemoryGraphD3**：2D 力导向图谱；初始布局按圆分布，避免节点挤在一起再弹开
-- **OrchestrationFlow**：编排流程展示，与指挥中心步骤一致（构思、记忆召回、续写、质检、润色）
+---
 
-## 创作页（/creator）
+## 可复用资产（实现复习 UI 时）
 
-- **模式**：顶部与输入区下方均为 Segmented（大纲 / 章节 / 润色 / 对话）
-- **章节列表**：Modal「点击查看完整章节列表」中，已写章节可点击；请求 `GET /api/creator/chapter?project_id=&number=` 成功后用 Drawer 展示全文；404 时提示确认后端已支持该接口并重启
-- **对话**：请求体 `model: 'kimi-k2-5'`，系统提示设定身份为创作助手/Kimi，避免模型自称 Claude
+- **图表与动效**：`WorkflowGraph`、`MemoryGraphThree` / `MemoryGraphD3` 等可改为展示「考点图谱 / 掌握度网络」，而非创作流。
+- **主题**：`INTRO_THEME`、`CREATOR_THEME`（`src/components/creator/creatorTheme.ts`）可收敛为一套复习端亮色主题。
+- **i18n**：`react-i18next`，文案在 `src/locales/zh-CN.json`、`en-US.json`；复习产品需新增 `review.*` 命名空间并逐步替换 intro/creator 文案。
+- **数学与文档**：`katex`、`markdown-it` 适合卡片中的公式与要点渲染。
 
-## 多语言（i18n）
+---
 
-- **语言**：中文（zh-CN）、English（en-US），通过右上角/顶栏 **LocaleSwitcher** 切换。
-- **持久化**：当前语言存 `localStorage`（`creator_locale`），刷新后保持。
-- **文案**：`src/locales/zh-CN.json`、`src/locales/en-US.json`；`src/utils/i18n.ts` 初始化 react-i18next；各页使用 `useTranslation()` 与 `t('intro.xxx')` / `t('creator.xxx')` / `t('ai.xxx')`。
-
-## 主题
-
-- `INTRO_THEME`：主页亮色主题（白底、品牌红橙）
-- `CREATOR_THEME`：创作助手深色主题（指挥中心风格）
-
-## 联系方式（页脚）
-
-- 邮箱：decalogue80@gmail.com
-- 电话：13661445290
-- 地址：上海市
-
-## 开发
+## 开发命令
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## 构建
-
 ```bash
 pnpm build
 ```
+
+LLM 知识图谱数据构建（若沿用图谱相关脚本）：
+
+```bash
+pnpm run build:llm-graph
+```
+
+---
+
+## 项目规划
+
+### 阶段划分
+
+| 阶段 | 周期（建议） | 目标 |
+|------|----------------|------|
+| **P0 骨架** | 1～2 周 | 确定信息架构：首页、今日复习、卡片详情、薄弱/进度总览；**本地 mock** 或静态 JSON 驱动列表与路由 |
+| **P1 记忆调度** | 2～3 周 | 前端实现 **FSRS 或 SM-2** 客户端调度（或对接后端 `next_due`）；复习记录写入 `localStorage`/IndexedDB；**无登录 MVP** 可跑通闭环 |
+| **P2 内容垂直** | 持续 | RAG/Agent **三级考点树** + 叶子卡片（要点、常见追问、易错）；考纲 **版本号** 展示 |
+| **P3 个性化** | 2～4 周 | 简历粘贴 → 考点绑定（可编辑）；错题驱动 **变式题**（模板优先，LLM 为辅）；可选 `/chat` 与卡片上下文联动 |
+| **P4 增长与合规** | 并行 | 分享「薄弱报告」截图、两周冲刺计划页；用户协议与隐私说明；内容来源与更新日志 |
+
+### 里程碑（可交付物）
+
+1. **M1**：`/review/today` + 卡片组件 + 评分（Again/Hard/Good/Easy 或等价）+ 本地持久化复习日志。  
+2. **M2**：考点树浏览页 + 按模块统计掌握度。  
+3. **M3**：后端 API 契约冻结（见下）+ 替换 mock。  
+4. **M4**：简历绑定 MVP + 首页改版为复习产品叙事。
+
+### 建议的 API 契约（前后端对齐用）
+
+- `GET /api/review/syllabus` — 考纲版本、模块树。  
+- `GET /api/review/cards?due_before=&module=` — 待复习卡片。  
+- `POST /api/review/grade` — `card_id`、`rating`、可选 `latency_ms`；返回下次复习时间。  
+- `GET /api/review/stats` — 模块级聚合（可选）。
+
+无后端阶段可用 `src/mocks/review/*.json` + Umi `proxy` 或 `mock` 插件模拟。
+
+### 关键指标（产品侧）
+
+- 日/周 **复习完成率**、**D7 留存**（若可统计）。  
+- 同叶子考点 **间隔正确率** 是否上升。  
+- 用户是否完成 **两周计划** 天数占比。
+
+### 风险与约束
+
+- **幻觉**：生成式「个人版答案」必须可编辑、可对照标准提纲。  
+- **版权**：题库以自研解析与变式为主，避免整卷真题搬运。  
+- **迭代**：RAG/Agent 话题更新快，README 与产品内「考纲版本」需同步维护。
+
+---
+
+## 文档与仓库
+
+- 仓库级说明见仓库根目录 `CLAUDE.md`。  
+- LLM 体系化文档可参考 `llm/`、`llm_v1/`；复习卡片内容可与之内链或摘要一致，避免前端与知识库脱节。
+
+---
+
+**Last updated**：2026-03-28 — 文档与「大模型复习产品」方向对齐；实现以本目录代码与 `config/routes.ts` 为准。

@@ -4,14 +4,16 @@
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"1":{"path":"/","parentId":"@@/global-layout","id":"1"},"2":{"path":"/creator","parentId":"@@/global-layout","id":"2"},"3":{"path":"/ai","parentId":"@@/global-layout","id":"3"},"4":{"path":"/stars","parentId":"@@/global-layout","id":"4"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
+  const routes = {"1":{"path":"/","parentId":"@@/global-layout","id":"1"},"2":{"path":"/review","parentId":"@@/global-layout","id":"2"},"3":{"path":"/review/today","parentId":"@@/global-layout","id":"3"},"4":{"path":"/ai","parentId":"@@/global-layout","id":"4"},"5":{"path":"/chat","parentId":"@@/global-layout","id":"5"},"6":{"path":"/stars","parentId":"@@/global-layout","id":"6"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
   return {
     routes,
     routeComponents: {
-'1': React.lazy(() => import(/* webpackChunkName: "p__home__intro" */'@/pages/home/intro.tsx')),
-'2': React.lazy(() => import(/* webpackChunkName: "p__home__creator" */'@/pages/home/creator.tsx')),
-'3': React.lazy(() => import(/* webpackChunkName: "p__home__ai" */'@/pages/home/ai.tsx')),
-'4': React.lazy(() => import(/* webpackChunkName: "p__home__stars" */'@/pages/home/stars.tsx')),
+'1': React.lazy(() => import(/* webpackChunkName: "p__home__index" */'@/pages/home/index.tsx')),
+'2': React.lazy(() => import(/* webpackChunkName: "p__home__review__index" */'@/pages/home/review/index.tsx')),
+'3': React.lazy(() => import(/* webpackChunkName: "p__home__review__today" */'@/pages/home/review/today.tsx')),
+'4': React.lazy(() => import(/* webpackChunkName: "p__home__ai" */'@/pages/home/ai.tsx')),
+'5': React.lazy(() => import(/* webpackChunkName: "p__home__chat" */'@/pages/home/chat.tsx')),
+'6': React.lazy(() => import(/* webpackChunkName: "p__home__stars" */'@/pages/home/stars.tsx')),
 '@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'/root/data/AI/flyllm/frontend/src/layouts/index.tsx')),
 },
   };

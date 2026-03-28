@@ -1,51 +1,52 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, Outlet, useLocation } from 'umi';
 import { Space } from 'antd';
-import { ThunderboltOutlined, MessageOutlined, HomeOutlined } from '@ant-design/icons';
+import { ThunderboltOutlined, MessageOutlined, HomeOutlined, ReadOutlined, StarOutlined, CommentOutlined } from '@ant-design/icons';
 import { CREATOR_THEME, INTRO_THEME } from '@/components/creator/creatorTheme';
 import { LocaleSwitcher } from '@/components/creator/LocaleSwitcher';
-
-const navItems = [
-  { path: '/', label: '主页', icon: <HomeOutlined /> },
-  { path: '/creator', label: '创作助手', icon: <ThunderboltOutlined /> },
-  { path: '/ai', label: 'AI 对话', icon: <MessageOutlined /> },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function Layout() {
   const { pathname } = useLocation();
-  const isIntro = pathname === '/';
-  const LT = isIntro ? INTRO_THEME : CREATOR_THEME;
+  const { t } = useTranslation();
 
-  const headerBg = isIntro
-    ? 'rgba(255,255,255,0.9)'
-    : CREATOR_THEME.bgHeader;
-  const headerBorder = isIntro
-    ? INTRO_THEME.border
-    : CREATOR_THEME.borderHeader;
-  const headerShadow = isIntro
-    ? '0 0 0 1px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.04)'
-    : CREATOR_THEME.shadowPanel;
-  const logoColor = isIntro ? INTRO_THEME.textBright : CREATOR_THEME.textBright;
+  const isLightHeader = pathname === '/' || pathname.startsWith('/review');
+  const LT = isLightHeader ? INTRO_THEME : CREATOR_THEME;
+
+  const navItems = useMemo(
+    () => [
+      { path: '/', label: t('layout.navHome'), icon: <HomeOutlined /> },
+      { path: '/review', label: t('layout.navReview'), icon: <ReadOutlined /> },
+      { path: '/stars', label: t('layout.navStars'), icon: <StarOutlined /> },
+      { path: '/ai', label: t('layout.navAi'), icon: <MessageOutlined /> },
+      { path: '/chat', label: t('layout.navChat'), icon: <CommentOutlined /> },
+    ],
+    [t]
+  );
+
+  const headerBg = isLightHeader ? 'rgba(255,255,255,0.9)' : CREATOR_THEME.bgHeader;
+  const headerBorder = isLightHeader ? INTRO_THEME.border : CREATOR_THEME.borderHeader;
+  const headerShadow = isLightHeader ? '0 0 0 1px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.04)' : CREATOR_THEME.shadowPanel;
+  const logoColor = isLightHeader ? INTRO_THEME.textBright : CREATOR_THEME.textBright;
 
   return (
     <div
       className="app-layout"
-      data-theme={isIntro ? 'intro' : 'creator'}
+      data-theme={isLightHeader ? 'intro' : 'creator'}
       style={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        background: isIntro ? INTRO_THEME.bgPage : CREATOR_THEME.bgPage,
+        background: isLightHeader ? INTRO_THEME.bgPage : CREATOR_THEME.bgPage,
         fontFamily: CREATOR_THEME.fontFamily,
         color: LT.text,
-        ['--nav-inactive' as string]: isIntro ? INTRO_THEME.textMuted : CREATOR_THEME.textMuted,
-        ['--nav-active-color' as string]: isIntro ? INTRO_THEME.accent : CREATOR_THEME.segSelectedText,
-        ['--nav-active-bg' as string]: isIntro ? INTRO_THEME.accentDim : CREATOR_THEME.segSelectedBg,
-        ['--nav-hover-bg' as string]: isIntro ? 'rgba(0,0,0,0.04)' : CREATOR_THEME.segBg,
-        ['--nav-hover-color' as string]: isIntro ? INTRO_THEME.text : CREATOR_THEME.text,
+        ['--nav-inactive' as string]: isLightHeader ? INTRO_THEME.textMuted : CREATOR_THEME.textMuted,
+        ['--nav-active-color' as string]: isLightHeader ? INTRO_THEME.accent : CREATOR_THEME.segSelectedText,
+        ['--nav-active-bg' as string]: isLightHeader ? INTRO_THEME.accentDim : CREATOR_THEME.segSelectedBg,
+        ['--nav-hover-bg' as string]: isLightHeader ? 'rgba(0,0,0,0.04)' : CREATOR_THEME.segBg,
+        ['--nav-hover-color' as string]: isLightHeader ? INTRO_THEME.text : CREATOR_THEME.text,
       }}
     >
-      {/* 顶栏 — 主页亮色 / 应用页深色，参考 Navigation */}
       <header
         style={{
           position: 'sticky',
@@ -95,10 +96,10 @@ export default function Layout() {
             >
               <ThunderboltOutlined />
             </span>
-            创作助手
+            {t('layout.appName')}
           </Link>
 
-          <Space size="middle" style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+          <Space size="middle" style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', flexWrap: 'wrap' }}>
             {navItems.map(({ path, label, icon }) => {
               const isActive = pathname === path || (path !== '/' && pathname.startsWith(path));
               return (
@@ -130,7 +131,7 @@ export default function Layout() {
       <main
         style={{
           flex: 1,
-          overflow: pathname === '/' ? 'auto' : 'hidden',
+          overflow: pathname === '/' || pathname.startsWith('/review') ? 'auto' : 'hidden',
           display: 'flex',
           flexDirection: 'column',
           minHeight: 0,

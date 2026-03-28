@@ -1,0 +1,278 @@
+/* 落地页 scoped 样式；主题色通过 .review-home 上的 CSS 变量注入 */
+
+.review-home {
+  position: relative;
+}
+
+.review-skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  z-index: 200;
+}
+
+.review-skip-link:focus {
+  position: fixed;
+  left: 12px;
+  top: 72px;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px 16px;
+  clip: auto;
+  overflow: visible;
+  background: #fff;
+  color: #111;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  outline: 2px solid #ff4b2f;
+  outline-offset: 2px;
+}
+
+.review-home .review-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 75, 47, 0.08) 20%,
+    rgba(255, 167, 167, 0.06) 40%,
+    rgba(255, 178, 158, 0.08) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background-size: 400% 400%;
+  animation: review-gradient-shift 20s ease infinite;
+}
+
+@keyframes review-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.review-home .review-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+.review-home .review-float {
+  animation: review-float 5s ease-in-out infinite;
+}
+
+.review-home .review-float-delay {
+  animation: review-float 5s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+@keyframes review-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.review-home .review-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 200% 100%;
+  animation: review-shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes review-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.review-home .review-char {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.review-home .review-char-inner {
+  display: inline-block;
+}
+
+.review-home .review-ping {
+  animation: review-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes review-ping {
+  75%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.review-home .review-text-gradient {
+  background: linear-gradient(135deg, #ff4b2f 0%, #ffa7a7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.review-home .review-steps-container {
+  flex-direction: column;
+}
+
+.review-home .review-step-card {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .review-home .review-steps-container {
+    flex-direction: row;
+    min-height: 520px;
+  }
+
+  .review-home .review-step-card {
+    min-height: 480px !important;
+  }
+}
+
+.review-home .review-metric-card {
+  padding: 28px;
+  border-radius: var(--review-radius-lg, 16px);
+  background: rgba(248, 248, 248, 0.9);
+  border: 1px solid var(--review-border, rgba(0, 0, 0, 0.06));
+  text-align: center;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .review-home .review-metric-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+  }
+}
+
+.review-home .review-section-anchor {
+  scroll-margin-top: 88px;
+}
+
+.review-home .intro-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: 32px 40px;
+  align-items: start;
+}
+
+.review-home .intro-footer-brand {
+  grid-column: 1;
+}
+
+@media (max-width: 799px) {
+  .review-home .intro-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 28px;
+  }
+
+  .review-home .intro-footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+.review-home .intro-footer-link:hover {
+  color: #fff !important;
+}
+
+.review-home .intro-footer-social:hover {
+  background: #ff4b2f !important;
+  color: #fff !important;
+}
+
+.review-home .intro-footer-email input.ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.review-home .intro-footer-email input.ant-input {
+  color: #fff;
+  background: transparent;
+}
+
+.review-home .intro-footer-email.ant-input-affix-wrapper,
+.review-home .intro-footer-email.ant-input {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.review-home .intro-footer-email.ant-input:focus,
+.review-home .intro-footer-email.ant-input-focused,
+.review-home .intro-footer-email.ant-input-affix-wrapper-focused {
+  border-color: #ff4b2f !important;
+  box-shadow: 0 0 0 2px rgba(255, 75, 47, 0.2);
+}
+
+.review-home .intro-footer-newsletter {
+  flex-wrap: nowrap;
+}
+
+.review-home .intro-footer-bottom {
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 639px) {
+  .review-home .intro-footer-newsletter {
+    flex-wrap: wrap;
+  }
+
+  .review-home .intro-footer-bottom {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-home .review-gradient-bg,
+  .review-home .review-float,
+  .review-home .review-float-delay,
+  .review-home .review-shimmer,
+  .review-home .review-ping {
+    animation: none !important;
+  }
+}
+
+/* 流程图懒加载占位 */
+.review-workflow-skeleton {
+  border-radius: 12px;
+  border: 1px dashed var(--review-border, rgba(0, 0, 0, 0.08));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.06) 37%, rgba(0, 0, 0, 0.03) 63%);
+  background-size: 400% 100%;
+  animation: review-skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes review-skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-workflow-skeleton {
+    animation: none;
+    background: rgba(0, 0, 0, 0.04);
+  }
+}

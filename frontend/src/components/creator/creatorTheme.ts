@@ -1,5 +1,5 @@
 /**
- * 创作助手主题 — 参考 Kimi 2.5 Agent 并行蜂群模式
+ * FlyLLM Review 共享主题 — 亮色落地页（INTRO）/ 深色应用页（CREATOR）
  * 深色指挥中心、品牌红橙 #ff4b2f、玻璃质感、游戏化状态与记忆网络
  */
 export const CREATOR_THEME = {

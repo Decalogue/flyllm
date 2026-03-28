@@ -1,5 +1,5 @@
 /**
- * 共享 Markdown 渲染器 — 用于 AI 对话、创作助手等
+ * 共享 Markdown 渲染器 — 用于 AI 对话、复习卡片等
  */
 import MarkdownIt from 'markdown-it';
 
