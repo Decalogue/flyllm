@@ -238,9 +238,9 @@
 
 ---
 
-### 推理服务优化（7题）
+### 推理服务优化（8题）
 
-#### 核心优化（1-5题）
+#### 核心优化（1-6题）
 
 1. **KV Cache 内存优化**（与上方连接）
 
@@ -255,13 +255,18 @@
 
 5. **推测解码（Speculative Decoding）**
 
-#### 框架对比（6-7题）
+6. **模型蒸馏（Model Distillation）**
+   - 考点：知识迁移、温度系数、Loss设计、与剪枝量化对比
+   - 难度：⭐⭐⭐
+   - 文件：[013_model_distillation.md](llm/013_model_distillation.md)
 
-6. **vLLM vs SGLang 区别**
+#### 框架对比（7-8题）
+
+7. **vLLM vs SGLang 区别**
    - 考点：最新框架对比
    - 难度：⭐⭐
 
-7. **推理服务 P99 延迟优化**
+8. **推理服务 P99 延迟优化**
    - 考点：连续批处理 + PagedAttention + 量化
    - 难度：⭐⭐⭐
 
@@ -283,7 +288,7 @@
 2. **FlashAttention 分块逻辑**
 3. **PagedAttention Block 管理**
 4. **Reward Model Pairwise Loss**
-5. **MemGPT page_in/out**
+5. **知识蒸馏 Soft Loss**
 
 **📊 优化**: 从 30+ 个 → 10 个（聚焦核心，删除过时实现）
 
@@ -295,7 +300,7 @@
 ```
 适合人群：算法/infra岗位，追求深度和工程落地
 
-Tokenizer → Self-Attention → MHA-GQA → RoPE → FlashAttention → KV Cache → PagedAttention → Continuous Batching → 量化 → 推测解码
+Tokenizer → Self-Attention → MHA-GQA → RoPE → FlashAttention → KV Cache → PagedAttention → Continuous Batching → 量化 → 蒸馏 → 推测解码
                               ↓
                         LoRA/QLoRA → RLHF → DPO
                               ↓
@@ -317,7 +322,7 @@ LLM基础 → Transformer架构 → Finetuning → RL → Agent → Memory → I
 
 ## 📈 优化效果
 
-**问题总数**: 60 个（核心高频，删除重复细分）
+**问题总数**: 61 个（核心高频，删除重复细分）
 
 **学习时长**: 约 120 小时（每天2小时，2个月完成）
 
@@ -328,6 +333,7 @@ LLM基础 → Transformer架构 → Finetuning → RL → Agent → Memory → I
 - GRPO/DAPO/SimPO（RLHF最新）
 - Agent 自主性分级（AutoGPT）
 - 推理服务 P99 优化（vLLM落地）
+- 模型蒸馏（工业界落地加速核心）
 
 ---
 
