@@ -104,7 +104,6 @@ ENV/
 # custom
 .vscode/
 .cursor/
-.claude/
 docs/
 data/
 frontend/node_modules/

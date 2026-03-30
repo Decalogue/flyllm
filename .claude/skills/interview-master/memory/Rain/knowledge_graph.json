@@ -1,0 +1,400 @@
+{
+  "user_id": "Rain",
+  "created_at": "2026-03-16T14:50:00",
+  "concepts": {
+    "tokenizer": {
+      "concept_id": "tokenizer",
+      "name": "Tokenizer核心机制",
+      "mastery_score": 0.75,
+      "last_interaction": "2026-03-16",
+      "status": "completed",
+      "file_path": "llm/001_tokenizer.md"
+    },
+    "self_attention": {
+      "concept_id": "transformer_01",
+      "name": "Self-Attention机制",
+      "mastery_score": 0.85,
+      "last_interaction": "2026-03-16",
+      "status": "completed",
+      "file_path": "llm/002_self-attention-mechanism.md",
+      "prerequisites": [
+        "矩阵乘法",
+        "softmax",
+        "向量点积"
+      ],
+      "prerequisites_mastered": [
+        "矩阵乘法",
+        "softmax"
+      ],
+      "common_confusions": [
+        "Q/K/V为什么要同源",
+        "除以sqrt(d_k)的数学原理",
+        "Causal Mask的具体实现"
+      ],
+      "strengths": [
+        "核心机制理解",
+        "工程实现细节",
+        "复杂度分析"
+      ],
+      "preferred_template": "直觉建构型",
+      "next_recommended": [
+        "mha_gqa_mqa_evolution",
+        "rope_positional_encoding",
+        "flash_attention"
+      ]
+    },
+    "mha_gqa_mqa_evolution": {
+      "concept_id": "transformer_02",
+      "name": "MHA→GQA→MQA演进",
+      "mastery_score": 0.80,
+      "last_interaction": "2026-03-24",
+      "status": "completed",
+      "file_path": "llm/003_mha-gqa-comparison.md",
+      "prerequisites": [
+        "self_attention",
+        "multi_head_attention"
+      ],
+      "prerequisites_mastered": [
+        "self_attention"
+      ],
+      "common_confusions": [
+        "广播机制避免显式循环",
+        "精度损失的量化评估",
+        "KV缓存的内存布局"
+      ],
+      "strengths": [
+        "架构演进理解清晰",
+        "工程权衡分析到位",
+        "工业案例掌握完整"
+      ],
+      "preferred_template": "对比矩阵",
+      "next_recommended": [
+        "rope_positional_encoding",
+        "flash_attention",
+        "kv_cache_optimization"
+      ]
+    },
+    "rope_alibi_position_encoding": {
+      "concept_id": "transformer_03",
+      "name": "RoPE/ALiBi位置编码",
+      "mastery_score": 0.75,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/004_rope-alibi-position-encoding.md",
+      "prerequisites": [
+        "self_attention",
+        "complex_numbers",
+        "trigonometry"
+      ],
+      "prerequisites_mastered": [
+        "self_attention"
+      ],
+      "common_confusions": [
+        "复数旋转与矩阵旋转的等价性",
+        "NTK-aware频率缩放的物理意义",
+        "ALiBi线性偏置的注意力衰减规律"
+      ],
+      "strengths": [
+        "相对位置编码的直觉理解",
+        "RoPE与ALiBi的工程对比",
+        "YaRN扩展的工程调参"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "flash_attention_v1_v2_v3",
+        "kv_cache_optimization",
+        "long_context_extension"
+      ]
+    },
+    "flash_attention_v1_v2_v3": {
+      "concept_id": "inference_01",
+      "name": "FlashAttention v1/v2/v3 内存优化",
+      "mastery_score": 0.70,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/005_flashattention-v1-v2-v3.md",
+      "prerequisites": [
+        "self_attention",
+        "gpu_memory_hierarchy",
+        "tiled_matrix_multiplication"
+      ],
+      "prerequisites_mastered": [
+        "self_attention"
+      ],
+      "common_confusions": [
+        "SRAM大小与分块大小的约束关系",
+        "在线Softmax的数值稳定性保证",
+        "v2的HBM访问优化技巧"
+      ],
+      "strengths": [
+        "分块计算与在线聚合的工程实现",
+        "v1→v2→v3的演进逻辑理解",
+        "实际性能调优案例分析"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "kv_cache_optimization",
+        "pagedattention_vllm",
+        "continuous_batching"
+      ]
+    }
+  },
+  "learning_path": {
+    "current_frontier": [
+      "quantization_algorithms"
+    ],
+    "completed": [
+      "self_attention",
+      "tokenizer",
+      "mha_gqa_mqa_evolution",
+      "rope_alibi_position_encoding",
+      "flash_attention_v1_v2_v3",
+      "kv_cache_optimization",
+      "pagedattention_vllm",
+      "continuous_batching",
+      "speculative_decoding",
+      "vllm_vs_sglang",
+      "inference_p99_optimization"
+    ],
+    "in_progress": [
+      "quantization_algorithms"
+    ],
+    "pending": [
+      "medusa_decoding",
+      "eagle_speculation",
+      "long_context_extension",
+      "lora_finetuning",
+      "rlhf_three_stage"
+    ],
+    "struggling_areas": []
+  },
+    "kv_cache_optimization": {
+      "concept_id": "inference_02",
+      "name": "KV Cache Optimization",
+      "mastery_score": 0.75,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/006_kv-cache-optimization.md",
+      "prerequisites": [
+        "self_attention",
+        "gpu_memory_hierarchy"
+      ],
+      "prerequisites_mastered": [
+        "self_attention"
+      ],
+      "common_confusions": [
+        "MQA精度损失的量化评估",
+        "PagedAttention与FlashAttention的协同",
+        "StreamingLLM的注意力衰减规律"
+      ],
+      "strengths": [
+        "Cache显存计算的工程直觉",
+        "组合优化的权衡分析",
+        "并发安全的实现细节"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "pagedattention_vllm",
+        "continuous_batching",
+        "quantization_algorithms"
+      ]
+    },
+    "pagedattention_vllm": {
+      "concept_id": "inference_03",
+      "name": "PagedAttention (vLLM) 实现",
+      "mastery_score": 0.75,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/007_pagedattention-vllm.md",
+      "prerequisites": [
+        "kv_cache_optimization",
+        "virtual_memory",
+        "cuda_memory_management"
+      ],
+      "prerequisites_mastered": [
+        "kv_cache_optimization"
+      ],
+      "common_confusions": [
+        "block_table查询性能开销",
+        "CoW复制时机的选择",
+        "block_size动态调整策略"
+      ],
+      "strengths": [
+        "虚拟内存映射的工程理解",
+        "CoW共享机制的实现细节",
+        "与FlashAttention的协同"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "continuous_batching",
+        "vllm_vs_sglang",
+        "inference_p99_optimization"
+      ]
+    },
+    "continuous_batching": {
+      "concept_id": "inference_04",
+      "name": "Continuous Batching 动态调度",
+      "mastery_score": 0.75,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/008_continuous-batching.md",
+      "prerequisites": [
+        "pagedattention_vllm",
+        "inference_basics",
+        "batch_processing"
+      ],
+      "prerequisites_mastered": [
+        "pagedattention_vllm"
+      ],
+      "common_confusions": [
+        "ORCA early completion的检测时机",
+        "SplitFuse的chunk边界管理",
+        "请求取消的资源回收"
+      ],
+      "strengths": [
+        "ORCA调度循环的工程理解",
+        "SplitFuse与ORCA的对比分析",
+        "与PagedAttention的协同机制"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "quantization_algorithms",
+        "speculative_decoding",
+        "inference_p99_optimization"
+      ]
+    },
+    "quantization_algorithms": {
+      "concept_id": "inference_05",
+      "name": "量化算法（GPTQ/AWQ）",
+      "mastery_score": 0.0,
+      "last_interaction": "2026-03-30",
+      "status": "in_progress",
+      "file_path": "llm/009_quantization-algorithms.md",
+      "prerequisites": [
+        "linear_algebra",
+        "matrix_operations",
+        "inference_basics"
+      ],
+      "prerequisites_mastered": [
+        "pagedattention_vllm"
+      ],
+      "common_confusions": [
+        "Hessian逆矩阵的计算开销",
+        "激活值通道保护的数学原理",
+        "INT4反量化的性能瓶颈"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "speculative_decoding",
+        "inference_p99_optimization",
+        "vllm_vs_sglang"
+      ]
+    },
+    "speculative_decoding": {
+      "concept_id": "inference_06",
+      "name": "Speculative Decoding 推测解码",
+      "mastery_score": 0.70,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/010_speculative-decoding.md",
+      "prerequisites": [
+        "kv_cache_optimization",
+        "continuous_batching",
+        "probability_theory"
+      ],
+      "prerequisites_mastered": [
+        "kv_cache_optimization",
+        "continuous_batching"
+      ],
+      "common_confusions": [
+        "接受率α的精确计算公式",
+        "Tree vs Chain验证的复杂度权衡",
+        "Medusa heads训练时的梯度传播"
+      ],
+      "strengths": [
+        "接受率数学推导的准确性",
+        "Medusa实现细节的掌握",
+        "动态k调整策略的工程直觉"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "quantization_algorithms",
+        "medusa_decoding",
+        "inference_p99_optimization"
+      ]
+    },
+    "vllm_vs_sglang": {
+      "concept_id": "framework_01",
+      "name": "vLLM vs SGLang 框架对比",
+      "mastery_score": 0.60,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/011_vllm-vs-sglang.md",
+      "prerequisites": [
+        "pagedattention_vllm",
+        "continuous_batching"
+      ],
+      "prerequisites_mastered": [
+        "pagedattention_vllm",
+        "continuous_batching"
+      ],
+      "common_confusions": [
+        "RadixAttention与PagedAttention的内存管理差异",
+        "SGLang语言的编译优化原理",
+        "FlashInfer与FlashAttention的kernel区别"
+      ],
+      "strengths": [
+        "框架选型决策树的掌握",
+        "性能数据对比分析",
+        "生产环境部署经验"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "inference_p99_optimization",
+        "quantization_algorithms",
+        "medusa_decoding"
+      ]
+    },
+    "inference_p99_optimization": {
+      "concept_id": "inference_07",
+      "name": "推理服务 P99 延迟优化",
+      "mastery_score": 0.65,
+      "last_interaction": "2026-03-30",
+      "status": "completed",
+      "file_path": "llm/012_inference-p99-optimization.md",
+      "prerequisites": [
+        "continuous_batching",
+        "pagedattention_vllm",
+        "quantization_algorithms",
+        "speculative_decoding"
+      ],
+      "prerequisites_mastered": [
+        "continuous_batching",
+        "pagedattention_vllm"
+      ],
+      "common_confusions": [
+        "P99与P95的统计意义差异",
+        "分层优化中的收益叠加计算",
+        "长尾请求的根因分析方法"
+      ],
+      "strengths": [
+        "四层次优化框架的系统理解",
+        "从300ms到100ms的实战案例",
+        "监控告警和自动调参"
+      ],
+      "preferred_template": "军备库型",
+      "next_recommended": [
+        "quantization_algorithms",
+        "medusa_decoding",
+        "long_context_extension"
+      ]
+    },
+  "progress_tracking": {
+    "total_questions": 60,
+    "completed": 9,
+    "in_progress": 0,
+    "completion_rate": 0.15,
+    "last_study_date": "2026-03-30",
+    "study_streak": 3
+  }
+}
