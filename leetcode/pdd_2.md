@@ -1,1 +1,121 @@
-# 拼多多二面：待定
+# 拼多多二面：4.寻找两个正序数组的中位数
+
+**标签**：`二分查找` `数组` `困难`  
+**难度**：⭐⭐⭐ 困难  
+**频率**：🔥🔥 中频
+
+---
+
+## 题目描述
+
+给定两个**正序**数组 `nums1`、`nums2`，长度分别为 `m`、`n`，求两个数组合并后的**中位数**。
+
+**进阶**：时间复杂度 **O(log(m+n))**。  
+**说明**：双指针模拟归并是 **O(m+n)**，思路直观，面试可先写再被要求优化时再上二分。
+
+---
+
+## 解题思路
+
+### 方法一：双指针（模拟归并）
+
+合并两个有序数组时，每次比较两端当前元素，较小的进入「已合并序列」。中位数只与**位置**有关：
+
+- 总长度 **奇数**：第 \(\frac{m+n+1}{2}\) 小的数即中位数。
+- 总长度 **偶数**：第 \(\frac{m+n}{2}\) 小与第 \(\frac{m+n}{2}+1\) 小的**平均**。
+
+用 `p1`、`p2` 分别在 `nums1`、`nums2` 上移动；一侧越界后只在另一侧继续走即可。
+
+### 方法二：二分划分（满足 O(log(m+n))）
+
+把「找中位数」化为：**左半共 \((m+n+1)/2\) 个元素，且左半最大值 ≤ 右半最小值**。
+
+在**较短**数组 `nums1`（可交换使 `m ≤ n`）上对划分点 `i` 二分：`nums1` 左半取 `i` 个，则 `nums2` 左半取 `j = (m+n+1)//2 - i` 个。比较四个边界：
+
+- `nums1[i-1]`、`nums2[j-1]`：左半最大候选  
+- `nums1[i]`、`nums2[j]`：右半最小候选（越界用 ±∞）
+
+若 `nums1[i-1] ≤ nums2[j]` 且 `nums2[j-1] ≤ nums1[i]`，划分合法；奇数长度返回 `max(左半最大)`，偶数返回 `(max(左半最大) + min(右半最小)) / 2`。否则根据 `nums1[i-1]` 与 `nums2[j]` 的大小关系收缩 `i` 的区间。
+
+---
+
+## 代码实现
+
+### 双指针
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:
+        m, n = len(nums1), len(nums2)
+        total = m + n
+        # 奇数：取第 (total+1)//2 小；偶数：取第 total//2 与 total//2+1 小的平均 → 共需 total//2+1 步
+        k2 = (total + 1) // 2 if total % 2 else total // 2 + 1
+
+        p1 = p2 = 0
+        cur = prev = 0
+
+        for step in range(k2):
+            prev = cur
+            if p1 >= m:
+                cur = nums2[p2]
+                p2 += 1
+            elif p2 >= n:
+                cur = nums1[p1]
+                p1 += 1
+            elif nums1[p1] <= nums2[p2]:
+                cur = nums1[p1]
+                p1 += 1
+            else:
+                cur = nums2[p2]
+                p2 += 1
+
+        if total % 2:
+            return float(cur)
+        return (prev + cur) / 2.0
+```
+
+### 二分划分
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: list[int], nums2: list[int]) -> float:
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
+        m, n = len(nums1), len(nums2)
+        lo, hi = 0, m
+        half = (m + n + 1) // 2
+        while lo <= hi:
+            i = (lo + hi) // 2
+            j = half - i
+            left1 = float("-inf") if i == 0 else nums1[i - 1]
+            right1 = float("inf") if i == m else nums1[i]
+            left2 = float("-inf") if j == 0 else nums2[j - 1]
+            right2 = float("inf") if j == n else nums2[j]
+            if left1 <= right2 and left2 <= right1:
+                if (m + n) % 2:
+                    return float(max(left1, left2))
+                return (max(left1, left2) + min(right1, right2)) / 2.0
+            if left1 > right2:
+                hi = i - 1
+            else:
+                lo = i + 1
+        return 0.0
+```
+
+---
+
+## 复杂度分析
+
+| 方法     | 时间                 | 空间   | 说明                         |
+|----------|----------------------|--------|------------------------------|
+| 双指针   | **O(m + n)**         | **O(1)** | 模拟 merge 到中位数位置      |
+| 二分划分 | **O(log(min(m,n)))** | **O(1)** | 仅在较短数组上二分划分点 `i` |
+
+---
+
+## 小结
+
+- **双指针**：代码短、好讲清，复杂度线性；适合作为第一思路。  
+- **二分**：满足题目进阶时间要求，需讲清「划分 + 四个边界 + 不变式」。
+
+---
