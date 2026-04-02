@@ -1,0 +1,286 @@
+{
+  "meta": {
+    "sentence_a": "电脑放不进纸箱，因为它太大了",
+    "sentence_b": "电脑放不进纸箱，因为它太小了",
+    "pronoun": "它",
+    "candidates": [
+      "电脑",
+      "纸箱"
+    ],
+    "probe_modes": [
+      "pronoun",
+      "last"
+    ],
+    "csv_probe_mode": "last",
+    "minimal_json": true,
+    "include_all_head_directions": false
+  },
+  "analysis": {
+    "pronoun": {
+      "summary": {
+        "probe_mode": "pronoun",
+        "model_path": "/root/data/AI/pretrain/Qwen2.5-7B-Instruct",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "candidates": [
+          "电脑",
+          "纸箱"
+        ],
+        "sentence_A_overall": {
+          "电脑": 0.5478578806321412,
+          "纸箱": 0.09404377100160062
+        },
+        "sentence_B_overall": {
+          "电脑": 0.5478578806321412,
+          "纸箱": 0.09404377100160062
+        },
+        "A_margin_c1_minus_c2": 0.45381410963054064,
+        "B_margin_c1_minus_c2": 0.45381410963054064,
+        "delta_margin": 0.0
+      },
+      "top_k_head_deltas": [
+        {
+          "layer": 0,
+          "head": 0,
+          "a_margin_c1_minus_c2": -0.031005859375,
+          "b_margin_c1_minus_c2": -0.031005859375,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 1,
+          "a_margin_c1_minus_c2": -0.3564453125,
+          "b_margin_c1_minus_c2": -0.3564453125,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 2,
+          "a_margin_c1_minus_c2": -0.00241851806640625,
+          "b_margin_c1_minus_c2": -0.00241851806640625,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 3,
+          "a_margin_c1_minus_c2": -7.217749953269958e-07,
+          "b_margin_c1_minus_c2": -7.217749953269958e-07,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 4,
+          "a_margin_c1_minus_c2": -0.03619384765625,
+          "b_margin_c1_minus_c2": -0.03619384765625,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 5,
+          "a_margin_c1_minus_c2": -0.1533203125,
+          "b_margin_c1_minus_c2": -0.1533203125,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 6,
+          "a_margin_c1_minus_c2": -0.03389739990234375,
+          "b_margin_c1_minus_c2": -0.03389739990234375,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 7,
+          "a_margin_c1_minus_c2": -0.126434326171875,
+          "b_margin_c1_minus_c2": -0.126434326171875,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 8,
+          "a_margin_c1_minus_c2": -0.0077362060546875,
+          "b_margin_c1_minus_c2": -0.0077362060546875,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        },
+        {
+          "layer": 0,
+          "head": 9,
+          "a_margin_c1_minus_c2": 0.05908203125,
+          "b_margin_c1_minus_c2": 0.05908203125,
+          "delta_margin": 0.0,
+          "abs_delta_margin": 0.0
+        }
+      ],
+      "direction_summary": {
+        "total_heads": 784,
+        "positive_count": 0,
+        "negative_count": 0,
+        "zero_count": 784,
+        "positive_ratio": 0.0,
+        "negative_ratio": 0.0,
+        "zero_ratio": 1.0,
+        "positive_sum_delta": 0.0,
+        "negative_sum_delta": 0.0,
+        "net_sum_delta": 0.0
+      }
+    },
+    "last": {
+      "summary": {
+        "probe_mode": "last",
+        "model_path": "/root/data/AI/pretrain/Qwen2.5-7B-Instruct",
+        "device": "cuda",
+        "dtype": "torch.bfloat16",
+        "candidates": [
+          "电脑",
+          "纸箱"
+        ],
+        "sentence_A_overall": {
+          "电脑": 0.5149431146861871,
+          "纸箱": 0.05604858803150028
+        },
+        "sentence_B_overall": {
+          "电脑": 0.5098323091907351,
+          "纸箱": 0.053644098462335026
+        },
+        "A_margin_c1_minus_c2": 0.4588945266546869,
+        "B_margin_c1_minus_c2": 0.45618821072840005,
+        "delta_margin": -0.0027063159262868397
+      },
+      "top_k_head_deltas": [
+        {
+          "layer": 12,
+          "head": 23,
+          "a_margin_c1_minus_c2": 0.22265625,
+          "b_margin_c1_minus_c2": 0.7120361328125,
+          "delta_margin": 0.4893798828125,
+          "abs_delta_margin": 0.4893798828125
+        },
+        {
+          "layer": 11,
+          "head": 27,
+          "a_margin_c1_minus_c2": 0.03515625,
+          "b_margin_c1_minus_c2": 0.517822265625,
+          "delta_margin": 0.482666015625,
+          "abs_delta_margin": 0.482666015625
+        },
+        {
+          "layer": 17,
+          "head": 26,
+          "a_margin_c1_minus_c2": 0.32421875,
+          "b_margin_c1_minus_c2": 0.796875,
+          "delta_margin": 0.47265625,
+          "abs_delta_margin": 0.47265625
+        },
+        {
+          "layer": 18,
+          "head": 15,
+          "a_margin_c1_minus_c2": 0.3359375,
+          "b_margin_c1_minus_c2": -0.0888671875,
+          "delta_margin": -0.4248046875,
+          "abs_delta_margin": 0.4248046875
+        },
+        {
+          "layer": 11,
+          "head": 7,
+          "a_margin_c1_minus_c2": 0.45947265625,
+          "b_margin_c1_minus_c2": 0.044677734375,
+          "delta_margin": -0.414794921875,
+          "abs_delta_margin": 0.414794921875
+        },
+        {
+          "layer": 11,
+          "head": 13,
+          "a_margin_c1_minus_c2": 0.443359375,
+          "b_margin_c1_minus_c2": 0.0634765625,
+          "delta_margin": -0.3798828125,
+          "abs_delta_margin": 0.3798828125
+        },
+        {
+          "layer": 14,
+          "head": 14,
+          "a_margin_c1_minus_c2": 0.43359375,
+          "b_margin_c1_minus_c2": 0.7568359375,
+          "delta_margin": 0.3232421875,
+          "abs_delta_margin": 0.3232421875
+        },
+        {
+          "layer": 16,
+          "head": 7,
+          "a_margin_c1_minus_c2": 0.5595703125,
+          "b_margin_c1_minus_c2": 0.248046875,
+          "delta_margin": -0.3115234375,
+          "abs_delta_margin": 0.3115234375
+        },
+        {
+          "layer": 10,
+          "head": 19,
+          "a_margin_c1_minus_c2": 0.2763671875,
+          "b_margin_c1_minus_c2": 0.57421875,
+          "delta_margin": 0.2978515625,
+          "abs_delta_margin": 0.2978515625
+        },
+        {
+          "layer": 11,
+          "head": 23,
+          "a_margin_c1_minus_c2": 0.1904296875,
+          "b_margin_c1_minus_c2": 0.47802734375,
+          "delta_margin": 0.28759765625,
+          "abs_delta_margin": 0.28759765625
+        }
+      ],
+      "direction_summary": {
+        "total_heads": 784,
+        "positive_count": 335,
+        "negative_count": 443,
+        "zero_count": 6,
+        "positive_ratio": 0.4272959183673469,
+        "negative_ratio": 0.5650510204081632,
+        "zero_ratio": 0.007653061224489796,
+        "positive_sum_delta": 22.431593876797706,
+        "negative_sum_delta": -24.55334556300655,
+        "net_sum_delta": -2.1217516862088424
+      }
+    }
+  },
+  "next_token": {
+    "A": {
+      "first_token_probs": {
+        "电脑": 9.441375732421875e-05,
+        "纸箱": 2.09808349609375e-05
+      },
+      "continuation_logprobs": {
+        "电脑": -9.25,
+        "纸箱": -10.75616455078125
+      }
+    },
+    "B": {
+      "first_token_probs": {
+        "电脑": 5.888938903808594e-05,
+        "纸箱": 4.57763671875e-05
+      },
+      "continuation_logprobs": {
+        "电脑": -9.75,
+        "纸箱": -10.004058837890625
+      }
+    },
+    "delta": {
+      "first_token_prob_delta": {
+        "电脑": -3.552436828613281e-05,
+        "纸箱": 2.47955322265625e-05
+      },
+      "continuation_logprob_delta": {
+        "电脑": -0.5,
+        "纸箱": 0.752105712890625
+      }
+    }
+  }
+}

@@ -17,16 +17,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### LLM Technical Documentation
 
-- **`/llm/`** - Comprehensive LLM research documents (legacy organization, ~100+ topics)
-  - Covers: Tokenizers, Transformer architecture, Attention mechanisms, Training methods, Inference optimization, RAG systems, Agent frameworks, RLHF, Memory systems
-  - Each file is a self-contained technical deep-dive on a specific topic
-
-- **`/llm_v1/`** - New structured LLM documentation with sequential learning path
+- **`/llm/`** - Structured LLM documentation with sequential learning path
   - `001_tokenizer.md` - Tokenization fundamentals
   - `002_self-attention-mechanism.md` - Core attention mathematics
   - `003_mha-gqa-comparison.md` - Attention architecture comparisons
-  - `code/` - Python implementations for key algorithms (MHA, GQA, etc.)
-  - **Note**: This is the actively maintained version with ongoing expansion
+  - `004_rope-alibi-position-encoding.md` - Position encoding methods
+  - And more numbered documents covering inference, fine-tuning, and optimization
+  - Each file is a self-contained technical deep-dive on a specific topic
+  - Covers: Tokenizers, Transformer architecture, Attention mechanisms, Training methods, Inference optimization, RAG systems, Agent frameworks, RLHF, Memory systems
 
 ### Algorithm Practice
 
@@ -60,9 +58,6 @@ find . -name "*.md" -type f | xargs grep -l "attention" | head -10
 # Search within llm directory
 grep -r "LoRA\|lora" --include="*.md" llm/
 
-# Search within llm_v1
-grep -r "self-attention" --include="*.md" llm_v1/
-
 # List recently modified files
 ls -lt $(find . -name "*.md" -type f) | head -10
 
@@ -79,8 +74,8 @@ find llm -name "*token*" -type f
 # Find RLHF training documents
 find llm -name "*RLHF*" -o -name "*DPO*" -o -name "*SFT*"
 
-# Check for duplicate topics between llm and llm_v1
-find llm -name "*.md" -exec basename {} \; | sort | uniq -d
+# List numbered documents in sequential order
+ls -lh llm/0*.md | awk '{print $9, "-", $5}'
 ```
 
 ### Subprojects
@@ -162,7 +157,7 @@ Each problem file includes:
 
 ### LLM Documentation Structure
 
-The `/llm/` and `/llm_v1/` directories cover:
+The `/llm/` directory covers:
 
 - **Tokenization** - BPE, SentencePiece, WordPiece, and subword algorithms
 - **Transformer Architecture** - Attention mechanisms (MHA, GQA, MQA), positional encodings, and optimization
@@ -176,20 +171,15 @@ The `/llm/` and `/llm_v1/` directories cover:
 
 When creating new documentation:
 
-#### LLM Documentation (`/llm_v1/`)
+#### LLM Documentation (`/llm/`)
 - Use sequential numbering: `001_{topic}.md`, `002_{topic}.md`, etc.
-- Include code examples in accompanying `code/` directory
+- Follow existing format in `/llm/` directory
 - Each document should be self-contained with clear progression
 
 #### LeetCode Solutions
 - Use format: `{problem-number}.{problem-name}.md` (e.g., `1.两数之和.md`)
 - Follow existing template structure in `leetcode/0.模板.md`
 - Include complexity analysis and multiple approaches if applicable
-
-#### Legacy LLM Docs (`/llm/`)
-- Use descriptive hyphenated names: `{topic}.md` (e.g., `BPE-algorithm.md`)
-- Focus on specific, well-defined topics
-- Include code examples and mathematical formulations
 
 ## Code Style and Standards
 
@@ -205,10 +195,10 @@ When creating new documentation:
 
 | Topic | Directory | Key Files |
 |-------|-----------|-----------|
-| Tokenization | `/llm/`, `/llm_v1/` | `BPE-algorithm.md`, `001_tokenizer.md` |
-| Transformer Architecture | `/llm/`, `/llm_v1/` | `TransformerArchitecture.md`, `002_self-attention-mechanism.md` |
-| Attention Mechanisms | `/llm/`, `/llm_v1/code/` | `MHA.md`, `GQA.md`, `MultiHeadAttention.md` |
-| Training & Fine-tuning | `/llm/` | `LoRA-Principle.md`, `QLoRA-Principle.md`, `SFT_VS_RLHF.md` |
+| Tokenization | `/llm/` | `001_tokenizer.md` |
+| Transformer Architecture | `/llm/` | `002_self-attention-mechanism.md`, `003_mha-gqa-comparison.md` |
+| Attention Mechanisms | `/llm/` | `MHA.md`, `GQA.md`, `MultiHeadAttention.md` |
+| Training & Fine-tuning | `/llm/` | `014_finetuning-full-vs-efficient.md`, `015_lora-principle-tuning.md` |
 | RLHF & Alignment | `/llm/` | `RLHF-FullProcess.md`, `Reward-Model-Training.md` |
 | RAG & Memory | `/llm/` | `RAG.md`, `MemGPTLayeredMemoryAndVirtualContext.md` |
 | Agent Systems | `/llm/` | `ReActFramework.md`, `ToolCalling.md` |
@@ -218,9 +208,9 @@ When creating new documentation:
 ### Common Development Tasks
 
 ```bash
-# Start new LLM_v1 document
-# - Create numbered file in llm_v1/
-# - Add code examples in llm_v1/code/ if needed
+# Start new LLM document
+# - Follow sequential numbering: 001_{topic}.md, 002_{topic}.md, etc.
+# - Add to /llm/ directory
 
 # Add new LeetCode solution
 # - Follow existing naming convention
@@ -256,14 +246,15 @@ grep -A 50 "### Day $day:" leetcode/hot100-sprint-plan.md | grep -E '^\| [0-9]+'
 
 ## Important Notes
 
-- **Active Development** - Focus on `/llm_v1/` for new LLM content (structured learning path)
+- **Active Development** - `/llm/` directory contains structured documentation with sequential numbering
 - **Knowledge Repository** - This is primarily documentation, not an executable software project (except subprojects)
 - **Chinese Content** - Main documentation is in Chinese, targeting Chinese-speaking audience
-- **Multiple Versions** - Some content exists in both `/llm/` and `/llm_v1/` - prefer `/llm_v1/` for learning
+- **Structured Organization** - LLM docs use sequential numbering (001, 002, etc.) for clear learning path
 - **Subproject Independence** - Each subproject in `/docs/` has its own dependencies and build system
 
 ## Last Updated
 
-- **Last Revision**: 2026-03-19
-- **Current Focus**: Expanding `/llm_v1/` with sequential numbered documentation
-- **Active Areas**: LLM training techniques, agent systems, algorithm practice
+- **Last Revision**: 2026-04-02
+- **Current Focus**: Expanding `/llm/` with sequentially numbered documentation for structured learning path
+- **Active Areas**: LLM training techniques (LoRA, QLoRA), inference optimization, agent systems, algorithm practice
+- **Knowledge Graph**: Unified knowledge tracking system located at `.claude/skills/interview-master/memory/Rain/knowledge_graph.json`
